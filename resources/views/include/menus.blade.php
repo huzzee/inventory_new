@@ -32,7 +32,7 @@
                                         <ul class="list-unstyled">
                                             @foreach(callMenus() as $submenus)
                                                 @if($submenus->parent_menu_id == $menus->id)
-                                                    <li><a href="{{ $submenus->menu_slug }}">{{ $submenus->menu_name }}</a></li>
+                                                    <li><a href="{{ url($submenus->menu_slug) }}">{{ $submenus->menu_name }}</a></li>
                                                 @endif
                                             @endforeach
                                         </ul>

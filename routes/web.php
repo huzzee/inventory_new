@@ -20,6 +20,12 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 /*----------------------------------------------------
-				    Menus Route
+				    Resources Route
 ------------------------------------------------------*/
+
 Route::Resource('menus','MenuController');
+Route::Resource('/users','UserController');
+
+/*----------------------------------------------------
+				    Resources Route
+------------------------------------------------------*/
