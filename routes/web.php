@@ -24,7 +24,9 @@ Route::get('/', 'HomeController@index')->name('home');
 ------------------------------------------------------*/
 
 Route::Resource('menus','MenuController');
-Route::Resource('/users','UserController');
+Route::Resource('users','UserController');
+Route::Resource('item_types','Item_typeController');
+Route::Resource('item_categories','Item_categoryController');
 
 /*----------------------------------------------------
 				    Resources Route
