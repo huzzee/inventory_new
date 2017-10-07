@@ -94,15 +94,22 @@
                                             @foreach($item_types as $item_type)    
                                             <tr>
                                                 <td style="color: teal;">{{ $i }}</td>
-                                                <td>{{ $item_type->item_type_name }}</td>
-                                                <td>
+                                                <td style="font-size: 16px;">{{ $item_type->item_type_name }}</td>
+                                                <td style="font-size: 16px;">
                                                     @if($item_type->status == 1)
                                                     Active
                                                     @else
                                                     Inactive
                                                     @endif
                                                 </td>
-                                                <td>Edinburgh</td>
+                                                <td>
+                                                    <form action="{{ url('item_types/'.$item_type->id) }}" method="post">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i></button>
+                                                        
+                                                    </form>
+                                                </td>
                                                 
                                             </tr>
                                             @php $i++ @endphp
