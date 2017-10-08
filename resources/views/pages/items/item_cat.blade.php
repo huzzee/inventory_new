@@ -139,16 +139,7 @@
 
 @endsection
 @section('scripts')
-        <script src="{{ asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/multiselect/js/jquery.multi-select.js') }}"></script>
-        <script src="{{ asset('assets/plugins/jquery-quicksearch/jquery.quicksearch.js') }}"></script>
-        <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-        <script src="{{ asset('assets/pages/jquery.form-advanced.init.js') }}"></script>
-
+       
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
 

@@ -11,5 +11,9 @@ class ItemType extends Model
     ];
 
 
+    public function items(){
+    	$this->hasMany('App\Models\Item');
+    }
+
    
 }

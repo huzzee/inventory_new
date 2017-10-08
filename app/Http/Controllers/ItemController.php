@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\ItemType;
+use App\Models\ItemCategory;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -24,7 +26,15 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $item_cats = ItemCategory::all();
+        $item_types = ItemType::all();
+
+        //dd($item_cats);
+
+        return view('pages.items.createItem',array(
+            'item_cats' => $item_cats,
+            'item_types' => $item_types
+        )); 
     }
 
     /**

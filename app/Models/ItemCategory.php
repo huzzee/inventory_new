@@ -10,5 +10,7 @@ class ItemCategory extends Model
     	'item_type_id','item_cat_name','status'
     ];
 
-    
+    public function items(){
+    	$this->hasMany('App\Models\Item');
+    }
 }

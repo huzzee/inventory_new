@@ -114,6 +114,7 @@
         <!-- App js -->
         <script src="{{ asset('assets/js/jquery.core.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.app.js') }}"></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
 
     </body>
 </html>
