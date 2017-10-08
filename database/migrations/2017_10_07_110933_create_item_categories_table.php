@@ -16,11 +16,11 @@ class CreateItemCategoriesTable extends Migration
         Schema::create('item_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('item_cat_name');
-            $table->integer('item_type_id')->unsigned();
-            $table->boolean('status');;
+            //$table->integer('item_type_id')->unsigned();
+            $table->boolean('status');
             $table->timestamps();
         
-            $table->foreign('item_type_id')->references('id')->on('item_types')->onDelete('cascade');
+            //$table->foreign('item_type_id')->references('id')->on('item_types')->onDelete('cascade');
         });
     }
 

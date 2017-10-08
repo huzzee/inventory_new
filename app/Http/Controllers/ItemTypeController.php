@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item_type;
+use App\Models\ItemType;
 
 class ItemTypeController extends Controller
 {
     public function index()
     {
-    	$item_types = Item_type::all();
+    	$item_types = ItemType::all();
 
     	//dd($item_types);
 
-    	return view('pages.items.itemstype.item_type',array(
+    	return view('pages.items.item_type',array(
     			'item_types' => $item_types
     	));
     }
@@ -33,7 +33,7 @@ class ItemTypeController extends Controller
     		$status = 1;
     	}
 
-    	$items_type = new Item_type([
+    	$items_type = new ItemType([
     		'item_type_name' => $request->item_type_name,
     		'status' => $status
     	]);
@@ -45,7 +45,7 @@ class ItemTypeController extends Controller
 
     public function destroy($id)
     {
-    	$item_type = Item_type::findOrFail($id);
+    	$item_type = ItemType::findOrFail($id);
 
     	$item_type->delete();
 
