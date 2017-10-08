@@ -9,7 +9,7 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
         <!-- App title -->
-        <title>Inventory</title>
+        <title>Al Invento</title>
 
         <!-- App css -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
