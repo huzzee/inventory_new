@@ -40,11 +40,14 @@
 
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12">
-
-                                    <a class="btn btn-inverse">Items Lists</a>
+                                    
+                                    
+                                    <a class="btn btn-danger">Items Lists</a>
+                                    
                                     <hr>
-
-                                    <div class="p-20">
+                                    <h4>General Info</h4>
+                                    <hr>
+                                    <div class="p-20" style="clear: both;">
                                             
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Item Type<span class="text-danger">*</span></label>
@@ -95,7 +98,7 @@
                                             <div class="form-group row">
                                                 <label for="item_image" class="col-sm-3">Item Image</label>
                                                 <div class="col-sm-9">
-                                                   <input type="file" class="filestyle" placeholder="Not Important" name="item_image" data-buttonname="btn-inverse">
+                                                   <input type="file" class="filestyle" placeholder="Not Important" name="item_image" data-buttonname="btn-danger">
                                                 </div>
                                             </div>
 
@@ -107,6 +110,13 @@
                                                     <input type="checkbox" id="switch3" name="status" switch="bool" checked/>
                                                     <label for="switch3" data-on-label="Yes"
                                                        data-off-label="No"></label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-9"></div>
+                                                <div class="col-sm-3">
+                                                    <button type="submit" class="btn btn-teal">Submit</button>
                                                 </div>
                                             </div>
 
@@ -138,7 +148,7 @@
                                             
                                             
                                             <div class="form-group row">
-                                                <label for="status" class="col-sm-3">Item Is Saleable<span class="text-danger">*</span></label>
+                                                <label for="status" class="col-sm-3">Is Item Saleable<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
                                                     <input type="checkbox" id="switch4" name="status" switch="bool" />
                                                     <label for="switch4" data-on-label="Yes"
@@ -150,7 +160,7 @@
                                                 <label for="item_name" class="col-sm-3">Select Item Unit<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
                                                     <select class="form-control select2 unitPrice" name="item_unit" disabled="disabled">
-                                                        <option selected disabled="disabled">Select Item Category</option>
+                                                        <option selected disabled="disabled">Select Item Unit</option>
                                                         
                                                         <option value="Box">Box</option>
                                                         <option value="Kilogram">Kilogram</option>
@@ -176,27 +186,34 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="item_name" class="col-sm-2">Unit<span class="text-danger">*</span></label>
-                                                <div class="col-sm-4">
-                                                    <input type="number" id="unit_nmbr" parsley-trigger="change"
-                                                       class="form-control unitPrice" value="1" disabled="disabled" />
-                                                        
-                                                </div>
-                                                <label for="item_name" class="col-sm-2">Price<span class="text-danger">*</span></label>
-                                                <div class="col-sm-4">
+                                                
+                                                <label for="item_name" class="col-sm-3">Per Unit Price<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
                                                     <input type="number" id="unit_price" name="unit_price" parsley-trigger="change" 
-                                                       class="form-control unitPrice" disabled="disabled" value="{{ old('unit_price') }}"  />
+                                                       class="form-control unitPrice" placeholder="Enter Per unit Price" disabled="disabled" value="{{ old('unit_price') }}"  />
                                                         
                                                 </div>
                                                 
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-2"></div>
-                                                <div class="col-sm-10">
-                                                    <p>Total Price per Unit <span id="totalpricing">0</span>.(Your currency)</p>
+                                            
+                                                <label for="item_name" class="col-sm-3">Discount In %</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" id="discount_percent" name="discount_percent" parsley-trigger="change" class="form-control unitPrice" disabled="disabled" value="0" placeholder="Enter Disscount in %" />
+                                                        
                                                 </div>
+
                                             </div>
                                             
+                                            <div class="form-group row">
+                                            
+                                                <label for="discount_price" class="col-sm-3">After Discount Price<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" id="discount_price" name="discount_price" parsley-trigger="change" 
+                                                       class="form-control" disabled="disabled" value="00.000" />
+                                                        
+                                                </div>
+                                            </div>    
                                         
                                     </div>
 
@@ -204,23 +221,43 @@
 
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     <hr>
-                                    <h4>Saleable Item</h4>
+                                    <h4>Quantity</h4>
                                     <hr>
 
                                     <div class="p-20">
                                             
+                                        <div class="form-group row">
                                             
-                                            
-                                            <div class="form-group row">
-                                                <label for="status" class="col-sm-3">Item Is Saleable<span class="text-danger">*</span></label>
-                                                <div class="col-sm-9">
-                                                    <input type="checkbox" id="switch3" name="status" switch="bool"/>
-                                                    <label for="switch3" data-on-label="Yes"
-                                                       data-off-label="No"></label>
-                                                </div>
+                                            <label for="opening_qnt" class="col-sm-3">Opening Quantity<span class="text-danger">*</span></label>
+                                            <div class="col-sm-9">
+                                                <input type="number" id="opening_qnt" name="opening_qnt" parsley-trigger="change" 
+                                                   class="form-control" value="0"  />
+                                                    
                                             </div>
-
                                             
+                                        </div>
+
+                                        <div class="form-group row">
+                                            
+                                            <label for="current_qnt" class="col-sm-3">Current Quantity<span class="text-danger">*</span></label>
+                                            <div class="col-sm-9">
+                                                <input type="number" id="current_qnt" name="current_qnt" parsley-trigger="change" 
+                                                   class="form-control"  value="0"  />
+                                                    
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group row">
+                                            
+                                            <label for="min_qnt" class="col-sm-3">Notify Quantity<span class="text-danger">*</span></label>
+                                            <div class="col-sm-9">
+                                                <input type="number" id="min_qnt" name="min_qnt" parsley-trigger="change" 
+                                                   class="form-control" value="0"  />
+                                                    
+                                            </div>
+                                            
+                                        </div>
                                         
                                     </div>
 

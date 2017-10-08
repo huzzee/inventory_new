@@ -6,29 +6,7 @@ if(saleable2 == true)
 	$('.unitPrice').prop('disabled', false);
 }
 
-$('#unit_price').keyup(function(){
 
-	var unit = document.getElementById('unit_nmbr').value;
-
-	var price = $(this).val();
-
-	var total = unit * price;
-
-	$('#totalpricing').html(total);
-	//console.log(total);
-});
-
-$('#unit_nmbr').keyup(function(){
-
-	var unit = document.getElementById('unit_price').value;
-
-	var price = $(this).val();
-
-	var total = unit * price;
-
-	$('#totalpricing').html(total);
-	//console.log(total);
-});
 
 $('#switch4').change(function(){
 
@@ -43,4 +21,31 @@ $('#switch4').change(function(){
 	{
 		$('.unitPrice').prop('disabled', true);
 	}
+});
+
+$('#discount_percent').keyup(function(){
+	var diss = $(this).val();
+
+	var price =  document.getElementById('unit_price').value;
+	//console.log(price);
+
+	var disscount = diss * price/100;
+
+	//console.log(disscount);
+	var diss_price = document.getElementById('discount_price').value = price - disscount;
+
+
+});
+
+$('#unit_price').keyup(function(){
+	var price = $(this).val();
+
+	var diss =  document.getElementById('discount_percent').value;
+	//console.log(price);
+
+	var disscount = diss * price/100;
+
+	var diss_price = document.getElementById('discount_price').value = price - disscount;
+
+
 });
