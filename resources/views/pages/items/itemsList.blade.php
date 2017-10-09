@@ -35,11 +35,11 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th width="5%">Sr.No</th>
-                                <th width="5%">Image</th>
+                                <th width="3%">Sr.No</th>
+                                <th width="3%">Image</th>
                                 <th>Name</th>
-                                <th>Type</th>
-                                <th>Category</th>
+                                <th width="15%">Type</th>
+                                <th width="15%">Category</th>
                                 <th width="8%">Quantity</th>
                                 <th width="15%">Item Price</th>
                                 <th width="10%">Saleable Item</th>
@@ -55,8 +55,8 @@
                                 @foreach($items as $item)
 
                                 	<tr>
-                                		<td>{{ $i }}</td>
-                                		<td><img src="{{ asset('uploads/'.$item->item_image)}}" style="width: 60px;height: 60px"></td>
+                                		<td align="center">{{ $i }}</td>
+                                		<td><img src="{{ asset('uploads/'.$item->item_image)}}" style="width: 50px;height: 50px"></td>
                                 		<td>{{ $item->item_name }}</td>
                                 		<td>{{ $item->item_types->item_type_name }}</td>
                                 		<td>{{ $item->item_categories->item_cat_name }}</td>
@@ -73,9 +73,50 @@
                                 			<td>Not Saleable</td>
 
                                 		@endif
-                                		<td></td>
+                                		<td>
+                                			<form action="{{ url('items/'.$item->id) }}" method="post">
+                                            {{ csrf_field() }}
+	                                            <input type="hidden" name="_method" value="DELETE">
+	                                            <button type="submit" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+	                                            	<i class="fa fa-eye"></i>
+	                                            </button>
+                                            
+                                        	</form>
+                                        	<form action="{{ url('items/'.$item->id) }}" method="post">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"> <i class="fa fa-edit"></i></button>
+                                            
+                                        	</form>
+                                			
+                                        	<button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$item->id}}"><i class="fa fa-remove"></i></button>
+                                		</td>
                                 	</tr>
+                                	<div id="con-close-modal{{$item->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title">Warning!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    Are You Sure.You want to Delete it.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
 
+                                                    <form action="{{ url('items/'.$item->id) }}" method="post">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>
+                                                    
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @php $i++; @endphp
                                 @endforeach
                             </tbody>

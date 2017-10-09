@@ -113,7 +113,7 @@ class ItemController extends Controller
 
             $items->save();
 
-            return redirect('items/create');
+            return redirect('items');
 
 
         
@@ -159,8 +159,13 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy($id)
     {
-        //
+        //dd($id);
+        $items = Item::findOrFail($id);
+
+        $items->delete();
+
+        return redirect('items');
     }
 }

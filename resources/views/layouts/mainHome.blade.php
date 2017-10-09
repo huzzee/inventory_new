@@ -11,6 +11,9 @@
         <!-- App title -->
         <title>Al Invento</title>
 
+        <!-- Custom box -->
+            <link href="{{ asset('assets/plugins/custombox/css/custombox.min.css') }}" rel="stylesheet">
+
         <!-- form css-->
         <link href="{{ asset('assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}" rel="stylesheet" />
         <link href="{{ asset('assets/plugins/multiselect/css/multi-select.css') }}"  rel="stylesheet" type="text/css" />
