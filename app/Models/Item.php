@@ -14,11 +14,11 @@ class Item extends Model
     public function item_categories()
     {
 
-    	$this->belongsTo('App\Models\ItemCategory');
+    	return $this->belongsTo('App\Models\ItemCategory','catagory_id');
     }
 
     public function item_types()
     {
-    	$this->belongsTo('App\Models\ItemType');
+    	return $this->belongsTo('App\Models\ItemType','type_id');
     }
 }

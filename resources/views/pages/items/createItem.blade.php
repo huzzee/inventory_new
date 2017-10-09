@@ -42,7 +42,7 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     
                                     
-                                    <a class="btn btn-danger">Items Lists</a>
+                                    <a class="btn btn-danger" href="{{ url('items') }}">Items Lists</a>
                                     
                                     <hr>
                                     <h4>General Info</h4>

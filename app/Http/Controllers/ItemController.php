@@ -17,7 +17,11 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::with('item_types','item_categories')->get();
+        //dd($items);
+        return view('pages.items.itemsList',array(
+            'items' => $items
+        ));
     }
 
     /**

@@ -25,24 +25,24 @@ class ItemRequest extends FormRequest
     {
         //dd(request()->all());
         if(request()->is_saleable !== null && request()->item_image !== null)
-            {
-                return [
-                    'catagory_id' => 'required',
-                    'type_id' => 'required',
-                    'item_name' => 'required',
-                    'opening_qnt' => 'required',
-                    'current_qnt' => 'required',
-                    'min_qnt' => 'required',
-                    'unit_price' => 'required',
-                    'item_unit' => 'required',
-                    'item_image' => 'image|mimes:jpeg,png|max:2048'
-                    
-                ];
-            }
+        {
+            return [
+                'catagory_id' => 'required',
+                'type_id' => 'required',
+                'item_name' => 'required',
+                'opening_qnt' => 'required',
+                'current_qnt' => 'required',
+                'min_qnt' => 'required',
+                'unit_price' => 'required',
+                'item_unit' => 'required',
+                'item_image' => 'image|mimes:jpeg,png|max:2048'
+                
+            ];
+        }
         elseif(request()->is_saleable !== null)
         {
 
-                return [
+            return [
                 
                 'catagory_id' => 'required',
                 'type_id' => 'required',
@@ -58,8 +58,8 @@ class ItemRequest extends FormRequest
         elseif(request()->item_image !== null)
         {
 
-                return [
-                
+            return [
+            
                 'catagory_id' => 'required',
                 'type_id' => 'required',
                 'item_name' => 'required',
@@ -67,22 +67,22 @@ class ItemRequest extends FormRequest
                 'current_qnt' => 'required',
                 'min_qnt' => 'required',
                 'item_image' => 'image|mimes:jpeg,png|max:2048'
-                
+            
 
             ];
         }
         else
         {
-                return [
-                    
-                    'catagory_id' => 'required',
-                    'type_id' => 'required',
-                    'item_name' => 'required',
-                    'opening_qnt' => 'required',
-                    'current_qnt' => 'required',
-                    'min_qnt' => 'required',
+            return [
+                
+                'catagory_id' => 'required',
+                'type_id' => 'required',
+                'item_name' => 'required',
+                'opening_qnt' => 'required',
+                'current_qnt' => 'required',
+                'min_qnt' => 'required',
 
-                ];
+            ];
         }
        
     }

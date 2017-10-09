@@ -20,7 +20,7 @@ class CreateItemCategoriesTable extends Migration
             $table->boolean('status');
             $table->timestamps();
         
-            //$table->foreign('item_type_id')->references('id')->on('item_types')->onDelete('cascade');
+//            $table->foreign('item_type_id')->references('id')->on('item_types')->onDelete('cascade');
         });
     }
 

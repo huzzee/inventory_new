@@ -10,9 +10,14 @@ class ItemType extends Model
     	'item_type_name','status'
     ];
 
+    /*public function item_categories(){
+
+    	return $this->hasMany('App\Models\ItemCategory','type_id');
+    }*/
 
     public function items(){
-    	$this->hasMany('App\Models\Item');
+
+    	return $this->hasMany('App\Models\Item','id');
     }
 
    
