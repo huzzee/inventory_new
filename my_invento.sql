@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 09, 2017 at 10:46 AM
+-- Generation Time: Oct 09, 2017 at 01:32 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -46,6 +46,15 @@ CREATE TABLE `items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `discount_price`, `discount_percent`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, 'testoing', 'asdsad', 'Box', 78, 0, 12, 'testoing_2.jpg', 1000.00, 980.00, 2, 1, 1, 0, '2017-10-09 08:24:42', '2017-10-09 08:24:42'),
+(2, 2, 3, 'testettaea', 'asdsadsadsad', NULL, 0, 0, 26, 'avatar.png', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 08:27:47', '2017-10-09 08:27:47'),
+(3, 2, 3, 'cxbvshdsh', NULL, NULL, 0, 0, 567, 'cxbvshdsh_2.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 08:28:04', '2017-10-09 08:28:04');
 
 -- --------------------------------------------------------
 
@@ -277,7 +286,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --

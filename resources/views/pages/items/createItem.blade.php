@@ -22,7 +22,7 @@
             <!-- end row -->
 
             <div class="row">
-                <form action="{{ route('item_categories.store') }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('items.store') }}" enctype="multipart/form-data" method="POST">
 
                          {{ csrf_field() }}
 
@@ -67,7 +67,7 @@
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Item Category<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control select2" name="category_id">
+                                                    <select class="form-control select2" name="catagory_id">
                                                         <option selected disabled="disabled">Select Item Category</option>
                                                         
                                                         @foreach($item_cats as $item_cat)
@@ -148,9 +148,9 @@
                                             
                                             
                                             <div class="form-group row">
-                                                <label for="status" class="col-sm-3">Is Item Saleable<span class="text-danger">*</span></label>
+                                                <label for="status" class="col-sm-3">Is Item Saleable</label>
                                                 <div class="col-sm-9">
-                                                    <input type="checkbox" id="switch4" name="status" switch="bool" />
+                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" />
                                                     <label for="switch4" data-on-label="Yes"
                                                        data-off-label="No"></label>
                                                 </div>
@@ -207,10 +207,12 @@
                                             
                                             <div class="form-group row">
                                             
-                                                <label for="discount_price" class="col-sm-3">After Discount Price<span class="text-danger">*</span></label>
+                                                <label for="discount_price" class="col-sm-3">After Discount Price</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" id="discount_price" name="discount_price" parsley-trigger="change" 
+                                                    <input type="number" id="discount_price" parsley-trigger="change" 
                                                        class="form-control" disabled="disabled" value="00.000" />
+
+                                                       <input type="hidden" name="discount_price" id="discount_price1">
                                                         
                                                 </div>
                                             </div>    

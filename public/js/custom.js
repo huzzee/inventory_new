@@ -33,6 +33,7 @@ $('#discount_percent').keyup(function(){
 
 	//console.log(disscount);
 	var diss_price = document.getElementById('discount_price').value = price - disscount;
+	var diss_price1 = document.getElementById('discount_price1').value = price - disscount;
 
 
 });
@@ -46,6 +47,7 @@ $('#unit_price').keyup(function(){
 	var disscount = diss * price/100;
 
 	var diss_price = document.getElementById('discount_price').value = price - disscount;
+	var diss_price1 = document.getElementById('discount_price1').value = price - disscount;
 
 
 });
