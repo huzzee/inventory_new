@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+
+
 
 class SupplierController extends Controller
 {
@@ -33,23 +36,40 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {  
+    
+        $this->validate(Request(), [
+
+            'sup_name' => 'required',
+
+            'sup_fullname' => 'required',
+
+            'sup_email' => 'required',
+
+            'sup_address' => 'required',
+
+            'sup_phone' => 'required',
+
+            'key_person' => 'required',
+
+        ]);
+
+
         $upload_dir = base_path() . '/public/uploads';
         
         if($request->sup_image !== null){
             
             $file = $request->file('sup_image');
             $ext = $file->getClientOriginalExtension();
-            $filename = $request->get('sup_image').$ext;
+            $filename = $request->get('sup_email').".".$ext;
             $file->move($upload_dir, $filename);
-
-            dd($filename);
     
         }
         else
         {
             $filename = 'avatar.png';
         }
+
 
         if($request->status == null)
         {
@@ -60,6 +80,21 @@ class SupplierController extends Controller
             $status = 1;
         }
 
+
+        $supplier = new Supplier;
+
+            $supplier->sup_name = $request['sup_name'];
+            $supplier->sup_fullname = $request['sup_fullname'];
+            $supplier->sup_email = $request['sup_email'];
+            $supplier->sup_address = $request['sup_address'];
+            $supplier->sup_phone = $request['sup_phone'];
+            $supplier->key_person = $request['key_person'];
+            $supplier->sup_image = $filename;
+            $supplier->status = $status; 
+
+            $supplier->save();
+
+            return redirect('suppliers');
         
     }
 
