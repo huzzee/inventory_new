@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 10, 2017 at 08:13 PM
+-- Generation Time: Oct 10, 2017 at 09:55 PM
 -- Server version: 5.7.11
--- PHP Version: 7.1.7
+-- PHP Version: 7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -133,7 +133,10 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (14, 'Item Type', 'item_types', 13, 1, NULL, 'item_types.index', 1, 0, 10, NULL, NULL),
 (15, 'Item Category', 'item_categories', 13, 2, NULL, 'item_categories.index', 1, 0, 11, NULL, NULL),
 (16, 'Add Items', 'items/create', 13, 4, NULL, 'items.create', 1, 0, 8, NULL, NULL),
-(17, 'Items List', 'items', 13, 5, NULL, 'items.index', 1, 0, 9, NULL, NULL);
+(17, 'Items List', 'items', 13, 5, NULL, 'items.index', 1, 0, 9, NULL, NULL),
+(18, 'Suppliers', NULL, NULL, 0, 'mdi mdi-clipboard-text', NULL, 1, 0, 12, NULL, NULL),
+(19, 'Add Supplier', 'suppliers/create', 18, 1, NULL, 'suppliers.create', 1, 0, 13, NULL, NULL),
+(20, 'Suppliers List', 'suppliers', 18, 2, NULL, 'suppliers.index', 1, 0, 14, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -158,7 +161,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2017_10_07_092102_create_menus_table', 2),
 (10, '2017_10_07_110820_create_item_types_table', 3),
 (16, '2017_10_07_110933_create_item_categories_table', 4),
-(17, '2017_10_07_133115_create_items_table', 4);
+(17, '2017_10_07_133115_create_items_table', 4),
+(18, '2017_10_09_161540_create_suppliers_table', 5);
 
 -- --------------------------------------------------------
 
@@ -192,6 +196,25 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', NULL, NULL),
 (2, 'Users', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `sup_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sup_fullname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sup_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sup_phone` int(11) DEFAULT NULL,
+  `sup_address` text COLLATE utf8mb4_unicode_ci,
+  `key_person` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sup_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -270,6 +293,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -299,17 +328,22 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
