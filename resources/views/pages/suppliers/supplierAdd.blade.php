@@ -42,10 +42,8 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     
                                     
-                                    <!-- <a class="btn btn-danger" href="{{ url('items') }}">Items Lists</a> -->
+                                    <a class="btn btn-danger" href="{{ url('suppliers') }}">Suppliers Lists</a>
                                     
-                                    <hr>
-                                    <h4>General Info</h4>
                                     <hr>
                                     <div class="p-20" style="clear: both;">
                                             
@@ -58,16 +56,7 @@
                                                        placeholder="Enter Supplier Name" class="form-control" value="{{ old('sup_name') }}" />
                                                         
                                                 </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="sup_fullname" class="col-sm-3">Full Name<span class="text-danger">*</span></label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" name="sup_fullname" parsley-trigger="change" required
-                                                       placeholder="Enter Full Name" class="form-control" value="{{ old('sup_fullname') }}" />
-                                                        
-                                                </div>
-                                            </div>
+                                            </div>               
 
                                             <div class="form-group row">
                                                 <label for="sup_phone" class="col-sm-3">Phone Number<span class="text-danger">*</span></label>
@@ -83,15 +72,6 @@
                                                 <div class="col-sm-7">
                                                     <input type="Email" name="sup_email" parsley-trigger="change" required
                                                        placeholder="Enter Email" class="form-control" value="{{ old('sup_email') }}" />
-                                                        
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="key_person" class="col-sm-3">Key Person / Vendor<span class="text-danger">*</span></label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" name="key_person" parsley-trigger="change" required
-                                                       placeholder="Enter Name Of Key Person" class="form-control" value="{{ old('key_person') }}" />
                                                         
                                                 </div>
                                             </div>

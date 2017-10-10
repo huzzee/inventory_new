@@ -42,15 +42,11 @@ class SupplierController extends Controller
 
             'sup_name' => 'required',
 
-            'sup_fullname' => 'required',
-
             'sup_email' => 'required',
 
             'sup_address' => 'required',
 
             'sup_phone' => 'required',
-
-            'key_person' => 'required',
 
         ]);
 
@@ -84,11 +80,9 @@ class SupplierController extends Controller
         $supplier = new Supplier;
 
             $supplier->sup_name = $request['sup_name'];
-            $supplier->sup_fullname = $request['sup_fullname'];
             $supplier->sup_email = $request['sup_email'];
             $supplier->sup_address = $request['sup_address'];
             $supplier->sup_phone = $request['sup_phone'];
-            $supplier->key_person = $request['key_person'];
             $supplier->sup_image = $filename;
             $supplier->status = $status; 
 
