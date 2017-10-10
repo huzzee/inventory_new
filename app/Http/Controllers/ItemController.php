@@ -58,7 +58,7 @@ class ItemController extends Controller
             $ext = $file->getClientOriginalExtension();
             $filename = $request->get('item_name').'_'.$request->get('catagory_id').'.'.$ext;
             $file->move($upload_dir, $filename);
-            //dd($filename);
+            dd($filename);
         }
         else
         {

@@ -28,6 +28,7 @@ Route::Resource('users','UserController');// for manage users
 Route::Resource('items','ItemController');// for manage items
 Route::Resource('item_types','ItemTypeController');//item Types
 Route::Resource('item_categories','ItemCategoryController');//item categories
+Route::Resource('suppliers','SupplierController');//For Suppliers
 
 /*----------------------------------------------------
 				    Resources Route
