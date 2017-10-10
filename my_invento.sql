@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 10, 2017 at 09:55 PM
+-- Generation Time: Oct 10, 2017 at 10:10 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -212,9 +212,17 @@ CREATE TABLE `suppliers` (
   `sup_address` text COLLATE utf8mb4_unicode_ci,
   `key_person` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sup_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `sup_name`, `sup_fullname`, `sup_email`, `sup_phone`, `sup_address`, `key_person`, `sup_image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'The Name', 'The Full Name', 'The@Email', 50505, 'The Address', 'The Vendor', 'The@Email.oxps', 1, '2017-10-11 05:09:12', '2017-10-11 05:09:12');
 
 -- --------------------------------------------------------
 
@@ -343,7 +351,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
