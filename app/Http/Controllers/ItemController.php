@@ -127,7 +127,10 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        $items = $item->with('item_types','item_categories')->get();
+        return view('pages.items.itemShow',array(
+            'items' => $items
+        ));
     }
 
     /**
@@ -138,7 +141,12 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $items = $item->with('item_types','item_categories')->get();
+
+        return view('pages.items.itemEdit',array(
+            '$items' => $items
+        ));
+        
     }
 
     /**

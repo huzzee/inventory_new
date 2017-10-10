@@ -56,7 +56,7 @@
 
                                 	<tr>
                                 		<td align="center">{{ $i }}</td>
-                                		<td><img src="{{ asset('uploads/'.$item->item_image)}}" style="width: 50px;height: 50px"></td>
+                                		<td align="center"><img src="{{ asset('uploads/'.$item->item_image)}}" style="width: 50px;height: 50px"></td>
                                 		<td>{{ $item->item_name }}</td>
                                 		<td>{{ $item->item_types->item_type_name }}</td>
                                 		<td>{{ $item->item_categories->item_cat_name }}</td>
@@ -74,20 +74,15 @@
 
                                 		@endif
                                 		<td>
-                                			<form action="{{ url('items/'.$item->id) }}" method="post">
-                                            {{ csrf_field() }}
-	                                            <input type="hidden" name="_method" value="DELETE">
-	                                            <button type="submit" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
-	                                            	<i class="fa fa-eye"></i>
-	                                            </button>
+                                			
+	                                            
+                                            <a href="{{ url('items/'.$item->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            	<i class="fa fa-eye"></i>
+                                            </a>
                                             
-                                        	</form>
-                                        	<form action="{{ url('items/'.$item->id) }}" method="post">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"> <i class="fa fa-edit"></i></button>
                                             
-                                        	</form>
+                                            <a href="{{ url('items/'.$item->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
+                                          
                                 			
                                         	<button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$item->id}}"><i class="fa fa-remove"></i></button>
                                 		</td>
