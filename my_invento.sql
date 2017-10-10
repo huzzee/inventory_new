@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 09, 2017 at 01:32 PM
+-- Generation Time: Oct 10, 2017 at 08:13 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -52,9 +52,7 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `discount_price`, `discount_percent`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 2, 3, 'testoing', 'asdsad', 'Box', 78, 0, 12, 'testoing_2.jpg', 1000.00, 980.00, 2, 1, 1, 0, '2017-10-09 08:24:42', '2017-10-09 08:24:42'),
-(2, 2, 3, 'testettaea', 'asdsadsadsad', NULL, 0, 0, 26, 'avatar.png', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 08:27:47', '2017-10-09 08:27:47'),
-(3, 2, 3, 'cxbvshdsh', NULL, NULL, 0, 0, 567, 'cxbvshdsh_2.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 08:28:04', '2017-10-09 08:28:04');
+(5, 3, 11, 'abcd', NULL, NULL, 0, 0, 0, 'abcd_3.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 17:49:58', '2017-10-09 17:49:58');
 
 -- --------------------------------------------------------
 
@@ -75,7 +73,7 @@ CREATE TABLE `item_categories` (
 --
 
 INSERT INTO `item_categories` (`id`, `item_cat_name`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Test', 1, '2017-10-08 09:16:01', '2017-10-08 09:16:01');
+(3, 'test', 1, '2017-10-09 17:21:12', '2017-10-09 17:21:12');
 
 -- --------------------------------------------------------
 
@@ -96,8 +94,8 @@ CREATE TABLE `item_types` (
 --
 
 INSERT INTO `item_types` (`id`, `item_type_name`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'General Items', 1, '2017-10-08 08:36:29', '2017-10-08 08:36:29'),
-(3, 'Raw Material', 1, '2017-10-08 09:14:07', '2017-10-08 09:14:07');
+(8, 'General Items', 1, '2017-10-09 17:33:02', '2017-10-09 17:33:02'),
+(11, 'Raw Material', 1, '2017-10-09 17:35:05', '2017-10-09 17:35:05');
 
 -- --------------------------------------------------------
 
@@ -159,8 +157,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2017_10_06_200021_create_roles_table', 1),
 (4, '2017_10_07_092102_create_menus_table', 2),
 (10, '2017_10_07_110820_create_item_types_table', 3),
-(13, '2017_10_07_110933_create_item_categories_table', 4),
-(15, '2017_10_07_133115_create_items_table', 5);
+(16, '2017_10_07_110933_create_item_categories_table', 4),
+(17, '2017_10_07_133115_create_items_table', 4);
 
 -- --------------------------------------------------------
 
@@ -221,7 +219,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Huzaifa', 'Siddiqui', 'admin', 1, '$2y$10$QsvoKLxQZfJXIC1XDuaYReoE/r78WwCyLPc1kzLzOf5irIxhf0h3K', NULL, 1, 1, 'jfExjscTi5f1Fm9qc6OCb5OzT2XvdTvTAiBRzBrakzdRyTonUKglA0lwthxf', NULL, NULL);
+(1, 'Huzaifa', 'Siddiqui', 'admin', 1, '$2y$10$QsvoKLxQZfJXIC1XDuaYReoE/r78WwCyLPc1kzLzOf5irIxhf0h3K', 'avatar.png', 1, 1, 'jfExjscTi5f1Fm9qc6OCb5OzT2XvdTvTAiBRzBrakzdRyTonUKglA0lwthxf', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -286,17 +284,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --
 ALTER TABLE `item_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `item_types`
 --
 ALTER TABLE `item_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `menus`
 --
@@ -306,7 +304,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `roles`
 --
