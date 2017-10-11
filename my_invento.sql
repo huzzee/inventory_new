@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 10, 2017 at 10:19 PM
+-- Generation Time: Oct 11, 2017 at 10:28 AM
 -- Server version: 5.7.11
--- PHP Version: 7.0.3
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -162,7 +162,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2017_10_07_110820_create_item_types_table', 3),
 (16, '2017_10_07_110933_create_item_categories_table', 4),
 (17, '2017_10_07_133115_create_items_table', 4),
-(18, '2017_10_09_161540_create_suppliers_table', 5);
+(20, '2017_10_09_161540_create_suppliers_table', 5);
 
 -- --------------------------------------------------------
 
@@ -207,10 +207,10 @@ CREATE TABLE `suppliers` (
   `id` int(10) UNSIGNED NOT NULL,
   `sup_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sup_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sup_phone` int(11) DEFAULT NULL,
+  `sup_phone` bigint(20) DEFAULT NULL,
   `sup_address` text COLLATE utf8mb4_unicode_ci,
   `sup_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -220,7 +220,7 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `sup_name`, `sup_email`, `sup_phone`, `sup_address`, `sup_image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'The Name', 'The@Email', 50505, 'The Address', 'The@Email.oxps', 1, '2017-10-11 05:09:12', '2017-10-11 05:09:12');
+(1, 'Supplier1', 'supplier1@gmail.com', 12124214214, 'test', 'supplier1@gmail.com.jpg', 1, '2017-10-11 05:19:22', '2017-10-11 05:19:22');
 
 -- --------------------------------------------------------
 
@@ -339,7 +339,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -349,7 +349,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
