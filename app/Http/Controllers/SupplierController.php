@@ -113,7 +113,8 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sup = Supplier::where('id', $id)->first();
+        return view('pages.suppliers.suppliersShow' , compact('sup'));
     }
 
     /**
@@ -125,7 +126,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $id;
     }
 
     /**
