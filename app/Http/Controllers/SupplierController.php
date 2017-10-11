@@ -17,7 +17,7 @@ class SupplierController extends Controller
     public function index()
     {
 
-        $suppliers = Supplier::get()->all();
+        $suppliers = Supplier::all();
         return view('pages.suppliers.supplierslist' , compact('suppliers'));
     }
 
@@ -40,7 +40,13 @@ class SupplierController extends Controller
     public function store(Request $request)
     {  
     
-        $this->validate(Request(), [
+        
+
+        $upload_dir = base_path() . '/public/uploads';
+        
+        if($request->sup_image !== null){
+
+            $request->validate([
 
             'sup_name' => 'required',
 
@@ -50,12 +56,10 @@ class SupplierController extends Controller
 
             'sup_phone' => 'required',
 
-        ]);
+            'sup_image' => 'image|mimes:jpeg,png|max:2048'
 
+            ]);
 
-        $upload_dir = base_path() . '/public/uploads';
-        
-        if($request->sup_image !== null){
             
             $file = $request->file('sup_image');
             $ext = $file->getClientOriginalExtension();
@@ -65,6 +69,18 @@ class SupplierController extends Controller
         }
         else
         {
+            $request->validate([
+
+            'sup_name' => 'required',
+
+            'sup_email' => 'required',
+
+            'sup_address' => 'required',
+
+            'sup_phone' => 'required|integer',
+
+            ]);
+
             $filename = 'avatar.png';
         }
 
@@ -136,6 +152,10 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $suppliers = Supplier::findOrFail($id);
+
+        $suppliers->delete();
+
+        return redirect('suppliers');
     }
 }

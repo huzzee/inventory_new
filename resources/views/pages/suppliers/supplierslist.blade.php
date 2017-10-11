@@ -40,7 +40,8 @@
                                 <th width="10%">Name</th>
                                 <th width="15%">Phone No.</th>
                                 <th width="15%">Email</th>
-                                <th width="">Address</th>                                
+                                <th width="">Address</th>
+                                <th width="">status</th>                                
                                 <th width="12%">Action</th>
                                 
                             </tr>
@@ -57,7 +58,15 @@
                                 		<td>{{ $sup->sup_name }}</td>
                                 		<td>{{ $sup->sup_phone }}</td>
                                         <td>{{ $sup->sup_email }}</td>
+                                        
                                         <td>{{ $sup->sup_address }}</td>
+                                        <td>
+                                            @if($sup->status == 1)
+                                            Active
+                                            @else
+                                            Inactive
+                                            @endif
+                                        </td>
                                 		
                                 		<td>
                                 			
@@ -134,7 +143,7 @@
         <script src="{{ asset('assets/pages/jquery.datatables.init.js') }}"></script>
 
 
-<!--       /*  <script type="text/javascript">
+         <script type="text/javascript">
             $(document).ready(function () {
                 $('#datatable').dataTable();
                 $('#datatable-keytable').DataTable({keys: true});
@@ -166,5 +175,5 @@
             });
             TableManageButtons.init();
 
-        </script> */-->
+        </script>
 @endsection

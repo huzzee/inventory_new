@@ -61,7 +61,7 @@
                                             <div class="form-group row">
                                                 <label for="sup_phone" class="col-sm-3">Phone Number<span class="text-danger">*</span></label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" name="sup_phone" parsley-trigger="change" required
+                                                    <input type="number" name="sup_phone" parsley-trigger="change" required
                                                        placeholder="Enter Phone No." class="form-control" value="{{ old('sup_phone') }}" />
                                                         
                                                 </div>
