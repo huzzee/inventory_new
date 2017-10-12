@@ -22,7 +22,7 @@
             <!-- end row -->
 
             <div class="row">
-                <form action="{{ route('items.store') }}" enctype="multipart/form-data" method="POST">
+                {!! Form::model($item, ['method' => 'PATCH','url' => ['items', $item->id], 'files'=>true]) !!}
 
                          {{ csrf_field() }}
 
@@ -43,7 +43,7 @@
                                     
                                     
                                     <a class="btn btn-danger" href="{{ url('items') }}">Items Lists</a>
-                                    <a class="btn btn-pink" href="{{ url('items') }}">Create Items</a>
+                                    <a class="btn btn-pink" href="{{ url('items/create') }}">Create Items</a>
                                     
                                     <hr>
                                     <h4>General Info</h4>
@@ -53,12 +53,8 @@
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Item Type<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control select2" name="type_id">
-                                                        <option selected disabled="disabled">Select Item Type</option>
-                                                        
-                                                       
-                                                                
-                                                    </select>
+                                                    
+                                                    {!!Form::select('type_id',$item_types,null ,['class' => 'form-control select2'])!!}
                                                         
                                                 </div>
                                             </div>
@@ -66,11 +62,7 @@
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Item Category<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control select2" name="catagory_id">
-                                                        <option selected disabled="disabled">Select Item Category</option>
-                                                        
-                                                       
-                                                    </select>
+                                                    {!!Form::select('catagory_id',$item_cats,null ,['class' => 'form-control select2'])!!}
                                                         
                                                 </div>
                                             </div>
@@ -78,8 +70,7 @@
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Item Name<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="item_name" parsley-trigger="change" required
-                                                       placeholder="Enter Item Name" class="form-control" value="{{ old('item_name') }}" />
+                                                    {!!Form::text('item_name',null ,['class' => 'form-control'])!!}
                                                         
                                                 </div>
                                             </div>
@@ -87,14 +78,17 @@
                                             <div class="form-group row">
                                                 <label for="description" class="col-sm-3">Description</label>
                                                 <div class="col-sm-9">
-                                                    <textarea name="description" id="textarea" class="form-control" maxlength="225" rows="5" placeholder="Item Description Here If Important" value="{{ old('description') }}"></textarea>
+                                                    
+                                                    {!!Form::textarea('description',null ,['class' => 'form-control','maxlength' => '225','rows' => '5', 'id' => 'textarea'])!!}
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <label for="item_image" class="col-sm-3">Item Image</label>
                                                 <div class="col-sm-9">
-                                                   <input type="file" class="filestyle" placeholder="Not Important" name="item_image" data-buttonname="btn-inverse">
+                                                    
+                                                    <input type="file" class="filestyle" placeholder="Not Important" name="item_image" data-placeholder="{{$item->item_image}}" data-buttonname="btn-inverse">
+
                                                 </div>
                                             </div>
 
@@ -103,7 +97,14 @@
                                             <div class="form-group row">
                                                 <label for="status" class="col-sm-3">Active<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
+                                                    @if($item->status == 1)
                                                     <input type="checkbox" id="switch3" name="status" switch="bool" checked/>
+
+                                                    @else
+
+                                                    <input type="checkbox" id="switch3" name="status" switch="bool" />
+
+                                                    @endif
                                                     <label for="switch3" data-on-label="Yes"
                                                        data-off-label="No"></label>
                                                 </div>
@@ -146,7 +147,15 @@
                                             <div class="form-group row">
                                                 <label for="status" class="col-sm-3">Is Item Saleable</label>
                                                 <div class="col-sm-9">
+                                                    @if($item->is_saleable == 1)
+                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" checked/>
+
+                                                    @else
+
                                                     <input type="checkbox" id="switch4" name="is_saleable" switch="bool" />
+
+                                                    @endif
+                                                    
                                                     <label for="switch4" data-on-label="Yes"
                                                        data-off-label="No"></label>
                                                 </div>
@@ -155,29 +164,9 @@
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Select Item Unit<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control select2 unitPrice" name="item_unit" disabled="disabled">
-                                                        <option selected disabled="disabled">Select Item Unit</option>
-                                                        
-                                                        <option value="Box">Box</option>
-                                                        <option value="Kilogram">Kilogram</option>
-                                                        <option value="Gram">Gram</option>
-                                                        <option value="Liter">Liter</option>
-                                                        <option value="Mililiter">Mililiter</option>
-                                                        <option value="Mon">Mon</option>
-                                                        <option value="Ton">Ton</option>
-                                                        <option value="Meter">Meter</option>
-                                                        <option value="centimeter">centimeter</option>
-                                                        <option value="Inch">Inch</option>
-                                                        <option value="Feet">Feet</option>
-                                                        <option value="sq.meter">sq.meter</option>
-                                                        <option value="sq.feet">sq.feet</option>
-                                                        <option value="Bundle">Bundle</option>
-                                                        <option value="Bulk">Bulk</option>
-                                                        <option value="KiloMeter">KiloMeter</option>
-                                                        
-
-                                                                
-                                                    </select>
+                                                   
+                                                    {!! Form::select('item_unit', ['Box' => 'Box', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Liter' => 'Liter', 'Mililiter' => 'Mililiter', 'Mon' => 'Mon', 'Ton' => 'Ton', 'Meter' => 'Meter', 'centimeter' => 'centimeter','Inch' => 'Inch', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Feet' => 'Feet', 'sq.meter' => 'sq.meter', 'sq.feet' => 'sq.feet', 'Bundle' => 'Bundle', 'Bulk' => 'Bulk', 'KiloMeter' => 'KiloMeter'], null, ['placeholder' => 'Select Unit Price', 'class' => 'form-control select2 unitPrice' ,'disabled' => 'disabled'])
+                                                    !!}
                                                         
                                                 </div>
                                             </div>
@@ -185,8 +174,9 @@
                                                 
                                                 <label for="item_name" class="col-sm-3">Per Unit Price<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" id="unit_price" name="unit_price" parsley-trigger="change" 
-                                                       class="form-control unitPrice" placeholder="Enter Per unit Price" disabled="disabled" value="{{ old('unit_price') }}"  />
+                                                    
+
+                                                       {!! Form::number('unit_price' , null ,['class' => 'form-control unitPrice','disabled' => 'disabled', 'placeholder' => 'Enter Per unit Price', 'id' => 'unit_price','parsley-trigger' => 'change']) !!}
                                                         
                                                 </div>
                                                 
@@ -195,7 +185,9 @@
                                             
                                                 <label for="item_name" class="col-sm-3">Discount In %</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" id="discount_percent" name="discount_percent" parsley-trigger="change" class="form-control unitPrice" disabled="disabled" value="0" placeholder="Enter Disscount in %" />
+                                                    
+
+                                                    {!! Form::number('discount_percent' , null ,['class' => 'form-control unitPrice','disabled' => 'disabled', 'placeholder' => 'Enter Disscount in %', 'id' => 'discount_percent','parsley-trigger' => 'change']) !!}
                                                         
                                                 </div>
 
@@ -206,9 +198,9 @@
                                                 <label for="discount_price" class="col-sm-3">After Discount Price</label>
                                                 <div class="col-sm-9">
                                                     <input type="number" id="discount_price" parsley-trigger="change" 
-                                                       class="form-control" disabled="disabled" value="00.000" />
+                                                       class="form-control" disabled="disabled" value="{{$item->discount_price}}" />
 
-                                                       <input type="hidden" name="discount_price" id="discount_price1">
+                                                       <input type="hidden" name="discount_price" id="discount_price1" value="{{$item->discount_price}}">
                                                         
                                                 </div>
                                             </div>    
@@ -228,8 +220,8 @@
                                             
                                             <label for="opening_qnt" class="col-sm-3">Opening Quantity<span class="text-danger">*</span></label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="opening_qnt" name="opening_qnt" parsley-trigger="change" 
-                                                   class="form-control" value="0"  />
+                                                
+                                                   {!! Form::number('opening_qnt' , null ,['class' => 'form-control', 'id' => 'opening_qnt','parsley-trigger' => 'change']) !!}
                                                     
                                             </div>
                                             
@@ -239,8 +231,8 @@
                                             
                                             <label for="current_qnt" class="col-sm-3">Current Quantity<span class="text-danger">*</span></label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="current_qnt" name="current_qnt" parsley-trigger="change" 
-                                                   class="form-control"  value="0"  />
+                                                
+                                                   {!! Form::number('current_qnt' , null ,['class' => 'form-control', 'id' => 'current_qnt','parsley-trigger' => 'change']) !!}
                                                     
                                             </div>
                                             
@@ -250,8 +242,8 @@
                                             
                                             <label for="min_qnt" class="col-sm-3">Notify Quantity<span class="text-danger">*</span></label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="min_qnt" name="min_qnt" parsley-trigger="change" 
-                                                   class="form-control" value="0"  />
+                                                
+                                                   {!! Form::number('min_qnt' , null ,['class' => 'form-control', 'id' => 'min_qnt','parsley-trigger' => 'change']) !!}
                                                     
                                             </div>
                                             
@@ -277,6 +269,10 @@
     </div> <!-- content -->
 
 @endsection
+
+
+<!--*********Page Scripts Here*********-->
+
 @section('scripts')
         <script src="{{ asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/multiselect/js/jquery.multi-select.js') }}"></script>
@@ -304,3 +300,5 @@
 
         <script src="{{ asset('assets/pages/jquery.form-advanced.init.js') }}"></script>
 @endsection
+
+<!--*********Page Scripts End*********-->

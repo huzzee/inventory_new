@@ -51,7 +51,29 @@
 
     </head>
 
+    <style>
+        
 
+
+        @media print{
+          body .box-header{
+            display: none;
+          }
+        }
+
+        .head_show{
+            font-weight: bold;
+            color: black;
+            font-size: 17px;
+            text-align: right;
+        }
+
+        .info_show{
+           
+            font-size: 17px;
+            text-align: left;
+        }
+    </style>
     <body class="fixed-left">
 
         <!-- Begin page -->

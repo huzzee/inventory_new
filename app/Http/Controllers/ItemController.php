@@ -58,7 +58,7 @@ class ItemController extends Controller
             $ext = $file->getClientOriginalExtension();
             $filename = $request->get('item_name').'_'.$request->get('catagory_id').'.'.$ext;
             $file->move($upload_dir, $filename);
-            dd($filename);
+            //dd($filename);
         }
         else
         {
@@ -128,8 +128,11 @@ class ItemController extends Controller
     public function show(Item $item)
     {
         $items = $item->with('item_types','item_categories')->get();
+        
+
         return view('pages.items.itemShow',array(
-            'items' => $items
+            'items' => $items,
+            
         ));
     }
 
@@ -141,10 +144,16 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        $items = $item->with('item_types','item_categories')->get();
+        //$items = $item;
+        $item_cats = ItemCategory::pluck('item_cat_name','id');
+        $item_types = ItemType::pluck('item_type_name','id');
+
+        //dd($item);
 
         return view('pages.items.itemEdit',array(
-            '$items' => $items
+            'item' => $item,
+            'item_cats' => $item_cats,
+            'item_types' => $item_types
         ));
         
     }
@@ -156,9 +165,79 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(ItemRequest $request,$id)
     {
-        //
+        //dd($id);
+        $upload_dir = base_path() . '/public/uploads';
+        
+        if($request->item_image !== null){
+            
+            $file = $request->file('item_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = $request->get('item_name').'_'.$request->get('catagory_id').'.'.$ext;
+            $file->move($upload_dir, $filename);
+            //dd($filename);
+        }
+       
+
+        if($request->status == null)
+        {
+            $status = 0;
+        }
+        else
+        {
+            $status = 1;
+        }
+
+        if($request->is_saleable == null)
+        {
+            $is_saleable = 0;
+        }
+        else
+        {
+            $is_saleable = 1;
+        }
+
+        //dd($request->all());
+
+        $items = Item::findOrFail($id);
+
+            $items->item_name = $request['item_name'];
+            $items->catagory_id = $request['catagory_id'];
+            $items->type_id = $request['type_id'];
+            $items->opening_qnt = $request['opening_qnt'];
+            $items->current_qnt = $request['current_qnt'];
+            $items->min_qnt = $request['min_qnt'];
+            if($request->item_image !== null){
+                $items->item_image = $filename;
+            }
+            $items->status = $status;
+            $items->is_saleable = $is_saleable;
+            
+            
+            if($request->description !== null)
+            {
+                $items->description = $request['description'];
+                
+            }
+            if($is_saleable == 1)
+            {
+                $items->item_unit = $request['item_unit'];
+                $items->unit_price = $request['unit_price'];
+                $items->discount_price = $request['discount_price'];
+                $items->discount_percent = $request['discount_percent'];
+            }
+            else{
+                $items->item_unit = null;
+                $items->unit_price = 0;
+                $items->discount_price = 0;
+                $items->discount_percent = 0;
+
+            }
+
+            $items->save();
+
+            return redirect('items');
     }
 
     /**

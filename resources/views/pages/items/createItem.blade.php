@@ -281,6 +281,9 @@
     </div> <!-- content -->
 
 @endsection
+
+<!--*********Page Scripts Here*********-->
+
 @section('scripts')
         <script src="{{ asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/multiselect/js/jquery.multi-select.js') }}"></script>
@@ -308,3 +311,5 @@
 
         <script src="{{ asset('assets/pages/jquery.form-advanced.init.js') }}"></script>
 @endsection
+
+<!--*********Page Scripts End*********-->

@@ -161,6 +161,9 @@
     </div> <!-- content -->
 
 @endsection
+
+<!--*********Page Scripts Here*********-->
+
 @section('scripts')
        
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -221,3 +224,5 @@
 
         </script>
 @endsection
+
+<!--*********Page Scripts End*********-->
