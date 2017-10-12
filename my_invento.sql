@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 11, 2017 at 10:28 AM
+-- Generation Time: Oct 12, 2017 at 10:53 AM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -52,7 +52,8 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `discount_price`, `discount_percent`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(5, 3, 11, 'abcd', NULL, NULL, 0, 0, 0, 'abcd_3.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 17:49:58', '2017-10-09 17:49:58');
+(5, 3, 11, 'abcd', NULL, NULL, 0, 0, 24, 'abcd_3.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 17:49:58', '2017-10-09 17:49:58'),
+(6, 3, 8, 'Penils', 'pencil Box', NULL, 25, 0, 20, 'Penils_3.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-11 16:44:14', '2017-10-11 17:25:26');
 
 -- --------------------------------------------------------
 
@@ -319,7 +320,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --
