@@ -61,18 +61,14 @@
           }
         }
 
-        .head_show{
+        .head_show span{
             font-weight: bold;
             color: black;
             font-size: 17px;
-            text-align: right;
+            
         }
 
-        .info_show{
-           
-            font-size: 17px;
-            text-align: left;
-        }
+       
     </style>
     <body class="fixed-left">
 

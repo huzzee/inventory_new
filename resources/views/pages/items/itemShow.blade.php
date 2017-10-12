@@ -49,23 +49,24 @@
                                                    <img src="{{ url('uploads/'.$items[0]->item_image) }}" width="100%" height="300px" alt="{{ $items[0]->item_image }}">
                                                 </a>
                                            </div>
+                                           <div class="col-sm-1"></div>
                                          
                                            <div class="col-sm-8">
-                                               <div class="row">
-                                                   <div class="col-sm-6">
-                                                       <p class="head_show">Name :</p>
-                                                       <p class="head_show">Description :</p>
-                                                       <p class="head_show">Item Type :</p>
-                                                       <p class="head_show">Item Category :</p>
-                                                       <p class="head_show">Opening Quantity :</p>
-                                                       <p class="head_show">Current Quantity :</p>
-                                                       <p class="head_show">Minimum Quantity :</p>
-                                                       <p class="head_show">Status :</p>
-                                                  
-                                                       
-                                                   </div>
-                                               </div> 
-                                           </div>
+                    
+                                                <dl class="dl-horizontal" style="font-size: 19px; border:solid 1px black;">
+                                                    
+                                                    <dt>Name</dt><dd></dd>
+                                                   
+                                                    <dt>Description</dt><dd></dd>
+                                                    <dt>Item TYpe</dt><dd></dd>
+                                                    <dt>Item Category</dt><dd></dd>
+                                                    <dt>Opening Quantity</dt><dd></dd>
+                                                    <dt>Current Quantity</dt><dd></dd>
+                                                    
+                                                    <dt>Notify Quantity</dt><dd>Active</dd>
+
+                                                </dl>
+                                            </div>
 
                                        </div>
                                     </div>
