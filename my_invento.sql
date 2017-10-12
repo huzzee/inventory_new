@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 12, 2017 at 10:53 AM
+-- Generation Time: Oct 12, 2017 at 10:53 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -53,7 +53,8 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `discount_price`, `discount_percent`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
 (5, 3, 11, 'abcd', NULL, NULL, 0, 0, 24, 'abcd_3.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 17:49:58', '2017-10-09 17:49:58'),
-(6, 3, 8, 'Penils', 'pencil Box', NULL, 25, 0, 20, 'Penils_3.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-11 16:44:14', '2017-10-11 17:25:26');
+(6, 3, 8, 'Penils', 'pencil Box', 'Box', 25, 0, 20, 'Penils_3.jpg', 50.00, 50.00, 0, 1, 1, 0, '2017-10-11 16:44:14', '2017-10-12 08:05:02'),
+(7, 5, 12, 'Samsung S7', 'Samsung S7 for sale', 'Box', 25, 0, 20, 'avatar.png', 75000.00, 75000.00, 0, 1, 1, 0, '2017-10-12 08:28:54', '2017-10-12 08:28:54');
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,10 @@ CREATE TABLE `item_categories` (
 --
 
 INSERT INTO `item_categories` (`id`, `item_cat_name`, `status`, `created_at`, `updated_at`) VALUES
-(3, 'test', 1, '2017-10-09 17:21:12', '2017-10-09 17:21:12');
+(3, 'test', 1, '2017-10-09 17:21:12', '2017-10-09 17:21:12'),
+(4, 'Electronics', 1, '2017-10-12 08:26:10', '2017-10-12 08:26:10'),
+(5, 'Mobiles', 1, '2017-10-12 08:26:26', '2017-10-12 08:26:26'),
+(6, 'Stationary', 1, '2017-10-12 08:27:01', '2017-10-12 08:27:01');
 
 -- --------------------------------------------------------
 
@@ -96,7 +100,9 @@ CREATE TABLE `item_types` (
 
 INSERT INTO `item_types` (`id`, `item_type_name`, `status`, `created_at`, `updated_at`) VALUES
 (8, 'General Items', 1, '2017-10-09 17:33:02', '2017-10-09 17:33:02'),
-(11, 'Raw Material', 1, '2017-10-09 17:35:05', '2017-10-09 17:35:05');
+(11, 'Raw Material', 1, '2017-10-09 17:35:05', '2017-10-09 17:35:05'),
+(12, 'Readymade Items', 1, '2017-10-12 08:25:05', '2017-10-12 08:25:05'),
+(13, 'Special Parts', 1, '2017-10-12 08:25:37', '2017-10-12 08:25:37');
 
 -- --------------------------------------------------------
 
@@ -124,20 +130,21 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, `icon`, `menu_route`, `active`, `hidden`, `sort_order`, `created_at`, `updated_at`) VALUES
-(7, 'Users', NULL, NULL, 0, 'mdi mdi-account', NULL, 1, 0, 1, NULL, NULL),
-(8, 'Add Users', 'users/create', 7, 1, NULL, 'users.create', 1, 0, 2, NULL, NULL),
+(7, 'Users', NULL, NULL, 0, 'mdi mdi-account', NULL, 1, 0, 0, NULL, NULL),
+(8, 'Add Users', 'users/create', 7, 1, NULL, 'users.create', 1, 0, 1, NULL, NULL),
 (9, 'Users List', 'users', 7, 2, NULL, 'users.index', 1, 0, 2, NULL, NULL),
 (10, 'Edit', NULL, 7, 3, NULL, 'users.edit', 1, 1, 4, NULL, NULL),
 (11, 'Users Profile', NULL, 7, 4, NULL, 'users.show', 1, 1, 5, NULL, NULL),
 (12, 'Delete', NULL, 7, 5, NULL, 'users.delete', 1, 1, 6, NULL, NULL),
-(13, 'Items/Products', NULL, NULL, 0, 'mdi mdi-clipboard-text', NULL, 1, 0, 7, NULL, NULL),
+(13, 'Items/Products', NULL, NULL, 0, 'mdi mdi-note-plus-outline', NULL, 1, 0, 7, NULL, NULL),
 (14, 'Item Type', 'item_types', 13, 1, NULL, 'item_types.index', 1, 0, 10, NULL, NULL),
 (15, 'Item Category', 'item_categories', 13, 2, NULL, 'item_categories.index', 1, 0, 11, NULL, NULL),
 (16, 'Add Items', 'items/create', 13, 4, NULL, 'items.create', 1, 0, 8, NULL, NULL),
 (17, 'Items List', 'items', 13, 5, NULL, 'items.index', 1, 0, 9, NULL, NULL),
-(18, 'Suppliers', NULL, NULL, 0, 'mdi mdi-clipboard-text', NULL, 1, 0, 12, NULL, NULL),
+(18, 'Suppliers', NULL, NULL, 0, 'mdi mdi-playlist-plus', NULL, 1, 0, 12, NULL, NULL),
 (19, 'Add Supplier', 'suppliers/create', 18, 1, NULL, 'suppliers.create', 1, 0, 13, NULL, NULL),
-(20, 'Suppliers List', 'suppliers', 18, 2, NULL, 'suppliers.index', 1, 0, 14, NULL, NULL);
+(20, 'Suppliers List', 'suppliers', 18, 2, NULL, 'suppliers.index', 1, 0, 14, NULL, NULL),
+(21, 'Department', 'departments', 7, 4, NULL, 'departments.index', 1, 0, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -156,14 +163,37 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2017_10_06_200021_create_roles_table', 1),
 (4, '2017_10_07_092102_create_menus_table', 2),
 (10, '2017_10_07_110820_create_item_types_table', 3),
 (16, '2017_10_07_110933_create_item_categories_table', 4),
 (17, '2017_10_07_133115_create_items_table', 4),
-(20, '2017_10_09_161540_create_suppliers_table', 5);
+(20, '2017_10_09_161540_create_suppliers_table', 5),
+(22, '2017_10_12_203855_create_my_departments_table', 6),
+(24, '2017_10_12_210110_create_users_table', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `my_departments`
+--
+
+CREATE TABLE `my_departments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `department_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `my_departments`
+--
+
+INSERT INTO `my_departments` (`id`, `department_name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Admin Department', 1, '2017-10-12 16:09:17', '2017-10-12 16:09:17'),
+(2, 'Sales Department', 1, '2017-10-12 15:47:02', '2017-10-12 15:47:02');
 
 -- --------------------------------------------------------
 
@@ -234,7 +264,8 @@ CREATE TABLE `users` (
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `department_id` int(10) UNSIGNED NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `profile_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
@@ -248,8 +279,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Huzaifa', 'Siddiqui', 'admin', 1, '$2y$10$QsvoKLxQZfJXIC1XDuaYReoE/r78WwCyLPc1kzLzOf5irIxhf0h3K', 'avatar.png', 1, 1, 'jfExjscTi5f1Fm9qc6OCb5OzT2XvdTvTAiBRzBrakzdRyTonUKglA0lwthxf', NULL, NULL);
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `department_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'Ad', 'admin', 1, 1, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'F0HM4fx6wDYeWtCxedUsB3fx0OoWHTJwjxj0NN1aoYqPB1CVbutmyzTbremb', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -288,6 +319,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `my_departments`
+--
+ALTER TABLE `my_departments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -310,7 +347,9 @@ ALTER TABLE `suppliers`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_username_unique` (`username`);
+  ADD UNIQUE KEY `users_username_unique` (`username`),
+  ADD KEY `users_role_id_foreign` (`role_id`),
+  ADD KEY `users_department_id_foreign` (`department_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -320,27 +359,32 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --
 ALTER TABLE `item_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `item_types`
 --
 ALTER TABLE `item_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `my_departments`
+--
+ALTER TABLE `my_departments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -350,7 +394,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -366,6 +410,13 @@ ALTER TABLE `users`
 ALTER TABLE `items`
   ADD CONSTRAINT `items_catagory_id_foreign` FOREIGN KEY (`catagory_id`) REFERENCES `item_categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `items_type_id_foreign` FOREIGN KEY (`type_id`) REFERENCES `item_types` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `my_departments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
