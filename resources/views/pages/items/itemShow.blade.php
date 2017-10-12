@@ -45,28 +45,65 @@
                                     <div class="p-20" style="clear: both;">
                                        <div class="row">
                                            <div class="col-sm-3">
-                                                <a href="{{ url('uploads/'.$items[0]->item_image) }}" onclick="deafult();">
-                                                   <img src="{{ url('uploads/'.$items[0]->item_image) }}" width="100%" height="300px" alt="{{ $items[0]->item_image }}">
-                                                </a>
+                                                
+                                                <img src="{{ url('uploads/'.$items[0]->item_image) }}" width="100%" height="300px" alt="{{ $items[0]->item_image }}">
+                                                
                                            </div>
                                            <div class="col-sm-1"></div>
                                          
-                                           <div class="col-sm-8">
+                                           <div class="col-sm-4">
                     
-                                                <dl class="dl-horizontal" style="font-size: 19px; border:solid 1px black;">
+                                                <dl class="dl-horizontal" style="font-size: 18px;"">
                                                     
-                                                    <dt>Name</dt><dd></dd>
+                                                    <dt>Name:</dt><dd>{{ $items[0]->item_name }}</dd>
                                                    
-                                                    <dt>Description</dt><dd></dd>
-                                                    <dt>Item TYpe</dt><dd></dd>
-                                                    <dt>Item Category</dt><dd></dd>
-                                                    <dt>Opening Quantity</dt><dd></dd>
-                                                    <dt>Current Quantity</dt><dd></dd>
+                                                    <dt>Description:</dt>
+                                                    <dd>
+                                                    @if($items[0]->description == null)
+                                                        No description
+                                                    @else
+                                                        {{$items[0]->description}}
+                                                    @endif
+                                                    </dd>
+                                                    <dt>Item Type:</dt><dd>{{ $items[0]->item_types->item_type_name }}</dd>
+                                                    <dt>Item Category:</dt><dd>{{ $items[0]->item_categories->item_cat_name }}</dd>
+                                                    <dt>Opening Qnt:</dt><dd>{{ $items[0]->opening_qnt }}</dd>
+                                                    <dt>Current Qnt</dt><dd>{{ $items[0]->current_qnt }}</dd>
                                                     
-                                                    <dt>Notify Quantity</dt><dd>Active</dd>
+                                                    <dt>Notify Qnt:</dt><dd>{{ $items[0]->min_qnt }}</dd>
+                                                    <dt>Status:</dt><dd>
+                                                        @if($items[0]->status == 0)
+                                                            In Active
+                                                        @else
+                                                            Active
+                                                        @endif
+                                                    </dd>
+                                                    <dt>Saleable Item:</dt><dd>
+                                                        @if($items[0]->is_saleable == 0)
+                                                            Not Saleable
+                                                        @else
+                                                            Saleable
+                                                        @endif
+                                                    </dd>
+                                                    <dt>Item Unit:</dt><dd>
+                                                        @if($items[0]->item_unit == null)
+                                                            No Unit
+                                                        @else
+                                                            {{$items[0]->item_unit}}
+                                                        @endif
+                                                    </dd>
+                                                    
+                                                    <dt>Discount:</dt><dd>{{ $items[0]->discount_percent }}%</dd>
+                                                    <dt>Total Price:</dt><dd>{{ $items[0]->discount_price }}
+                                                    @if($items[0]->item_unit !== null)
+                                                        per {{$items[0]->item_unit}} 
+                                                    @endif
+                                                    </dd>
+                                                    
 
                                                 </dl>
                                             </div>
+                                            
 
                                        </div>
                                     </div>

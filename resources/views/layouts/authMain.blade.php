@@ -84,7 +84,7 @@
                                                 <div class="checkbox checkbox-success">
                                                     <input id="checkbox-signup" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                                     <label for="checkbox-signup">
-                                                        {{ bcrypt('password') }}
+                                                        Remember me
                                                     </label>
                                                 </div>
 

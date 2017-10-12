@@ -125,10 +125,10 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show($id)
     {
-        $items = $item->with('item_types','item_categories')->get();
-        
+        $items = Item::with('item_types','item_categories')->where('items.id','=',$id)->get();
+        //dd($items);
 
         return view('pages.items.itemShow',array(
             'items' => $items,
