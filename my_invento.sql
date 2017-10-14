@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 14, 2017 at 09:07 AM
+-- Generation Time: Oct 14, 2017 at 10:59 AM
 -- Server version: 5.7.11
--- PHP Version: 7.1.7
+-- PHP Version: 7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -308,7 +308,8 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `sup_name`, `sup_email`, `sup_phone`, `sup_address`, `sup_image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Supplier1', 'supplier1@gmail.com', 12124214214, 'test', 'supplier1@gmail.com.jpg', 1, '2017-10-11 05:19:22', '2017-10-11 05:19:22');
+(1, 'Supplier1', 'supplier1@gmail.com', 121242142, 'test', 'supplier1@gmail.com.jpg', 0, '2017-10-11 05:19:22', '2017-10-14 05:53:36'),
+(3, 'Huzaifa', 'huzii@gmail.com', 3112088793, 'Dastageer 15 number , near Park , house No UNKNOWN', 'huzii@gmail.com.jpg', 1, '2017-10-14 05:56:57', '2017-10-14 05:57:30');
 
 -- --------------------------------------------------------
 
@@ -475,7 +476,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
