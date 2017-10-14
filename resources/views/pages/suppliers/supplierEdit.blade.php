@@ -22,7 +22,7 @@
             <!-- end row -->
 
             <div class="row">
-                <form action="{{ route('suppliers.update.'.$sup->id)  }}" enctype="multipart/form-data" method="POST">
+                {!! Form::model($sup, ['method' => 'PATCH','url' => ['suppliers', $sup->id], 'files'=>true]) !!}
 
                          {{ csrf_field() }}
 
@@ -52,8 +52,8 @@
                                             <div class="form-group row">
                                                 <label for="sup_name" class="col-sm-3">Supplier Name<span class="text-danger">*</span></label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" name="sup_name" parsley-trigger="change" required
-                                                       placeholder="{{ $sup->sup_name }}" class="form-control" value="{{ old('sup_name') }}" />
+                                                    
+                                                    {!!Form::text('sup_name',null ,['class' => 'form-control'])!!}
                                                         
                                                 </div>
                                             </div>               
@@ -61,8 +61,7 @@
                                             <div class="form-group row">
                                                 <label for="sup_phone" class="col-sm-3">Phone Number<span class="text-danger">*</span></label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" name="sup_phone" parsley-trigger="change" required
-                                                       placeholder="{{ $sup->sup_phone }}" class="form-control" value="{{ old('sup_phone') }}" />
+                                                     {!!Form::number('sup_phone',null ,['class' => 'form-control'])!!}
                                                         
                                                 </div>
                                             </div>
@@ -70,8 +69,7 @@
                                             <div class="form-group row">
                                                 <label for="sup_email" class="col-sm-3">Email<span class="text-danger">*</span></label>
                                                 <div class="col-sm-7">
-                                                    <input type="Email" name="sup_email" parsley-trigger="change" required
-                                                       placeholder="{{ $sup->sup_email }}" class="form-control" value="{{ old('sup_email') }}" />
+                                                     {!!Form::email('sup_email',null ,['class' => 'form-control'])!!}
                                                         
                                                 </div>
                                             </div>
@@ -79,16 +77,28 @@
                                             <div class="form-group row">
                                                 <label for="sup_address" class="col-sm-3">Address<span class="text-danger">*</span></label>
                                                 <div class="col-sm-7">
-                                                    <textarea name="sup_address" id="textarea" class="form-control" maxlength="225" rows="5" placeholder="{{ $sup->sup_address }}" value="{{ old('sup_address') }}" required></textarea>
+                                                     {!!Form::textarea('sup_address',null ,['class' => 'form-control','maxlength' => '225','rows' => '5', 'id' => 'textarea'])!!}
                                                 </div>
                                             </div>
 
-                                            
+                                            <div class="form-group row">
+                                                <label for="sup_image" class="col-sm-3">Supplier Image</label>
+                                                <div class="col-sm-7">
+                                                   <input type="file" class="filestyle" placeholder="Not Important" name="sup_image" data-placeholder="{{ $sup->sup_image }}" data-buttonname="btn-inverse">
+                                                </div>
+                                            </div>
                                             
                                             <div class="form-group row">
                                                 <label for="status" class="col-sm-3">Active<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
+                                                    @if($sup->status == 1)
                                                     <input type="checkbox" id="switch3" name="status" switch="bool" checked/>
+
+                                                    @else
+
+                                                    <input type="checkbox" id="switch3" name="status" switch="bool" />
+
+                                                    @endif
                                                     <label for="switch3" data-on-label="Yes"
                                                        data-off-label="No"></label>
                                                 </div>
@@ -113,7 +123,7 @@
                            
                         </div> <!-- end ard-box -->
                     </div><!-- end col-->               
-                </form>
+              
             </div>
 
            
