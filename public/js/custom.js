@@ -58,7 +58,8 @@ $('#unit_price').keyup(function(){
 
 $('.add_itemlist').click(function(){
 	//alert('ok');
-	var item_name = $('.name_of_item').val();
+	var item_id = $('.name_of_item').val();
+	var item_name = $('.name_of_item option:selected').text();
 	var qnt_item = $('.qnt_item').val();
 	
 
@@ -67,7 +68,7 @@ $('.add_itemlist').click(function(){
 
 		var html = `
 					<tr>
-			            <td>`+item_name+`<input type="hidden" name="item_name[]" value="`+item_name+`"></td>
+			            <td>`+item_name+`<input type="hidden" name="item_id[]" value="`+item_id+`"></td>
 			            <td>`+qnt_item+`<input type="hidden" name="required_qnt[]" value="`+qnt_item+`"></td>
 			            <td>
 			            <button type="button" class="btn btn-icon btn-danger m-b-5 remove_item">

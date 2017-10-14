@@ -22,5 +22,9 @@ class Item extends Model
     	return $this->belongsTo('App\Models\ItemType','type_id');
     }
 
+    public function requisitionDetails()
+    {
+        return $this->hasMany('App\Models\RequisitionDetail','id');
+    }
     
 }

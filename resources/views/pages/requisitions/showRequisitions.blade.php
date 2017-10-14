@@ -34,7 +34,9 @@
 
                                         <h3>Request</h3>
                                         <hr>
-                                        <a href="{{ url('requisitions/'.$requisition[0]->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5"><i class="fa fa-edit"></i></a>
+                                        @if( $requisition[0]->approved == 0 && $requisition[0]->rejected == 0 )
+                                            <a href="{{ url('requisitions/'.$requisition[0]->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5"><i class="fa fa-edit"></i></a>
+                                        @endif
 
                                         <a href="javascript:void(0);" onclick="window.print();" class="btn btn-icon waves-effect waves-light btn-inverse m-b-5"><i class="fa fa-print"></i></a>
                                         
@@ -62,22 +64,7 @@
 
                                        </div>
                                        <div class="row" style="height:50px;"></div>
-                                       <div class="row">
-                                           
-                                           <div class="col-md-2"></div>
-                                         
-                                            <div class="col-md-6">
-                                                <dl class="dl-horizontal" style="font-size: 18px;"">
-                                                    
-                                                    
-                                                    
-
-                                                </dl>
-                                            </div>
-                                            
-
-                                       </div>
-                                       <div class="row" style="height:50px;"></div>
+                                       
                                        <div class="row">
                                            
                                            <div class="col-md-3"></div>
@@ -85,30 +72,58 @@
                                             <div class="col-md-4">
                                                 <table class="table table-striped m-0">
 
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Sr.No</th>
-                                                                    <th width="40%">Item Name</th>
-                                                                    <th width="40%">Required Quantity</th>
-                                                                    
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="item_row">
-                                                                @php $i = 1; @endphp
-                                                                @foreach($requisition[0]->requisitionDetails as $detailItem)
-                                                                    <tr>
-                                                                        <td>{{ $i }}</td>
-                                                                        <td>{{ $detailItem->item_name }}</td>
-                                                                        <td>{{ $detailItem->required_qnt }}</td>
-                                                                    </tr>
-                                                                @php $i++ @endphp    
-                                                                @endforeach
-                                                            </tbody>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sr.No</th>
+                                                            <th width="40%">Item Name</th>
+                                                            <th width="40%">Required Quantity</th>
+                                                            @if( $requisition[0]->approved == 0 && $requisition[0]->rejected == 0)
+                                                            <th>Available Stock</th>
+                                                            @endif
+                                                                                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="item_row">
+                                                        @php $i = 1; @endphp
+                                                        @foreach($requisition[0]->requisitionDetails as $detailItem)
+                                                            <tr>
+                                                                <td>{{ $i }}</td>
+                                                                <td>{{ $detailItem->items->item_name }}</td>
+                                                                <td>{{ $detailItem->required_qnt }}</td>
+                                                                @if( $requisition[0]->approved == 0 && $requisition[0]->rejected == 0)
+                                                                    <td>{{ $detailItem->items->current_qnt }}</td>
+                                                                @endif
+                                                            </tr>
+                                                        @php $i++ @endphp    
+                                                        @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div>
+
                                             
+                                       </div>
+                                       @if( $requisition[0]->approved == 0 && $requisition[0]->rejected == 0 )
+
+                                       <div class="row" style="height:50px;"></div>
+
+                                       <div class="row">
+                                           <div class="col-md-3"></div>
+                                           <div class="col-md-2">
+                                                <form method="post" action="{{ url('requisitions_approved') }}">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="req_id" value="{{ $requisition[0]->id }}">
+                                                    <button type="submit" style="float: left;" class="btn btn-success waves-effect waves-light box-header">Approved</button>
+                                                </form>
+                                           
+                                                <form method="post" action="{{ url('requisitions_rejected') }}">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="req_id" value="{{ $requisition[0]->id }}">
+                                                    <button type="submit" style="margin-left: 5px" class="btn btn-danger waves-effect waves-light box-header">Rejected</button>
+                                                </form>
+                                           </div>
 
                                        </div>
+                                       @endif
                                     </div>
                                 </div>
 

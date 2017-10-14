@@ -91,7 +91,7 @@
                                                                 <option selected disabled="disabled">Select Items</option>
 
                                                                 @foreach($items as $item)
-                                                                <option value="{{ $item->item_name }}">{{ $item->item_name }}</option>
+                                                                <option value="{{ $item->id }}">{{ $item->item_name }}</option>
                                                                 @endforeach
                                                                 
                                                             </select>

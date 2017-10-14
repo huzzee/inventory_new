@@ -120,7 +120,7 @@
                                 <th width="15%">User Name</th>
                                 <th width="20%">Department</th>
                                 <th width="10%">Required Items</th>
-                                <th>Approve</th>
+                                <th>Permission</th>
                                 <th>issued</th>
                                 <th width="15%">Action</th>
 
@@ -156,10 +156,7 @@
                                             <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            
-                                            
-                                            <a href="{{ url('requisitions/'.$requisition->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
-                                          
+                                           
                                             
                                             <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$requisition->id}}"><i class="fa fa-remove"></i></button>
                                         </td>

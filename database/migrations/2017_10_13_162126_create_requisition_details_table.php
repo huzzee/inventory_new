@@ -16,10 +16,18 @@ class CreateRequisitionDetailsTable extends Migration
         Schema::create('requisition_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('requisition_id')->unsigned();
-            $table->string('item_name');
+            $table->integer('item_id')->unsigned();
             $table->integer('required_qnt');
             $table->timestamps();
         });
+
+        Schema::table('requisition_details', function($table) {
+         
+           
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('requisition_id')->references('id')->on('requisitions')->onDelete('cascade');
+            
+       });
     }
 
     /**

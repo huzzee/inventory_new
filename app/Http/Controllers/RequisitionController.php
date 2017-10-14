@@ -21,7 +21,7 @@ class RequisitionController extends Controller
     {
         $requisitions = Requisition::with('requisitionDetails','users','departments')->orderBy('requisitions.id','desc')->get();
 
-        //dd($requisitions[0]->requisitionDetails->count());
+        //dd($requisitions[0]->requisitionDetails[0]->items);
         return view('pages.requisitions.requisitionsList',array(
             'requisitions' => $requisitions
         ));
@@ -61,7 +61,7 @@ class RequisitionController extends Controller
 
             'user_id' => 'required',
             'department_id' => 'required',
-            'item_name' => 'required',
+            'item_id' => 'required',
             'required_qnt' => 'required',
             'reason' => 'required|min:15'
         ]);
@@ -75,12 +75,12 @@ class RequisitionController extends Controller
 
         $requisition->save();
 
-        for($i = 0; $i < sizeof($request->item_name); $i++)
+        for($i = 0; $i < sizeof($request->item_id); $i++)
         {
 
             $requisition_detail = new RequisitionDetail([
                 'requisition_id' => $requisition->id,
-                'item_name' => $request->item_name[$i],
+                'item_id' => $request->item_id[$i],
                 'required_qnt' => $request->required_qnt[$i]
             ]);
             $requisition_detail->save();
@@ -89,7 +89,7 @@ class RequisitionController extends Controller
 
        
 
-            return redirect('requisitions/create');
+            return redirect('requisitions');
        
     }
 
@@ -101,11 +101,39 @@ class RequisitionController extends Controller
      */
     public function show($id)
     {
-        $requisition = Requisition::findOrFail($id)->with('requisitionDetails','users','departments')->get();
+        $requisition = Requisition::with('requisitionDetails','users','departments')->where('requisitions.id','=',$id)->get();
         //dd($requisition);
         return view('pages.requisitions.showRequisitions',array(
             'requisition' => $requisition
         ));
+    }
+
+
+
+    public function approved_req(Request $request)
+    {
+        $requisition = Requisition::findOrFail($request->req_id);
+
+        $requisition->approved = 1;
+        $requisition->rejected = 0;
+
+        $requisition->save();
+
+
+        return redirect('requisitions');
+        //dd($requisition);
+    }
+
+    public function rejected_req(Request $request)
+    {
+        $requisition = Requisition::findOrFail($request->req_id);
+
+        $requisition->approved = 0;
+        $requisition->rejected = 1;
+
+        $requisition->save();
+
+        return redirect('requisitions');
     }
 
     /**
@@ -114,9 +142,13 @@ class RequisitionController extends Controller
      * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function edit(Requisition $requisition)
+    public function edit($id)
     {
-        //
+        $requisition = Requisition::with('requisitionDetails','users','departments')->where('requisitions.id','=',$id)->get();
+        //dd($requisition);
+        return view('pages.requisitions.editRequisition',array(
+            'requisition' => $requisition
+        ));
     }
 
     /**
@@ -126,9 +158,25 @@ class RequisitionController extends Controller
      * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Requisition $requisition)
+    public function update(Request $request, $id)
     {
-        //
+        //dd($request);
+        $requisition_detail = RequisitionDetail::where('requisition_id','=',$id)->get();
+        //dd($requisition_detail->item_name);
+
+        for($i = 0; $i < sizeof($request->required_qnt); $i++)
+        {
+                //dd($requisition_detail);
+                
+                $requisition_detail[$i]->required_qnt = $request['required_qnt'][$i];
+            
+                $requisition_detail[$i]->save();
+        }
+
+
+       
+
+            return redirect('requisitions/'.$id);
     }
 
     /**
