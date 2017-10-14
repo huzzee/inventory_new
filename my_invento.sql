@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 14, 2017 at 09:07 AM
+-- Generation Time: Oct 14, 2017 at 12:31 PM
 -- Server version: 5.7.11
--- PHP Version: 7.1.7
+-- PHP Version: 7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -56,7 +56,8 @@ INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `
 (8, 5, 12, 'Samsung S7', 123456, 'samsung mobile', 'Box', 25, 0, 12, 'Samsung S7_5.jpg', 75000.00, 75000.00, 0, 1, 1, 0, '2017-10-13 08:46:44', '2017-10-13 08:46:44'),
 (9, 4, 12, 'Computer I5', 987654, NULL, NULL, 50, 0, 25, 'Computer I5_4.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-13 15:30:29', '2017-10-13 15:30:29'),
 (10, 6, 12, 'pointer', 4563781, 'black pointer', 'Box', 57, 0, 12, 'pointer_6.jpg', 70.00, 70.00, 0, 1, 1, 0, '2017-10-13 17:58:17', '2017-10-13 17:58:17'),
-(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 0, 34, 'Erazer_6.jpg', 30.00, 30.00, 0, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-13 17:59:03');
+(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 0, 34, 'Erazer_6.jpg', 30.00, 30.00, 0, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-13 17:59:03'),
+(12, 7, 8, 'shirts', 898989, 'for general uses only', 'Box', 1000, 10000, 500, 'shirts_7.png', 250.00, 242.50, 3, 1, 1, 0, '2017-10-14 07:28:05', '2017-10-14 07:28:05');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,8 @@ INSERT INTO `item_categories` (`id`, `item_cat_name`, `status`, `created_at`, `u
 (3, 'test', 1, '2017-10-09 17:21:12', '2017-10-09 17:21:12'),
 (4, 'Electronics', 1, '2017-10-12 08:26:10', '2017-10-12 08:26:10'),
 (5, 'Mobiles', 1, '2017-10-12 08:26:26', '2017-10-12 08:26:26'),
-(6, 'Stationary', 1, '2017-10-12 08:27:01', '2017-10-12 08:27:01');
+(6, 'Stationary', 1, '2017-10-12 08:27:01', '2017-10-12 08:27:01'),
+(7, 'Clothes', 1, '2017-10-14 07:24:40', '2017-10-14 07:24:40');
 
 -- --------------------------------------------------------
 
@@ -308,7 +310,8 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `sup_name`, `sup_email`, `sup_phone`, `sup_address`, `sup_image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Supplier1', 'supplier1@gmail.com', 12124214214, 'test', 'supplier1@gmail.com.jpg', 1, '2017-10-11 05:19:22', '2017-10-11 05:19:22');
+(1, 'Huzaifa Jr', 'supplier1@gmail.com', 121242142, 'test', 'supplier1@gmail.com.jpg', 0, '2017-10-11 05:19:22', '2017-10-14 07:30:19'),
+(3, 'Huzaifa', 'huzii@gmail.com', 3112088793, 'Dastageer 15 number , near Park , house No UNKNOWN', 'huzii@gmail.com.jpg', 1, '2017-10-14 05:56:57', '2017-10-14 05:57:30');
 
 -- --------------------------------------------------------
 
@@ -430,12 +433,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --
 ALTER TABLE `item_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `item_types`
 --
@@ -455,7 +458,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `my_departments`
 --
 ALTER TABLE `my_departments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
@@ -475,7 +478,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --

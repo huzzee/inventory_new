@@ -118,7 +118,8 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        //
+        $sup = Supplier::where('id' , $id)->first();
+        return view('pages.suppliers.supplierShow' , compact('sup'));
     }
 
     /**
@@ -130,7 +131,7 @@ class SupplierController extends Controller
     public function edit($id)
     {
         $sup = Supplier::where('id', $id)->first();
-        return view('pages.suppliers.suppliersShow' , compact('sup'));
+        return view('pages.suppliers.supplierEdit' , compact('sup')); 
     }
 
     /**
@@ -142,7 +143,72 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $id;
+        $upload_dir = base_path() . '/public/uploads';
+        
+        if($request->sup_image !== null){
+
+            $request->validate([
+
+            'sup_name' => 'required',
+
+            'sup_email' => 'required',
+
+            'sup_address' => 'required',
+
+            'sup_phone' => 'required',
+
+            'sup_image' => 'image|mimes:jpeg,png|max:2048'
+
+            ]);
+
+            
+            $file = $request->file('sup_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = $request->get('sup_email').".".$ext;
+            $file->move($upload_dir, $filename);
+    
+        }
+        else
+        {
+            $request->validate([
+
+            'sup_name' => 'required',
+
+            'sup_email' => 'required',
+
+            'sup_address' => 'required',
+
+            'sup_phone' => 'required|integer',
+
+            ]);
+
+            $filename = 'avatar.png';
+        }
+       
+
+        if($request->status == null)
+        {
+            $status = 0;
+        }
+        else
+        {
+            $status = 1;
+        }
+
+
+        $supplier = Supplier::findOrFail($id);
+
+            $supplier->sup_name = $request['sup_name'];
+            $supplier->sup_email = $request['sup_email'];
+            $supplier->sup_address = $request['sup_address'];
+            $supplier->sup_phone = $request['sup_phone'];
+            $supplier->sup_image = $filename;
+            $supplier->status = $status; 
+
+            $supplier->save();
+
+        return redirect('suppliers');
+
     }
 
     /**
