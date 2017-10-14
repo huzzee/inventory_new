@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Requisition;
 use Illuminate\Http\Request;
+use App\User;
+use App\Models\Item;
+use App\Models\MyDepartment;
+use App\Models\RequisitionDetail;
+use Auth;
 
 class RequisitionController extends Controller
 {
@@ -14,7 +19,11 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-        //
+        $requisitions = Requisition::with('requistionDetails')->get();
+        dd($requisitions);
+        return view('pages.requisitions.requisitionsList',array(
+
+        ));
     }
 
     /**
@@ -24,7 +33,17 @@ class RequisitionController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $items = Item::all();
+        $my_departments = MyDepartment::all();
+
+        //dd(Auth::user()->my_departments);
+
+        return view('pages.requisitions.addrequisitions',array(
+            'users' => $users,
+            'items' => $items,
+            'my_departments' => $my_departments
+        ));
     }
 
     /**
@@ -35,7 +54,42 @@ class RequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request);
+        $request->validate([
+
+            'user_id' => 'required',
+            'department_id' => 'required',
+            'item_name' => 'required',
+            'required_qnt' => 'required',
+            'reason' => 'required|min:15'
+        ]);
+
+        $requisition = new Requisition([
+            'user_id' => $request->user_id,
+            'department_id' => $request->department_id,
+            
+            'reason' => $request->reason
+        ]);
+
+        $requisition->save();
+
+        for($i = 0; $i < sizeof($request->item_name); $i++)
+        {
+
+            $requisition_detail = new RequisitionDetail([
+                'requisition_id' => $requisition->id,
+                'item_name' => $request->item_name[$i],
+                'required_qnt' => $request->required_qnt[$i]
+            ]);
+            $requisition_detail->save();
+        }
+
+
+       
+
+            return redirect('requisitions/create');
+       
     }
 
     /**

@@ -12,7 +12,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Items List</h4>
+                        <h4 class="page-title">Requests List</h4>
                         
                         <div class="clearfix"></div>
 
@@ -27,7 +27,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <a class="btn btn-danger" href="{{ url('items/create') }}">Create Items</a>
+                        <h3>Pending Requests</h3>
                                     
                         <hr>
                         
@@ -35,17 +35,11 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th width="3%">Sr.No</th>
-                                <th width="3%">Image</th>
-                                <th>Name</th>
-                                <th>Code</th>
-                                <th width="15%">Type</th>
-                                <th width="15%">Category</th>
-                                <th width="8%">Quantity</th>
-                                <th width="15%">Item Price</th>
-                                <th width="10%">Saleable Item</th>
+                                <th width="20%">Sr.No</th>
+                                <th width="30%">User Name</th>
+                                <th width="30%">Department</th>
                                 
-                                <th width="12%">Action</th>
+                                <th width="30%">Action</th>
                                 
                             </tr>
                             </thead>
@@ -53,43 +47,27 @@
 
                             <tbody>
                                 @php $i=1;@endphp
-                                @foreach($items as $item)
+                                @foreach($requisitions as $requisition)
 
                                 	<tr>
-                                		<td align="center">{{ $i }}</td>
-                                		<td align="center"><img src="{{ asset('uploads/'.$item->item_image)}}" style="width: 50px;height: 50px"></td>
-                                		<td>{{ $item->item_name }}</td>
-                                        <td>{{ $item->item_code }}</td>
-                                		<td>{{ $item->item_types->item_type_name }}</td>
-                                		<td>{{ $item->item_categories->item_cat_name }}</td>
-                                		<td>{{ $item->current_qnt }}</td>
-                                		
-                                		@if($item->is_saleable == 1)
-                                			
-                                			<td>{{ $item->unit_price }} per {{ $item->item_unit }}</td>
-                                			<td>Saleable</td>
-                                			
-                                		
-                                		@else
-                                			<td>Not Saleable</td>
-                                			<td>Not Saleable</td>
-
-                                		@endif
+                                		<td></td>
+                                        <td></td>
+                                        <td></td>
                                 		<td>
                                 			
 	                                            
-                                            <a href="{{ url('items/'.$item->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                             	<i class="fa fa-eye"></i>
                                             </a>
                                             
                                             
-                                            <a href="{{ url('items/'.$item->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('requisitions/'.$requisition->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
                                           
                                 			
-                                        	<button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$item->id}}"><i class="fa fa-remove"></i></button>
+                                        	<button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$requisition->id}}"><i class="fa fa-remove"></i></button>
                                 		</td>
                                 	</tr>
-                                	<div id="con-close-modal{{$item->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                	<div id="con-close-modal{{$requisition->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -103,7 +81,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
 
-                                                    <form action="{{ url('items/'.$item->id) }}" method="post">
+                                                    <form action="{{ url('requisitions/'.$requisition->id) }}" method="post">
                                                         {{ csrf_field() }}
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>

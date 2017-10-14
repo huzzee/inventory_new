@@ -10,7 +10,13 @@ class MyDepartment extends Model
     	'department_name','status'
     ];
 
-    public function users(){
+    public function users()
+    {
     	return $this->hasMany('App\User','id');
+    }
+
+    public function requisitions()
+    {
+        return $this->hasMany('App\Models\Requisition','id');
     }
 }

@@ -56,6 +56,7 @@
                                                 <dl class="dl-horizontal" style="font-size: 18px;"">
                                                     
                                                     <dt>Name:</dt><dd>{{ $items[0]->item_name }}</dd>
+                                                    <dt>Name:</dt><dd>{{ $items[0]->item_code }}</dd>
                                                    
                                                     <dt>Description:</dt>
                                                     <dd>

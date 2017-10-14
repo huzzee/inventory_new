@@ -87,6 +87,14 @@
                                                         
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="item_name" class="col-sm-3">Item Code<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" name="item_code" parsley-trigger="change" required
+                                                       placeholder="Enter Item Code" class="form-control" value="{{ old('item_code') }}" />
+                                                        
+                                                </div>
+                                            </div>
 
                                             <div class="form-group row">
                                                 <label for="description" class="col-sm-3">Description</label>
@@ -285,16 +293,6 @@
 <!--*********Page Scripts Here*********-->
 
 @section('scripts')
-        <script src="{{ asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/multiselect/js/jquery.multi-select.js') }}"></script>
-        <script src="{{ asset('assets/plugins/jquery-quicksearch/jquery.quicksearch.js') }}"></script>
-        <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-        <script src="{{ asset('assets/pages/jquery.form-advanced.init.js') }}"></script>
-
         <script src="{{ asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/multiselect/js/jquery.multi-select.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-quicksearch/jquery.quicksearch.js') }}"></script>

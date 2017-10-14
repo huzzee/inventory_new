@@ -76,6 +76,14 @@
                                             </div>
 
                                             <div class="form-group row">
+                                                <label for="item_code" class="col-sm-3">Item Code<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    {!!Form::number('item_code',null ,['class' => 'form-control'])!!}
+                                                        
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
                                                 <label for="description" class="col-sm-3">Description</label>
                                                 <div class="col-sm-9">
                                                     

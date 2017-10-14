@@ -35,7 +35,8 @@ class ItemRequest extends FormRequest
                 'min_qnt' => 'required',
                 'unit_price' => 'required',
                 'item_unit' => 'required',
-                'item_image' => 'image|mimes:jpeg,png|max:2048'
+                'item_image' => 'image|mimes:jpeg,png|max:2048',
+                'item_code' => 'required|min:5'
                 
             ];
         }
@@ -51,7 +52,8 @@ class ItemRequest extends FormRequest
                 'current_qnt' => 'required',
                 'min_qnt' => 'required',
                 'unit_price' => 'required',
-                'item_unit' => 'required'
+                'item_unit' => 'required',
+                'item_code' => 'required|min:5'
 
             ];
         }
@@ -66,6 +68,7 @@ class ItemRequest extends FormRequest
                 'opening_qnt' => 'required',
                 'current_qnt' => 'required',
                 'min_qnt' => 'required',
+                'item_code' => 'required|min:5',
                 'item_image' => 'image|mimes:jpeg,png|max:2048'
             
 
@@ -81,6 +84,7 @@ class ItemRequest extends FormRequest
                 'opening_qnt' => 'required',
                 'current_qnt' => 'required',
                 'min_qnt' => 'required',
+                'item_code' => 'required|min:5'
 
             ];
         }

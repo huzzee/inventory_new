@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\MyDepartment','department_id');
     }
+
+    public function requisitions()
+    {
+        return $this->hasMany('App\Models\Requisition','id');
+    }
 }

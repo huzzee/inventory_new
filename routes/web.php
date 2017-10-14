@@ -30,6 +30,7 @@ Route::Resource('item_types','ItemTypeController');//item Types
 Route::Resource('item_categories','ItemCategoryController');//item categories
 Route::Resource('suppliers','SupplierController');//For Suppliers
 Route::Resource('departments','MyDepartmentController');//For Department
+Route::Resource('requisitions','RequisitionController');// For Departments Request
 
 /*----------------------------------------------------
 				    Resources Route

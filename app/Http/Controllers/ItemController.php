@@ -93,6 +93,7 @@ class ItemController extends Controller
             $items->opening_qnt = $request['opening_qnt'];
             $items->current_qnt = $request['current_qnt'];
             $items->min_qnt = $request['min_qnt'];
+            $items->item_code = $request['item_code'];
             $items->item_image = $filename;
             $items->status = $status;
             $items->is_saleable = $is_saleable;
@@ -208,6 +209,7 @@ class ItemController extends Controller
             $items->opening_qnt = $request['opening_qnt'];
             $items->current_qnt = $request['current_qnt'];
             $items->min_qnt = $request['min_qnt'];
+            $items->item_code = $request['item_code'];
             if($request->item_image !== null){
                 $items->item_image = $filename;
             }

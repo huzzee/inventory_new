@@ -18,6 +18,7 @@ class CreateItemsTable extends Migration
             $table->unsignedInteger('catagory_id');
             $table->unsignedInteger('type_id');
             $table->string('item_name');
+            $table->bigInteger('item_code');
             $table->text('description')->nullable();
             $table->string('item_unit')->nullable();
             $table->integer('opening_qnt')->default(0);
