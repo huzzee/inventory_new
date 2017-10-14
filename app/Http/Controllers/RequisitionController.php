@@ -19,10 +19,11 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-        $requisitions = Requisition::with('requistionDetails')->get();
-        dd($requisitions);
-        return view('pages.requisitions.requisitionsList',array(
+        $requisitions = Requisition::with('requisitionDetails','users','departments')->orderBy('requisitions.id','desc')->get();
 
+        //dd($requisitions[0]->requisitionDetails->count());
+        return view('pages.requisitions.requisitionsList',array(
+            'requisitions' => $requisitions
         ));
     }
 
@@ -98,9 +99,13 @@ class RequisitionController extends Controller
      * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function show(Requisition $requisition)
+    public function show($id)
     {
-        //
+        $requisition = Requisition::findOrFail($id)->with('requisitionDetails','users','departments')->get();
+        //dd($requisition);
+        return view('pages.requisitions.showRequisitions',array(
+            'requisition' => $requisition
+        ));
     }
 
     /**

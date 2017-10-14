@@ -12,6 +12,6 @@ class RequisitionDetail extends Model
 
     public function requisitions()
     {
-    	return $this->belongsTo('App\Models\Requisition','requisition_id');
+    	return $this->belongsTo(Requisition::class);
     }
 }

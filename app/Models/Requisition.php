@@ -17,11 +17,11 @@ class Requisition extends Model
 
    public function departments()
    {
-   		return $this->belongsTo('App\Models\Department','department_id'); 
+   		return $this->belongsTo('App\Models\MyDepartment','department_id'); 
    }
 
-   public function requistionDetails()
+   public function requisitionDetails()
    {
-         return $this->hasMany('App\Models\RequisitionDetail','id');
+         return $this->hasMany(RequisitionDetail::class);
    }
 }

@@ -12,7 +12,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Requests List</h4>
+                        <h4 class="page-title">Requisitions</h4>
                         
                         <div class="clearfix"></div>
 
@@ -32,14 +32,16 @@
                         <hr>
                         
 
-                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
-                                <th width="20%">Sr.No</th>
-                                <th width="30%">User Name</th>
-                                <th width="30%">Department</th>
-                                
-                                <th width="30%">Action</th>
+                                <th width="5%">Sr.No</th>
+                                <th width="15%">User Name</th>
+                                <th width="15%">Department</th>
+                                <th width="10%">Required Items</th>
+                                <th>Reason</th>
+                                <th width="15%">Action</th>
+
                                 
                             </tr>
                             </thead>
@@ -47,12 +49,15 @@
 
                             <tbody>
                                 @php $i=1;@endphp
-                                @foreach($requisitions as $requisition)
 
+                                @foreach($requisitions as $requisition)
+                                    @if($requisition->approved == 0 && $requisition->rejected == 0)
                                 	<tr>
-                                		<td></td>
-                                        <td></td>
-                                        <td></td>
+                                		<td>{{$i}}</td>
+                                        <td>{{ $requisition->users->username }}</td>
+                                        <td>{{ $requisition->departments->department_name }}</td>
+                                        <td>{{ $requisition->requisitionDetails->count() }}</td>
+                                        <td>{{ $requisition->reason }}</td>
                                 		<td>
                                 			
 	                                            
@@ -60,9 +65,7 @@
                                             	<i class="fa fa-eye"></i>
                                             </a>
                                             
-                                            
-                                            <a href="{{ url('requisitions/'.$requisition->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
-                                          
+                                           
                                 			
                                         	<button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$requisition->id}}"><i class="fa fa-remove"></i></button>
                                 		</td>
@@ -92,6 +95,101 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+                                @php $i++; @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box table-responsive">
+
+                        <h3>Requests List</h3>
+                                    
+                        <hr>
+                        
+
+                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th width="5%">Sr.No</th>
+                                <th width="15%">User Name</th>
+                                <th width="20%">Department</th>
+                                <th width="10%">Required Items</th>
+                                <th>Approve</th>
+                                <th>issued</th>
+                                <th width="15%">Action</th>
+
+                                
+                            </tr>
+                            </thead>
+
+
+                            <tbody>
+                                @php $i=1;@endphp
+
+                                @foreach($requisitions as $requisition)
+                                    @if($requisition->approved == 1 || $requisition->rejected == 1)
+                                    <tr>
+                                        <td>{{$i}}</td>
+                                        <td>{{ $requisition->users->username }}</td>
+                                        <td>{{ $requisition->departments->department_name }}</td>
+                                        <td>{{ $requisition->requisitionDetails->count() }}</td>
+                                        @if($requisition->approved == 0 && $requisition->rejected == 1)
+                                        <td>Rejected</td>
+                                        @elseif($requisition->approved == 1 && $requisition->rejected == 0)
+                                        <td>Approved</td>
+                                        @endif
+
+                                        @if($requisition->issued == 1)
+                                        <td>Items Issued</td>
+                                        @else
+                                        <td>Not Issued</td>
+                                        @endif
+                                        <td>
+                                            
+                                                
+                                            <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            
+                                            
+                                            <a href="{{ url('requisitions/'.$requisition->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
+                                          
+                                            
+                                            <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$requisition->id}}"><i class="fa fa-remove"></i></button>
+                                        </td>
+                                    </tr>
+                                    <div id="con-close-modal{{$requisition->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title">Warning!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    Are You Sure.You want to Delete it.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
+
+                                                    <form action="{{ url('requisitions/'.$requisition->id) }}" method="post">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>
+                                                    
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
                                 @php $i++; @endphp
                                 @endforeach
                             </tbody>
