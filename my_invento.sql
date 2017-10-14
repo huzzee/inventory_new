@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 12, 2017 at 10:53 PM
+-- Generation Time: Oct 14, 2017 at 09:07 AM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -31,6 +31,7 @@ CREATE TABLE `items` (
   `catagory_id` int(10) UNSIGNED NOT NULL,
   `type_id` int(10) UNSIGNED NOT NULL,
   `item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `item_code` bigint(20) NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
   `item_unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `opening_qnt` int(11) NOT NULL DEFAULT '0',
@@ -51,10 +52,11 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `discount_price`, `discount_percent`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(5, 3, 11, 'abcd', NULL, NULL, 0, 0, 24, 'abcd_3.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-09 17:49:58', '2017-10-09 17:49:58'),
-(6, 3, 8, 'Penils', 'pencil Box', 'Box', 25, 0, 20, 'Penils_3.jpg', 50.00, 50.00, 0, 1, 1, 0, '2017-10-11 16:44:14', '2017-10-12 08:05:02'),
-(7, 5, 12, 'Samsung S7', 'Samsung S7 for sale', 'Box', 25, 0, 20, 'avatar.png', 75000.00, 75000.00, 0, 1, 1, 0, '2017-10-12 08:28:54', '2017-10-12 08:28:54');
+INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `discount_price`, `discount_percent`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
+(8, 5, 12, 'Samsung S7', 123456, 'samsung mobile', 'Box', 25, 0, 12, 'Samsung S7_5.jpg', 75000.00, 75000.00, 0, 1, 1, 0, '2017-10-13 08:46:44', '2017-10-13 08:46:44'),
+(9, 4, 12, 'Computer I5', 987654, NULL, NULL, 50, 0, 25, 'Computer I5_4.jpg', 0.00, 0.00, 0, 0, 1, 0, '2017-10-13 15:30:29', '2017-10-13 15:30:29'),
+(10, 6, 12, 'pointer', 4563781, 'black pointer', 'Box', 57, 0, 12, 'pointer_6.jpg', 70.00, 70.00, 0, 1, 1, 0, '2017-10-13 17:58:17', '2017-10-13 17:58:17'),
+(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 0, 34, 'Erazer_6.jpg', 30.00, 30.00, 0, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-13 17:59:03');
 
 -- --------------------------------------------------------
 
@@ -144,7 +146,10 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (18, 'Suppliers', NULL, NULL, 0, 'mdi mdi-playlist-plus', NULL, 1, 0, 12, NULL, NULL),
 (19, 'Add Supplier', 'suppliers/create', 18, 1, NULL, 'suppliers.create', 1, 0, 13, NULL, NULL),
 (20, 'Suppliers List', 'suppliers', 18, 2, NULL, 'suppliers.index', 1, 0, 14, NULL, NULL),
-(21, 'Department', 'departments', 7, 4, NULL, 'departments.index', 1, 0, 2, NULL, NULL);
+(21, 'Department', 'departments', 7, 4, NULL, 'departments.index', 1, 0, 2, NULL, NULL),
+(22, 'Requisitions', NULL, NULL, 0, 'mdi mdi-note-text', NULL, 1, 0, 15, NULL, NULL),
+(23, 'Make Requests', 'requisitions/create', 22, 1, NULL, 'requisitions.create', 1, 0, 16, NULL, NULL),
+(24, 'Requests List', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -171,7 +176,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2017_10_07_133115_create_items_table', 4),
 (20, '2017_10_09_161540_create_suppliers_table', 5),
 (22, '2017_10_12_203855_create_my_departments_table', 6),
-(24, '2017_10_12_210110_create_users_table', 7);
+(24, '2017_10_12_210110_create_users_table', 7),
+(26, '2017_10_12_221537_create_requisitions_table', 8),
+(27, '2017_10_13_162126_create_requisition_details_table', 8);
 
 -- --------------------------------------------------------
 
@@ -206,6 +213,56 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requisitions`
+--
+
+CREATE TABLE `requisitions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `department_id` int(11) NOT NULL,
+  `reason` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `issued` tinyint(1) NOT NULL DEFAULT '0',
+  `rejected` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `requisitions`
+--
+
+INSERT INTO `requisitions` (`id`, `user_id`, `department_id`, `reason`, `approved`, `issued`, `rejected`, `created_at`, `updated_at`) VALUES
+(7, 1, 1, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, 0, 0, '2017-10-13 18:04:00', '2017-10-13 18:04:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requisition_details`
+--
+
+CREATE TABLE `requisition_details` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `requisition_id` int(10) UNSIGNED NOT NULL,
+  `item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `required_qnt` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `requisition_details`
+--
+
+INSERT INTO `requisition_details` (`id`, `requisition_id`, `item_name`, `required_qnt`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Samsung S7', 12, '2017-10-13 18:04:00', '2017-10-13 18:04:00'),
+(2, 7, 'Computer I5', 12, '2017-10-13 18:04:00', '2017-10-13 18:04:00'),
+(3, 7, 'pointer', 34, '2017-10-13 18:04:00', '2017-10-13 18:04:00'),
+(4, 7, 'Erazer', 23, '2017-10-13 18:04:00', '2017-10-13 18:04:00');
 
 -- --------------------------------------------------------
 
@@ -280,7 +337,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `department_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Ad', 'admin', 1, 1, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'F0HM4fx6wDYeWtCxedUsB3fx0OoWHTJwjxj0NN1aoYqPB1CVbutmyzTbremb', NULL, NULL);
+(1, 'Admin', 'Ad', 'admin', 1, 1, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'bLE6JoQDQmlwaNavlc3Kn7FHIyA1qxA38JbyZKVr6bcsXpJMnkLEJB2ZE5Hs', NULL, NULL),
+(2, 'User1', 'User1', 'user_1', 2, 2, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'fvE9YSyCfdmAC7V9NgB3KgF3Vv3FYypf2scaug8p5iNbLhrbXQA5tUMAFT3h', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -331,6 +389,19 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `requisitions`
+--
+ALTER TABLE `requisitions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `requisitions_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `requisition_details`
+--
+ALTER TABLE `requisition_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -359,7 +430,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --
@@ -374,17 +445,27 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `my_departments`
 --
 ALTER TABLE `my_departments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `requisitions`
+--
+ALTER TABLE `requisitions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `requisition_details`
+--
+ALTER TABLE `requisition_details`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -399,7 +480,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -410,6 +491,12 @@ ALTER TABLE `users`
 ALTER TABLE `items`
   ADD CONSTRAINT `items_catagory_id_foreign` FOREIGN KEY (`catagory_id`) REFERENCES `item_categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `items_type_id_foreign` FOREIGN KEY (`type_id`) REFERENCES `item_types` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `requisitions`
+--
+ALTER TABLE `requisitions`
+  ADD CONSTRAINT `requisitions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`
