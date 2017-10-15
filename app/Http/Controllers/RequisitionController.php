@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Models\MyDepartment;
 use App\Models\RequisitionDetail;
 use Auth;
+use Carbon\Carbon;
 
 class RequisitionController extends Controller
 {
@@ -102,9 +103,12 @@ class RequisitionController extends Controller
     public function show($id)
     {
         $requisition = Requisition::with('requisitionDetails','users','departments')->where('requisitions.id','=',$id)->get();
-        //dd($requisition);
+
+        $users = User::findOrFail($requisition[0]->id);
+        //dd($user);
         return view('pages.requisitions.showRequisitions',array(
-            'requisition' => $requisition
+            'requisition' => $requisition,
+            'users' => $users
         ));
     }
 
@@ -116,6 +120,8 @@ class RequisitionController extends Controller
 
         $requisition->approved = 1;
         $requisition->rejected = 0;
+        $requisition->Approval_by = $request->approval_by;
+        $requisition->approval_date = Carbon::now();
 
         $requisition->save();
 
@@ -130,6 +136,8 @@ class RequisitionController extends Controller
 
         $requisition->approved = 0;
         $requisition->rejected = 1;
+        $requisition->Approval_by = $request->approval_by;
+        $requisition->approval_date = Carbon::now();
 
         $requisition->save();
 

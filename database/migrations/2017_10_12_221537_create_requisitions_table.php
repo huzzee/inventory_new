@@ -19,10 +19,11 @@ class CreateRequisitionsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('department_id');
             $table->text('reason');
-            
+            $table->integer('approval_by')->nullable();
             $table->boolean('approved')->default(0);
             $table->boolean('issued')->default(0);
             $table->boolean('rejected')->default(0);
+            $table->timestamp('approval_date')->nullable();
             $table->timestamps();
         });
 

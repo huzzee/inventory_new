@@ -57,7 +57,25 @@
                                                     <dt>Department:</dt><dd>{{ $requisition[0]->departments->department_name }}</dd>
                                                     
                                                     <dt>Reason:</dt><dd>{{ $requisition[0]->reason }}</dd>
-                                                    
+                                                    @if($requisition[0]->approved == 1)
+                                                    <dt>Permission:</dt><dd>Approved</dd>
+                                                    @elseif($requisition[0]->rejected == 1)
+                                                    <dt>Permission:</dt><dd>Rejected</dd>
+                                                    @endif
+
+                                                    @if($requisition[0]->approved == 1)
+                                                    <dt>Approved By:</dt><dd>{{ $users->first_name }} {{ $users->last_name }}</dd>
+                                                    @elseif($requisition[0]->rejected == 1)
+                                                    <dt>Reject By:</dt><dd>{{ $users->first_name }} {{ $users->last_name }}</dd>
+                                                    @endif
+
+                                                    @if($requisition[0]->approval_date !== null)
+                                                    <dt>Permission Date:</dt><dd>{{ $requisition[0]->approval_date }}</dd>
+                                                    @endif
+
+                                                    @if($requisition[0]->approved == 0 && $requisition[0]->rejected == 0)
+                                                    <dt>Requisition Date:</dt><dd>{{ $requisition[0]->created_at }}</dd>
+                                                    @endif
                                                 </dl>
                                             </div>
                                             
@@ -111,12 +129,14 @@
                                            <div class="col-md-2">
                                                 <form method="post" action="{{ url('requisitions_approved') }}">
                                                     {{ csrf_field() }}
+                                                    <input type="hidden" name="approval_by" value="{{ Auth::user()->id }}">
                                                     <input type="hidden" name="req_id" value="{{ $requisition[0]->id }}">
                                                     <button type="submit" style="float: left;" class="btn btn-success waves-effect waves-light box-header">Approved</button>
                                                 </form>
                                            
                                                 <form method="post" action="{{ url('requisitions_rejected') }}">
                                                     {{ csrf_field() }}
+                                                    <input type="hidden" name="approval_by" value="{{ Auth::user()->id }}">
                                                     <input type="hidden" name="req_id" value="{{ $requisition[0]->id }}">
                                                     <button type="submit" style="margin-left: 5px" class="btn btn-danger waves-effect waves-light box-header">Rejected</button>
                                                 </form>
