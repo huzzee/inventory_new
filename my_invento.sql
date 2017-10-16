@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2017 at 09:54 PM
+-- Generation Time: Oct 16, 2017 at 11:01 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -186,10 +186,11 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (21, 'Department', 'departments', 7, 4, NULL, 'departments.index', 1, 0, 2, NULL, NULL),
 (22, 'Requisitions', NULL, NULL, 0, 'mdi mdi-note-text', NULL, 1, 0, 15, NULL, NULL),
 (23, 'Make Requests', 'requisitions/create', 22, 1, NULL, 'requisitions.create', 1, 0, 16, NULL, NULL),
-(24, 'Requests List', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
+(24, 'Pending Requests', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
 (25, 'Purchase Order', NULL, NULL, 0, 'mdi mdi-cart', NULL, 1, 0, 18, NULL, NULL),
 (26, 'Make Purchase Order', 'purchase/create', 25, 1, NULL, 'purchase.create', 1, 0, 19, NULL, NULL),
-(27, 'Purchase Orders List', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL);
+(27, 'Purchase Orders List', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL),
+(28, 'Complete Requests', 'requisitions_complete', 22, 3, NULL, 'requisition.complete', 1, 0, 17, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -266,7 +267,7 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `purchase_order_details` (
   `id` int(10) UNSIGNED NOT NULL,
-  `purchase_master_id` int(10) UNSIGNED NOT NULL,
+  `purchase_order_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
   `order_qnt` int(11) NOT NULL,
   `item_rate` double(15,3) NOT NULL,
@@ -274,6 +275,14 @@ CREATE TABLE `purchase_order_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_order_details`
+--
+
+INSERT INTO `purchase_order_details` (`id`, `purchase_order_master_id`, `item_id`, `order_qnt`, `item_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
+(8, 18, 10, 24, 200.000, 4800.000, '2017-10-16 17:45:44', '2017-10-16 17:45:44'),
+(9, 18, 8, 50, 65000.000, 3250000.000, '2017-10-16 17:45:44', '2017-10-16 17:45:44');
 
 -- --------------------------------------------------------
 
@@ -297,6 +306,13 @@ CREATE TABLE `purchase_order_masters` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_order_masters`
+--
+
+INSERT INTO `purchase_order_masters` (`id`, `requisition_id`, `user_id`, `supplier_id`, `purchase_code`, `quatation_nmbr`, `approval_by`, `approved`, `rejected`, `printed`, `approval_date`, `created_date`, `created_at`, `updated_at`) VALUES
+(18, NULL, 1, 1, 'U1GGpPGK', NULL, NULL, 0, 0, 0, '2017-10-16 22:45:44', '2017-10-17', '2017-10-16 17:45:44', '2017-10-16 17:45:44');
 
 -- --------------------------------------------------------
 
@@ -496,7 +512,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `purchase_order_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_master_id`),
+  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_order_master_id`),
   ADD KEY `purchase_order_details_item_id_foreign` (`item_id`);
 
 --
@@ -578,7 +594,7 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -593,12 +609,12 @@ ALTER TABLE `my_departments`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
@@ -655,7 +671,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `purchase_order_details`
   ADD CONSTRAINT `purchase_order_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_master_id`) REFERENCES `purchase_order_masters` (`id`);
+  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_order_master_id`) REFERENCES `purchase_order_masters` (`id`);
 
 --
 -- Constraints for table `purchase_order_masters`
