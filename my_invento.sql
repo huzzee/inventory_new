@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2017 at 08:05 PM
+-- Generation Time: Oct 16, 2017 at 09:54 PM
 -- Server version: 5.7.11
--- PHP Version: 7.0.3
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -49,10 +49,6 @@ CREATE TABLE `grn_masters` (
   `supplier_id` int(10) UNSIGNED NOT NULL,
   `purchase_order_id` int(10) UNSIGNED NOT NULL,
   `dn_code` int(11) DEFAULT NULL,
-  `approved` tinyint(1) NOT NULL DEFAULT '0',
-  `rejected` tinyint(1) NOT NULL DEFAULT '0',
-  `approval_by` int(10) UNSIGNED DEFAULT NULL,
-  `approval_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -273,8 +269,8 @@ CREATE TABLE `purchase_order_details` (
   `purchase_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
   `order_qnt` int(11) NOT NULL,
-  `item_rate` double(7,2) NOT NULL,
-  `total_amount` double(7,2) NOT NULL,
+  `item_rate` double(15,3) NOT NULL,
+  `total_amount` double(15,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -295,7 +291,9 @@ CREATE TABLE `purchase_order_masters` (
   `approval_by` int(10) UNSIGNED DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0',
   `rejected` tinyint(1) NOT NULL DEFAULT '0',
+  `printed` tinyint(1) NOT NULL DEFAULT '0',
   `approval_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -325,8 +323,7 @@ CREATE TABLE `requisitions` (
 --
 
 INSERT INTO `requisitions` (`id`, `user_id`, `department_id`, `reason`, `approval_by`, `approved`, `issued`, `rejected`, `approval_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 0, 0, 1, '2017-10-15 06:03:19', '2017-10-15 05:51:01', '2017-10-15 06:03:19'),
-(2, 1, 1, 'blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, 1, 0, 0, '2017-10-17 02:32:40', '2017-10-17 02:32:32', '2017-10-17 02:32:40');
+(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 0, 0, 1, '2017-10-15 06:03:19', '2017-10-15 05:51:01', '2017-10-15 06:03:19');
 
 -- --------------------------------------------------------
 
@@ -349,8 +346,7 @@ CREATE TABLE `requisition_details` (
 
 INSERT INTO `requisition_details` (`id`, `requisition_id`, `item_id`, `required_qnt`, `created_at`, `updated_at`) VALUES
 (1, 1, 9, 12, '2017-10-15 05:51:01', '2017-10-15 05:51:01'),
-(2, 1, 10, 45, '2017-10-15 05:51:01', '2017-10-15 05:51:01'),
-(3, 2, 9, 5, '2017-10-17 02:32:32', '2017-10-17 02:32:32');
+(2, 1, 10, 45, '2017-10-15 05:51:01', '2017-10-15 05:51:01');
 
 -- --------------------------------------------------------
 
@@ -448,7 +444,6 @@ ALTER TABLE `grn_details`
 ALTER TABLE `grn_masters`
   ADD PRIMARY KEY (`id`),
   ADD KEY `grn_masters_user_id_foreign` (`user_id`),
-  ADD KEY `grn_masters_approval_by_foreign` (`approval_by`),
   ADD KEY `grn_masters_supplier_id_foreign` (`supplier_id`),
   ADD KEY `grn_masters_purchase_order_id_foreign` (`purchase_order_id`);
 
@@ -598,22 +593,22 @@ ALTER TABLE `my_departments`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `requisition_details`
 --
 ALTER TABLE `requisition_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -644,7 +639,6 @@ ALTER TABLE `grn_details`
 -- Constraints for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  ADD CONSTRAINT `grn_masters_approval_by_foreign` FOREIGN KEY (`approval_by`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `grn_masters_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_order_masters` (`id`),
   ADD CONSTRAINT `grn_masters_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`),
   ADD CONSTRAINT `grn_masters_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);

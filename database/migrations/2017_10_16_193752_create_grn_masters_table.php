@@ -19,17 +19,12 @@ class CreateGrnMastersTable extends Migration
             $table->integer('supplier_id')->unsigned();
             $table->integer('purchase_order_id')->unsigned();
             $table->integer('dn_code')->nullable();
-            $table->boolean('approved')->default(0);
-            $table->boolean('rejected')->default(0);
-            $table->integer('approval_by')->unsigned()->nullable();
-            $table->timestamp('approval_date');
             $table->timestamps();
         });
 
         Schema::table('grn_masters', function($table) {
          
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('approval_by')->references('id')->on('users');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->foreign('purchase_order_id')->references('id')->on('purchase_order_masters');
             

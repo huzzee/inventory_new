@@ -26,12 +26,7 @@ class PurchaseOrderMaster extends Model
     	return $this->belongsTo('App\Models\Supplier','supplier_id');
     }
 
-    
-	public function users()
-    {
-    	return $this->belongsTo('App\User','approval_by');
-    }
-
+   
     public function puchaseOrderDetails()
     {
     	return $this->hasMany(PurchaseOrderDetail::class);

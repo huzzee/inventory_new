@@ -18,8 +18,8 @@ class CreatePurchaseOrderDetailsTable extends Migration
             $table->integer('purchase_master_id')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->integer('order_qnt');
-            $table->float('item_rate',7,2);
-            $table->float('total_amount',7,2);
+            $table->double('item_rate',15,3);
+            $table->double('total_amount',15,3);
             $table->timestamps();
         });
 
