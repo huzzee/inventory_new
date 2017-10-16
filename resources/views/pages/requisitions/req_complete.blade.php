@@ -29,7 +29,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <h3>Pending Requests List</h3>
+                        <h3>Issued Requests List</h3>
                                     
                         <hr>
                         
@@ -38,7 +38,7 @@
                             <thead>
                             <tr>
                                 <th width="5%">Sr.No</th>
-                                <th width="15%">Supplier Name</th>
+                                <th width="15%">User Name</th>
                                 <th width="20%">Department</th>
                                 <th width="10%">Required Items</th>
                                 <th>Permission</th>
@@ -51,7 +51,35 @@
 
 
                             <tbody>
-                                
+                                @php $i=1;@endphp
+
+                                @foreach($requisitions as $requisition)
+                                   
+                                    <tr>
+                                        <td>{{$i}}</td>
+                                        <td>{{ $requisition->users->username }}</td>
+                                        <td>{{ $requisition->departments->department_name }}</td>
+                                        <td>{{ $requisition->requisitionDetails->count() }}</td>
+                                        
+                                        <td>Approved</td>
+                                        
+
+                                        
+                                        <td>Issued</td>
+                                        
+                                            
+                                        <td>       
+                                            <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                           
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    
+                                @php $i++; @endphp
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

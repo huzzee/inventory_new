@@ -27,7 +27,7 @@ class PurchaseOrderMaster extends Model
     }
 
    
-    public function puchaseOrderDetails()
+    public function purchaseOrderDetails()
     {
     	return $this->hasMany(PurchaseOrderDetail::class);
     }

@@ -15,7 +15,7 @@ class CreatePurchaseOrderDetailsTable extends Migration
     {
         Schema::create('purchase_order_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('purchase_master_id')->unsigned();
+            $table->integer('purchase_order_master_id')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->integer('order_qnt');
             $table->double('item_rate',15,3);

@@ -1,8 +1,4 @@
-@extends('layouts.mainHome')
-
-
-
-@section('content')            
+<?php $__env->startSection('content'); ?>            
     <!-- Start content -->
     <div class="content">
         <div class="container">
@@ -48,20 +44,20 @@
 
 
                             <tbody>
-                                @php $i=1;@endphp
+                                <?php $i=1;?>
 
-                                @foreach($requisitions as $requisition)
-                                    @if($requisition->approved == 0 && $requisition->rejected == 0)
+                                <?php $__currentLoopData = $requisitions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requisition): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($requisition->approved == 0 && $requisition->rejected == 0): ?>
                                 	<tr>
-                                		<td>{{$i}}</td>
-                                        <td>{{ $requisition->users->username }}</td>
-                                        <td>{{ $requisition->departments->department_name }}</td>
-                                        <td>{{ $requisition->requisitionDetails->count() }}</td>
-                                        <td>{{ $requisition->reason }}</td>
+                                		<td><?php echo e($i); ?></td>
+                                        <td><?php echo e($requisition->users->username); ?></td>
+                                        <td><?php echo e($requisition->departments->department_name); ?></td>
+                                        <td><?php echo e($requisition->requisitionDetails->count()); ?></td>
+                                        <td><?php echo e($requisition->reason); ?></td>
                                 		<td>
                                 			
 	                                            
-                                            <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="<?php echo e(url('requisitions/'.$requisition->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                             	<i class="fa fa-eye"></i>
                                             </a>
                                             
@@ -69,9 +65,9 @@
                                 		</td>
                                 	</tr>
                                 	
-                                    @endif
-                                @php $i++; @endphp
-                                @endforeach
+                                    <?php endif; ?>
+                                <?php $i++; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -104,28 +100,28 @@
 
 
                             <tbody>
-                                @php $i=1;@endphp
+                                <?php $i=1;?>
 
-                                @foreach($requisitions as $requisition)
-                                    @if($requisition->issued == 0)
-                                    @if($requisition->approved == 1 || $requisition->rejected == 1)
+                                <?php $__currentLoopData = $requisitions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requisition): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($requisition->issued == 0): ?>
+                                    <?php if($requisition->approved == 1 || $requisition->rejected == 1): ?>
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>{{ $requisition->users->username }}</td>
-                                        <td>{{ $requisition->departments->department_name }}</td>
-                                        <td>{{ $requisition->requisitionDetails->count() }}</td>
-                                        @if($requisition->approved == 0 && $requisition->rejected == 1)
+                                        <td><?php echo e($i); ?></td>
+                                        <td><?php echo e($requisition->users->username); ?></td>
+                                        <td><?php echo e($requisition->departments->department_name); ?></td>
+                                        <td><?php echo e($requisition->requisitionDetails->count()); ?></td>
+                                        <?php if($requisition->approved == 0 && $requisition->rejected == 1): ?>
                                         <td>Rejected</td>
-                                        @elseif($requisition->approved == 1 && $requisition->rejected == 0)
+                                        <?php elseif($requisition->approved == 1 && $requisition->rejected == 0): ?>
                                         <td>Approved</td>
-                                        @endif
+                                        <?php endif; ?>
 
                                         
                                         <td>Not Issued</td>
                                         
                                             
                                         <td>       
-                                            <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="<?php echo e(url('requisitions/'.$requisition->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                            
@@ -133,10 +129,10 @@
                                         </td>
                                     </tr>
                                     
-                                    @endif
-                                    @endif
-                                @php $i++; @endphp
-                                @endforeach
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                                <?php $i++; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -147,31 +143,31 @@
 
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts Here*********-->
 
-@section('scripts')
-        <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
+<?php $__env->startSection('scripts'); ?>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
 
-        <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedHeader.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.scroller.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.colVis.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedColumns.min.js') }}"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.buttons.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jszip.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/pdfmake.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/vfs_fonts.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.html5.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.print.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedHeader.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.keyTable.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.responsive.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/responsive.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.scroller.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.colVis.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedColumns.min.js')); ?>"></script>
 
         <!-- init -->
-        <script src="{{ asset('assets/pages/jquery.datatables.init.js') }}"></script>
+        <script src="<?php echo e(asset('assets/pages/jquery.datatables.init.js')); ?>"></script>
 
 
         <script type="text/javascript">
@@ -207,6 +203,7 @@
             TableManageButtons.init();
 
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts End*********-->
+<?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

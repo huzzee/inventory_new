@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::Resource('suppliers','SupplierController');//For Suppliers
 	Route::Resource('departments','MyDepartmentController');//For Department
 	Route::Resource('requisitions','RequisitionController');// For Departments Requests
+	Route::get('requisitions_complete','RequisitionController@complete_req')->name('complete');// For Departments Requests
 	Route::post('requisitions_approved','RequisitionController@approved_req');// For Departments Requests
 	Route::post('requisitions_rejected','RequisitionController@rejected_req');// For Departments Requests
 	Route::Resource('purchase','PurchaseOrderMasterController');// For Purchase Orders

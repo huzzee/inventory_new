@@ -28,6 +28,17 @@ class RequisitionController extends Controller
         ));
     }
 
+    /*complete Requisition list*/
+
+    public function complete_req()
+    {
+        //dd('ok');
+        $requisitions = Requisition::with('requisitionDetails','users','departments')->where('requisitions.issued','=',1)->get();
+            //dd($requisition);
+        return view('pages.requisitions.req_complete',array(
+            'requisitions' => $requisitions
+        ));
+    }   
     /**
      * Show the form for creating a new resource.
      *

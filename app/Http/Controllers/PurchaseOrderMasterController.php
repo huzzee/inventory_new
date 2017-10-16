@@ -17,7 +17,15 @@ class PurchaseOrderMasterController extends Controller
      */
     public function index()
     {
-        //
+        $purchase_order = PurchaseOrderMaster::with('purchaseOrderDetails','users','suppliers')->get();
+
+        dd($purchase_order);
+
+        return view('pages.PurchaseOrder.purchaseOrderList',array(
+            'items' => $items,
+            'suppliers' => $suppliers
+        ));
+
     }
 
     /**
