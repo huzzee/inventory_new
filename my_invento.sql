@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2017 at 09:36 AM
+-- Generation Time: Oct 16, 2017 at 08:05 PM
 -- Server version: 5.7.11
--- PHP Version: 7.1.7
+-- PHP Version: 7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,43 @@ SET time_zone = "+00:00";
 --
 -- Database: `my_invento`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grn_details`
+--
+
+CREATE TABLE `grn_details` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `grn_master_id` int(10) UNSIGNED NOT NULL,
+  `item_id` int(10) UNSIGNED NOT NULL,
+  `recieved_qnt` double(7,2) NOT NULL,
+  `per_unit_rate` double(7,2) NOT NULL,
+  `total_amount` double(7,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grn_masters`
+--
+
+CREATE TABLE `grn_masters` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `supplier_id` int(10) UNSIGNED NOT NULL,
+  `purchase_order_id` int(10) UNSIGNED NOT NULL,
+  `dn_code` int(11) DEFAULT NULL,
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `rejected` tinyint(1) NOT NULL DEFAULT '0',
+  `approval_by` int(10) UNSIGNED DEFAULT NULL,
+  `approval_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -187,7 +224,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (30, '2017_10_12_221537_create_requisitions_table', 8),
 (31, '2017_10_13_162126_create_requisition_details_table', 8),
 (32, '2017_10_15_112938_create_purchase_order_masters_table', 9),
-(33, '2017_10_15_113103_create_purchase_order_details_table', 9);
+(33, '2017_10_15_113103_create_purchase_order_details_table', 9),
+(34, '2017_10_16_193752_create_grn_masters_table', 10),
+(35, '2017_10_16_194009_create_grn_details_table', 10);
 
 -- --------------------------------------------------------
 
@@ -286,7 +325,8 @@ CREATE TABLE `requisitions` (
 --
 
 INSERT INTO `requisitions` (`id`, `user_id`, `department_id`, `reason`, `approval_by`, `approved`, `issued`, `rejected`, `approval_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 0, 0, 1, '2017-10-15 06:03:19', '2017-10-15 05:51:01', '2017-10-15 06:03:19');
+(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 0, 0, 1, '2017-10-15 06:03:19', '2017-10-15 05:51:01', '2017-10-15 06:03:19'),
+(2, 1, 1, 'blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, 1, 0, 0, '2017-10-17 02:32:40', '2017-10-17 02:32:32', '2017-10-17 02:32:40');
 
 -- --------------------------------------------------------
 
@@ -309,7 +349,8 @@ CREATE TABLE `requisition_details` (
 
 INSERT INTO `requisition_details` (`id`, `requisition_id`, `item_id`, `required_qnt`, `created_at`, `updated_at`) VALUES
 (1, 1, 9, 12, '2017-10-15 05:51:01', '2017-10-15 05:51:01'),
-(2, 1, 10, 45, '2017-10-15 05:51:01', '2017-10-15 05:51:01');
+(2, 1, 10, 45, '2017-10-15 05:51:01', '2017-10-15 05:51:01'),
+(3, 2, 9, 5, '2017-10-17 02:32:32', '2017-10-17 02:32:32');
 
 -- --------------------------------------------------------
 
@@ -392,6 +433,24 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `de
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `grn_details`
+--
+ALTER TABLE `grn_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `grn_details_item_id_foreign` (`item_id`),
+  ADD KEY `grn_details_grn_master_id_foreign` (`grn_master_id`);
+
+--
+-- Indexes for table `grn_masters`
+--
+ALTER TABLE `grn_masters`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `grn_masters_user_id_foreign` (`user_id`),
+  ADD KEY `grn_masters_approval_by_foreign` (`approval_by`),
+  ADD KEY `grn_masters_supplier_id_foreign` (`supplier_id`),
+  ADD KEY `grn_masters_purchase_order_id_foreign` (`purchase_order_id`);
 
 --
 -- Indexes for table `items`
@@ -496,6 +555,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `grn_details`
+--
+ALTER TABLE `grn_details`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `grn_masters`
+--
+ALTER TABLE `grn_masters`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
@@ -519,7 +588,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `my_departments`
 --
@@ -539,12 +608,12 @@ ALTER TABLE `purchase_order_masters`
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `requisition_details`
 --
 ALTER TABLE `requisition_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -563,6 +632,22 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `grn_details`
+--
+ALTER TABLE `grn_details`
+  ADD CONSTRAINT `grn_details_grn_master_id_foreign` FOREIGN KEY (`grn_master_id`) REFERENCES `grn_masters` (`id`),
+  ADD CONSTRAINT `grn_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
+
+--
+-- Constraints for table `grn_masters`
+--
+ALTER TABLE `grn_masters`
+  ADD CONSTRAINT `grn_masters_approval_by_foreign` FOREIGN KEY (`approval_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `grn_masters_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_order_masters` (`id`),
+  ADD CONSTRAINT `grn_masters_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`),
+  ADD CONSTRAINT `grn_masters_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `items`
