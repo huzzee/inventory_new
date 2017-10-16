@@ -24,4 +24,9 @@ class Requisition extends Model
    {
          return $this->hasMany(RequisitionDetail::class);
    }
+
+   public function purchaseOrderMasters()
+   {
+         return $this->hasMany('App\Models\PurchaseOrderMasters','id');
+   }
 }

@@ -26,5 +26,10 @@ class Item extends Model
     {
         return $this->hasMany('App\Models\RequisitionDetail','id');
     }
+
+    public function puchaseOrderDetails()
+    {
+        return $this->hasMany('App\Models\PurchaseOrderDetail','id');
+    }
     
 }

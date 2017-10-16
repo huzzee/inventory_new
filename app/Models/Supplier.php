@@ -10,5 +10,10 @@ class Supplier extends Model
     	'sup_name','sup_phone','sup_address','sup_email','sup_image','status','sup_account'
     ];
 
+
+    public function purchaseOrderMasters()
+   	{
+        return $this->hasMany('App\Models\PurchaseOrderMasters','id');
+	}
     
 }
