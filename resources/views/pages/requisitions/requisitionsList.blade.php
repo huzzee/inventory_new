@@ -66,35 +66,9 @@
                                             </a>
                                             
                                            
-                                			
-                                        	<button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$requisition->id}}"><i class="fa fa-remove"></i></button>
                                 		</td>
                                 	</tr>
-                                	<div id="con-close-modal{{$requisition->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h4 class="modal-title">Warning!</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    
-                                                    Are You Sure.You want to Delete it.
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
-
-                                                    <form action="{{ url('requisitions/'.$requisition->id) }}" method="post">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>
-                                                    
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                	
                                     @endif
                                 @php $i++; @endphp
                                 @endforeach
@@ -158,34 +132,9 @@
                                             </a>
                                            
                                             
-                                            <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$requisition->id}}"><i class="fa fa-remove"></i></button>
                                         </td>
                                     </tr>
-                                    <div id="con-close-modal{{$requisition->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h4 class="modal-title">Warning!</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    
-                                                    Are You Sure.You want to Delete it.
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
-
-                                                    <form action="{{ url('requisitions/'.$requisition->id) }}" method="post">
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>
-                                                    
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     @endif
                                 @php $i++; @endphp
                                 @endforeach

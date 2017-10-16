@@ -91,12 +91,14 @@ class ItemController extends Controller
             $items->catagory_id = $request['catagory_id'];
             $items->type_id = $request['type_id'];
             $items->opening_qnt = $request['opening_qnt'];
-            $items->current_qnt = $request['current_qnt'];
+            $items->current_qnt = $request['opening_qnt'];
             $items->min_qnt = $request['min_qnt'];
             $items->item_code = $request['item_code'];
             $items->item_image = $filename;
             $items->status = $status;
             $items->is_saleable = $is_saleable;
+            $items->item_unit = $request['item_unit'];
+            $items->unit_price = $request['unit_price'];
             
             
             if($request->description !== null)
@@ -104,13 +106,7 @@ class ItemController extends Controller
                 $items->description = $request['description'];
                 
             }
-            if($is_saleable == 1)
-            {
-                $items->item_unit = $request['item_unit'];
-                $items->unit_price = $request['unit_price'];
-                $items->discount_price = $request['discount_price'];
-                $items->discount_percent = $request['discount_percent'];
-            }
+            
 
             $items->save();
 
@@ -207,9 +203,10 @@ class ItemController extends Controller
             $items->catagory_id = $request['catagory_id'];
             $items->type_id = $request['type_id'];
             $items->opening_qnt = $request['opening_qnt'];
-            $items->current_qnt = $request['current_qnt'];
             $items->min_qnt = $request['min_qnt'];
             $items->item_code = $request['item_code'];
+            $items->item_unit = $request['item_unit'];
+            $items->unit_price = $request['unit_price'];
             if($request->item_image !== null){
                 $items->item_image = $filename;
             }
@@ -222,20 +219,7 @@ class ItemController extends Controller
                 $items->description = $request['description'];
                 
             }
-            if($is_saleable == 1)
-            {
-                $items->item_unit = $request['item_unit'];
-                $items->unit_price = $request['unit_price'];
-                $items->discount_price = $request['discount_price'];
-                $items->discount_percent = $request['discount_percent'];
-            }
-            else{
-                $items->item_unit = null;
-                $items->unit_price = 0;
-                $items->discount_price = 0;
-                $items->discount_percent = 0;
-
-            }
+            
 
             $items->save();
 

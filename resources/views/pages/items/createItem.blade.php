@@ -148,26 +148,18 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12">
 
-                                    <h4>Saleable Item</h4>
+                                    <h4>Buying Rate</h4>
                                     <hr>
 
                                     <div class="p-20">
                                             
                                             
                                             
-                                            <div class="form-group row">
-                                                <label for="status" class="col-sm-3">Is Item Saleable</label>
-                                                <div class="col-sm-9">
-                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" />
-                                                    <label for="switch4" data-on-label="Yes"
-                                                       data-off-label="No"></label>
-                                                </div>
-                                            </div>
-
+                                            
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Select Item Unit<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control select2 unitPrice" name="item_unit" disabled="disabled">
+                                                    <select class="form-control select2" name="item_unit">
                                                         <option selected disabled="disabled">Select Item Unit</option>
                                                         
                                                         <option value="Box">Box</option>
@@ -195,35 +187,15 @@
                                             </div>
                                             <div class="form-group row">
                                                 
-                                                <label for="item_name" class="col-sm-3">Per Unit Price<span class="text-danger">*</span></label>
+                                                <label for="item_name" class="col-sm-3">Per Unit Rate<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
                                                     <input type="number" id="unit_price" name="unit_price" parsley-trigger="change" 
-                                                       class="form-control unitPrice" placeholder="Enter Per unit Price" disabled="disabled" value="{{ old('unit_price') }}"  />
+                                                       class="form-control" placeholder="Enter Per unit rate" value="{{ old('unit_price') }}"  />
                                                         
                                                 </div>
                                                 
                                             </div>
-                                            <div class="form-group row">
                                             
-                                                <label for="item_name" class="col-sm-3">Discount In %</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" id="discount_percent" name="discount_percent" parsley-trigger="change" class="form-control unitPrice" disabled="disabled" value="0" placeholder="Enter Disscount in %" />
-                                                        
-                                                </div>
-
-                                            </div>
-                                            
-                                            <div class="form-group row">
-                                            
-                                                <label for="discount_price" class="col-sm-3">After Discount Price</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" id="discount_price" parsley-trigger="change" 
-                                                       class="form-control" disabled="disabled" value="00.000" />
-
-                                                       <input type="hidden" name="discount_price" id="discount_price1">
-                                                        
-                                                </div>
-                                            </div>    
                                         
                                     </div>
 
@@ -247,16 +219,6 @@
                                             
                                         </div>
 
-                                        <div class="form-group row">
-                                            
-                                            <label for="current_qnt" class="col-sm-3">Current Quantity<span class="text-danger">*</span></label>
-                                            <div class="col-sm-9">
-                                                <input type="number" id="current_qnt" name="current_qnt" parsley-trigger="change" 
-                                                   class="form-control"  value="0"  />
-                                                    
-                                            </div>
-                                            
-                                        </div>
 
                                         <div class="form-group row">
                                             
@@ -268,7 +230,17 @@
                                             </div>
                                             
                                         </div>
-                                        
+
+
+                                        <div class="form-group row">
+                                            <label for="status" class="col-sm-3">Is Item Saleable</label>
+                                            <div class="col-sm-9">
+                                                <input type="checkbox" id="switch4" name="is_saleable" switch="bool" />
+                                                <label for="switch4" data-on-label="Yes"
+                                                   data-off-label="No"></label>
+                                            </div>
+                                        </div>
+                                    
                                     </div>
 
                                 </div>

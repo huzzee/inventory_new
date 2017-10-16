@@ -42,7 +42,7 @@
                                 <th width="15%">Type</th>
                                 <th width="15%">Category</th>
                                 <th width="8%">Quantity</th>
-                                <th width="15%">Item Price</th>
+                                <th width="15%">Item Rate</th>
                                 <th width="10%">Saleable Item</th>
                                 
                                 <th width="12%">Action</th>
@@ -63,15 +63,16 @@
                                 		<td>{{ $item->item_types->item_type_name }}</td>
                                 		<td>{{ $item->item_categories->item_cat_name }}</td>
                                 		<td>{{ $item->current_qnt }}</td>
+                                        <td>{{ $item->unit_price }} per {{ $item->item_unit }}</td>
                                 		
                                 		@if($item->is_saleable == 1)
                                 			
-                                			<td>{{ $item->unit_price }} per {{ $item->item_unit }}</td>
+                                			
                                 			<td>Saleable</td>
                                 			
                                 		
                                 		@else
-                                			<td>Not Saleable</td>
+                                			
                                 			<td>Not Saleable</td>
 
                                 		@endif

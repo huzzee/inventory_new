@@ -145,73 +145,36 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12">
 
-                                    <h4>Saleable Item</h4>
+                                    <h4>Buying Rate</h4>
                                     <hr>
 
                                     <div class="p-20">
                                             
                                             
                                             
-                                            <div class="form-group row">
-                                                <label for="status" class="col-sm-3">Is Item Saleable</label>
-                                                <div class="col-sm-9">
-                                                    @if($item->is_saleable == 1)
-                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" checked/>
-
-                                                    @else
-
-                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" />
-
-                                                    @endif
-                                                    
-                                                    <label for="switch4" data-on-label="Yes"
-                                                       data-off-label="No"></label>
-                                                </div>
-                                            </div>
+                                            
 
                                             <div class="form-group row">
                                                 <label for="item_name" class="col-sm-3">Select Item Unit<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
                                                    
-                                                    {!! Form::select('item_unit', ['Box' => 'Box', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Liter' => 'Liter', 'Mililiter' => 'Mililiter', 'Mon' => 'Mon', 'Ton' => 'Ton', 'Meter' => 'Meter', 'centimeter' => 'centimeter','Inch' => 'Inch', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Feet' => 'Feet', 'sq.meter' => 'sq.meter', 'sq.feet' => 'sq.feet', 'Bundle' => 'Bundle', 'Bulk' => 'Bulk', 'KiloMeter' => 'KiloMeter'], null, ['placeholder' => 'Select Unit Price', 'class' => 'form-control select2 unitPrice' ,'disabled' => 'disabled'])
+                                                    {!! Form::select('item_unit', ['Box' => 'Box', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Liter' => 'Liter', 'Mililiter' => 'Mililiter', 'Mon' => 'Mon', 'Ton' => 'Ton', 'Meter' => 'Meter', 'centimeter' => 'centimeter','Inch' => 'Inch', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Feet' => 'Feet', 'sq.meter' => 'sq.meter', 'sq.feet' => 'sq.feet', 'Bundle' => 'Bundle', 'Bulk' => 'Bulk', 'KiloMeter' => 'KiloMeter'], null, ['placeholder' => 'Select Unit Price', 'class' => 'form-control select2'])
                                                     !!}
                                                         
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 
-                                                <label for="item_name" class="col-sm-3">Per Unit Price<span class="text-danger">*</span></label>
+                                                <label for="item_name" class="col-sm-3">Per Unit Rate<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
                                                     
 
-                                                       {!! Form::number('unit_price' , null ,['class' => 'form-control unitPrice','disabled' => 'disabled', 'placeholder' => 'Enter Per unit Price', 'id' => 'unit_price','parsley-trigger' => 'change']) !!}
+                                                       {!! Form::number('unit_price' , null ,['class' => 'form-control', 'placeholder' => 'Enter Per unit Price', 'id' => 'unit_price','parsley-trigger' => 'change']) !!}
                                                         
                                                 </div>
                                                 
                                             </div>
-                                            <div class="form-group row">
                                             
-                                                <label for="item_name" class="col-sm-3">Discount In %</label>
-                                                <div class="col-sm-9">
-                                                    
-
-                                                    {!! Form::number('discount_percent' , null ,['class' => 'form-control unitPrice','disabled' => 'disabled', 'placeholder' => 'Enter Disscount in %', 'id' => 'discount_percent','parsley-trigger' => 'change']) !!}
-                                                        
-                                                </div>
-
-                                            </div>
-                                            
-                                            <div class="form-group row">
-                                            
-                                                <label for="discount_price" class="col-sm-3">After Discount Price</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" id="discount_price" parsley-trigger="change" 
-                                                       class="form-control" disabled="disabled" value="{{$item->discount_price}}" />
-
-                                                       <input type="hidden" name="discount_price" id="discount_price1" value="{{$item->discount_price}}">
-                                                        
-                                                </div>
-                                            </div>    
                                         
                                     </div>
 
@@ -235,17 +198,7 @@
                                             
                                         </div>
 
-                                        <div class="form-group row">
-                                            
-                                            <label for="current_qnt" class="col-sm-3">Current Quantity<span class="text-danger">*</span></label>
-                                            <div class="col-sm-9">
-                                                
-                                                   {!! Form::number('current_qnt' , null ,['class' => 'form-control', 'id' => 'current_qnt','parsley-trigger' => 'change']) !!}
-                                                    
-                                            </div>
-                                            
-                                        </div>
-
+                                        
                                         <div class="form-group row">
                                             
                                             <label for="min_qnt" class="col-sm-3">Notify Quantity<span class="text-danger">*</span></label>
@@ -256,6 +209,23 @@
                                             </div>
                                             
                                         </div>
+
+                                        <div class="form-group row">
+                                                <label for="status" class="col-sm-3">Is Item Saleable</label>
+                                                <div class="col-sm-9">
+                                                    @if($item->is_saleable == 1)
+                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" checked/>
+
+                                                    @else
+
+                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" />
+
+                                                    @endif
+                                                    
+                                                    <label for="switch4" data-on-label="Yes"
+                                                       data-off-label="No"></label>
+                                                </div>
+                                            </div>
                                         
                                     </div>
 

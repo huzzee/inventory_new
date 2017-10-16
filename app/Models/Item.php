@@ -8,7 +8,7 @@ class Item extends Model
 {
     protected $fillable = [
     	'item_name','description','catagory_id','type_id','item_unit','opening_qnt','current_qnt','min_qnt','item_image',
-    	'unit_price','discount_price','discount_percent','is_saleable','sort_order','status','item_code'
+    	'unit_price','last_purchase_qnt','last_purchase_rate','is_saleable','sort_order','status','item_code'
     ];
 
     public function item_categories()

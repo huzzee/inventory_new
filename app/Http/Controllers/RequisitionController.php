@@ -193,8 +193,12 @@ class RequisitionController extends Controller
      * @param  \App\Models\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requisition $requisition)
+    public function destroy($id)
     {
-        //
+        /*$requisition = Requisition::findOrFail($id);
+
+        $requisition->delete();
+
+        return redirect('requisitions');*/
     }
 }

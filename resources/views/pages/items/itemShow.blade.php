@@ -86,20 +86,24 @@
                                                             Saleable
                                                         @endif
                                                     </dd>
-                                                    <dt>Item Unit:</dt><dd>
-                                                        @if($items[0]->item_unit == null)
-                                                            No Unit
-                                                        @else
-                                                            {{$items[0]->item_unit}}
-                                                        @endif
-                                                    </dd>
+                                                    <dt>Current Rate:</dt><dd>{{ $items[0]->unit_price }} per {{$items[0]->item_unit}}</dd>
                                                     
-                                                    <dt>Discount:</dt><dd>{{ $items[0]->discount_percent }}%</dd>
-                                                    <dt>Total Price:</dt><dd>{{ $items[0]->discount_price }}
-                                                    @if($items[0]->item_unit !== null)
-                                                        per {{$items[0]->item_unit}} 
-                                                    @endif
-                                                    </dd>
+                                                    <dt>Last Rate:</dt>
+                                                        @if($items[0]->last_purchase_rate == 0)
+                                                        <dd>
+                                                            not Available
+                                                        </dd>
+                                                        @else
+                                                            <dd>{{$items[0]->last_purchase_rate}}</dd>
+                                                        @endif    
+                                                    <dt>Last buying Qnt:</dt>
+                                                        @if($items[0]->last_purchase_qnt == 0)
+                                                        <dd>
+                                                            not Available
+                                                        </dd>
+                                                        @else
+                                                            <dd>{{$items[0]->last_purchase_qnt}}</dd>
+                                                        @endif 
                                                     
 
                                                 </dl>

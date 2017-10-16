@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Requisition extends Model
 {
    protected $fillable = [
-   		'issued','approved','reason','department_id','user_id','rejected'
+   		'issued','approved','reason','department_id','user_id','rejected','approval_date','approval_by'
    ];
 
    public function users()

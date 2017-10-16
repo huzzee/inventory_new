@@ -24,40 +24,8 @@ class ItemRequest extends FormRequest
     public function rules()
     {
         //dd(request()->all());
-        if(request()->is_saleable !== null && request()->item_image !== null)
-        {
-            return [
-                'catagory_id' => 'required',
-                'type_id' => 'required',
-                'item_name' => 'required',
-                'opening_qnt' => 'required',
-                'current_qnt' => 'required',
-                'min_qnt' => 'required',
-                'unit_price' => 'required',
-                'item_unit' => 'required',
-                'item_image' => 'image|mimes:jpeg,png|max:2048',
-                'item_code' => 'required|min:5'
-                
-            ];
-        }
-        elseif(request()->is_saleable !== null)
-        {
-
-            return [
-                
-                'catagory_id' => 'required',
-                'type_id' => 'required',
-                'item_name' => 'required',
-                'opening_qnt' => 'required',
-                'current_qnt' => 'required',
-                'min_qnt' => 'required',
-                'unit_price' => 'required',
-                'item_unit' => 'required',
-                'item_code' => 'required|min:5'
-
-            ];
-        }
-        elseif(request()->item_image !== null)
+        
+        if(request()->item_image !== null)
         {
 
             return [
@@ -66,10 +34,10 @@ class ItemRequest extends FormRequest
                 'type_id' => 'required',
                 'item_name' => 'required',
                 'opening_qnt' => 'required',
-                'current_qnt' => 'required',
                 'min_qnt' => 'required',
                 'item_code' => 'required|min:5',
-                'item_image' => 'image|mimes:jpeg,png|max:2048'
+                'item_image' => 'image|mimes:jpeg,png|max:2048',
+                'item_unit' => 'required'
             
 
             ];
@@ -82,9 +50,9 @@ class ItemRequest extends FormRequest
                 'type_id' => 'required',
                 'item_name' => 'required',
                 'opening_qnt' => 'required',
-                'current_qnt' => 'required',
                 'min_qnt' => 'required',
-                'item_code' => 'required|min:5'
+                'item_code' => 'required|min:5',
+                'item_unit' => 'required'
 
             ];
         }

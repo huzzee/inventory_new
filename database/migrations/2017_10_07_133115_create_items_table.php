@@ -26,8 +26,8 @@ class CreateItemsTable extends Migration
             $table->integer('min_qnt')->default(0);
             $table->string('item_image')->nullable();
             $table->float('unit_price',7,2)->default(0);
-            $table->float('discount_price',7,2)->default(0);
-            $table->tinyInteger('discount_percent')->default(0);
+            $table->float('last_purchase_rate',7,2)->default(0);
+            $table->float('last_purchase_qnt',7,2)->default(0);
             $table->boolean('is_saleable');
             $table->boolean('status');
             $table->integer('sort_order')->default(0);
