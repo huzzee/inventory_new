@@ -101,6 +101,7 @@ class SupplierController extends Controller
             $supplier->sup_email = $request['sup_email'];
             $supplier->sup_address = $request['sup_address'];
             $supplier->sup_phone = $request['sup_phone'];
+            $supplier->sup_account = $request['sup_account'];
             $supplier->sup_image = $filename;
             $supplier->status = $status; 
 
@@ -202,6 +203,7 @@ class SupplierController extends Controller
             $supplier->sup_email = $request['sup_email'];
             $supplier->sup_address = $request['sup_address'];
             $supplier->sup_phone = $request['sup_phone'];
+            $supplier->sup_account = $request['sup_account'];
             $supplier->sup_image = $filename;
             $supplier->status = $status; 
 

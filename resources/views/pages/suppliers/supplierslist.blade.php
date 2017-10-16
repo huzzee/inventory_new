@@ -38,8 +38,9 @@
                                 <th width="3%">Sr.No</th>
                                 <th width="3%">Image</th>
                                 <th width="10%">Name</th>
-                                <th width="15%">Phone No.</th>
-                                <th width="15%">Email</th>
+                                <th width="12%">Phone No.</th>
+                                <!-- <th width="10%">Account No.</th> -->
+                                <th width="14%">Email</th>
                                 <th width="">Address</th>
                                 <th width="">status</th>                                
                                 <th width="12%">Action</th>
@@ -57,6 +58,7 @@
                                 		<td align="center"><img src="{{ asset('uploads/'.$sup->sup_image)}}" style="width: 50px;height: 50px"></td>
                                 		<td>{{ $sup->sup_name }}</td>
                                 		<td>{{ $sup->sup_phone }}</td>
+                                        <!-- <td>{{ $sup->sup_account }}</td> -->
                                         <td>{{ $sup->sup_email }}</td>
                                         
                                         <td>{{ $sup->sup_address }}</td>

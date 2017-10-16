@@ -76,6 +76,15 @@
                                                 </div>
                                             </div>
 
+                                            <!-- <div class="form-group row">
+                                                <label for="sup_account" class="col-sm-3">Account Number<span class="text-danger">*</span></label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" name="sup_account" parsley-trigger="change" required
+                                                       placeholder="Enter Account No." class="form-control" value="{{ old('sup_account') }}" disabled />
+                                                        
+                                                </div>
+                                            </div> -->
+
                                             <div class="form-group row">
                                                 <label for="sup_address" class="col-sm-3">Address<span class="text-danger">*</span></label>
                                                 <div class="col-sm-7">

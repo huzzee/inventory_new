@@ -74,6 +74,14 @@
                                                 </div>
                                             </div>
 
+                                            <!-- <div class="form-group row">
+                                                <label for="sup_account" class="col-sm-3">Account Number<span class="text-danger">*</span></label>
+                                                <div class="col-sm-7">
+                                                     {!!Form::number('sup_account',null ,['class' => 'form-control'])!!}
+                                                        
+                                                </div>
+                                            </div> -->
+
                                             <div class="form-group row">
                                                 <label for="sup_address" class="col-sm-3">Address<span class="text-danger">*</span></label>
                                                 <div class="col-sm-7">

@@ -18,6 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('sup_name')->nullable();
             $table->string('sup_email')->nullable();
             $table->bigInteger('sup_phone')->nullable();
+            $table->bigInteger('sup_account')->nullable();
             $table->text('sup_address')->nullable();
             $table->string('sup_image');
             $table->boolean('status');

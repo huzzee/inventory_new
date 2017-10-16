@@ -58,7 +58,12 @@
                                                     <dt>Name:</dt><dd>{{ $sup->sup_name }}</dd>
                                                     <dt>Email:</dt><dd>{{ $sup->sup_email }}</dd>
                                                     <dt>Phone No:</dt><dd>{{ $sup->sup_phone }}</dd>
-                                                    <dt>Address:</dt><dd>{{ $sup->sup_address }}</dd>
+                                                    <!--/* @if($sup->sup_account !== null )
+                                                        <dt>Account No:</dt><dd>{{ $sup->sup_account }}</dd>
+                                                    @endif*/ -->
+                                                    @if($sup->sup_address !== null )
+                                                        <dt>Address:</dt><dd>{{ $sup->sup_address }}</dd>
+                                                    @endif
                                                     <dt>Status:</dt><dd> 
                                                         @if($sup->status == 0)
                                                             In Active
