@@ -17,7 +17,9 @@ class grnMasterController extends Controller
      */
     public function index()
     {
-        //
+        $grnMaster = grnMaster::with('grnDetails','users','suppliers')->get();
+
+        return view('pages.goodReceive.goodReceiveList' , compact('grnMaster'));
     }
 
     /**
