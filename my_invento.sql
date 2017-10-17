@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2017 at 11:01 PM
+-- Generation Time: Oct 17, 2017 at 12:56 PM
 -- Server version: 5.7.11
--- PHP Version: 7.1.7
+-- PHP Version: 7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,12 +30,37 @@ CREATE TABLE `grn_details` (
   `id` int(10) UNSIGNED NOT NULL,
   `grn_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
-  `recieved_qnt` double(7,2) NOT NULL,
-  `per_unit_rate` double(7,2) NOT NULL,
-  `total_amount` double(7,2) NOT NULL,
+  `recieved_qnt` decimal(15,3) NOT NULL,
+  `per_unit_rate` double(15,3) NOT NULL,
+  `total_amount` double(15,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `grn_details`
+--
+
+INSERT INTO `grn_details` (`id`, `grn_master_id`, `item_id`, `recieved_qnt`, `per_unit_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
+(15, 24, 8, '50.000', 6000.000, 300000.000, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
+(16, 24, 12, '100.000', 5.000, 500.000, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
+(17, 24, 8, '20.000', 20.000, 400.000, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
+(18, 25, 9, '2.000', 2000.000, 4000.000, '2017-10-17 07:05:17', '2017-10-17 07:05:17'),
+(19, 25, 11, '100.000', 5.000, 500.000, '2017-10-17 07:05:17', '2017-10-17 07:05:17'),
+(20, 26, 12, '50.000', 150.000, 7500.000, '2017-10-17 07:18:32', '2017-10-17 07:18:32'),
+(21, 26, 9, '15.000', 55000.000, 825000.000, '2017-10-17 07:18:32', '2017-10-17 07:18:32'),
+(22, 27, 12, '50.000', 150.000, 7500.000, '2017-10-17 07:20:57', '2017-10-17 07:20:57'),
+(23, 27, 9, '15.000', 55000.000, 825000.000, '2017-10-17 07:20:57', '2017-10-17 07:20:57'),
+(24, 28, 12, '50.000', 150.000, 7500.000, '2017-10-17 07:25:51', '2017-10-17 07:25:51'),
+(25, 28, 9, '15.000', 55000.000, 825000.000, '2017-10-17 07:25:51', '2017-10-17 07:25:51'),
+(26, 29, 10, '3.000', 50.000, 150.000, '2017-10-17 07:26:35', '2017-10-17 07:26:35'),
+(27, 30, 10, '3.000', 50.000, 150.000, '2017-10-17 07:32:10', '2017-10-17 07:32:10'),
+(28, 31, 10, '13.000', 7.000, 91.000, '2017-10-17 07:53:08', '2017-10-17 07:53:08'),
+(29, 32, 10, '13.000', 7.000, 91.000, '2017-10-17 07:53:33', '2017-10-17 07:53:33'),
+(30, 33, 8, '40.000', 30000.000, 1200000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
+(31, 33, 9, '50.000', 30000.000, 1500000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
+(32, 33, 11, '2.000', 20.000, 40.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
+(33, 33, 10, '30.000', 200.000, 6000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17');
 
 -- --------------------------------------------------------
 
@@ -52,6 +77,22 @@ CREATE TABLE `grn_masters` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `grn_masters`
+--
+
+INSERT INTO `grn_masters` (`id`, `user_id`, `supplier_id`, `purchase_order_id`, `dn_code`, `created_at`, `updated_at`) VALUES
+(24, 1, 1, 33, 2222, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
+(25, 1, 3, 33345, 42424, '2017-10-17 07:05:17', '2017-10-17 07:05:17'),
+(26, 1, 3, 95, 351, '2017-10-17 07:18:32', '2017-10-17 07:18:32'),
+(27, 1, 3, 95, 351, '2017-10-17 07:20:57', '2017-10-17 07:20:57'),
+(28, 1, 3, 95, 351, '2017-10-17 07:25:51', '2017-10-17 07:25:51'),
+(29, 1, 3, 6502, 265864, '2017-10-17 07:26:35', '2017-10-17 07:26:35'),
+(30, 1, 3, 6502, 265864, '2017-10-17 07:32:10', '2017-10-17 07:32:10'),
+(31, 1, 3, 2, 12123, '2017-10-17 07:53:08', '2017-10-17 07:53:08'),
+(32, 1, 3, 2, 12123, '2017-10-17 07:53:33', '2017-10-17 07:53:33'),
+(33, 1, 1, 4900, 852, '2017-10-17 07:55:17', '2017-10-17 07:55:17');
 
 -- --------------------------------------------------------
 
@@ -86,10 +127,10 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `last_purchase_rate`, `last_purchase_qnt`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(8, 5, 12, 'Samsung S7', 123456, 'samsung mobile', 'Box', 25, 25, 12, 'Samsung S7_5.jpg', 75000.00, 0.00, 0.00, 1, 1, 0, '2017-10-13 08:46:44', '2017-10-13 08:46:44'),
-(9, 4, 12, 'Computer I5', 987654, NULL, 'Box', 50, 50, 25, 'Computer I5_4.jpg', 45.00, 0.00, 0.00, 0, 1, 0, '2017-10-13 15:30:29', '2017-10-13 15:30:29'),
-(10, 6, 12, 'pointer', 4563781, 'black pointer', 'Box', 57, 57, 12, 'pointer_6.jpg', 70.00, 0.00, 0.00, 1, 1, 0, '2017-10-13 17:58:17', '2017-10-13 17:58:17'),
-(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 98, 34, 'Erazer_6.jpg', 30.00, 0.00, 0.00, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-13 17:59:03'),
+(8, 5, 12, 'Samsung S7', 123456, 'samsung mobile', 'Box', 25, 100, 12, 'Samsung S7_5.jpg', 75000.00, 30000.00, 40.00, 1, 1, 0, '2017-10-13 08:46:44', '2017-10-17 07:55:17'),
+(9, 4, 12, 'Computer I5', 987654, NULL, 'Box', 50, 100, 25, 'Computer I5_4.jpg', 45.00, 30000.00, 50.00, 0, 1, 0, '2017-10-13 15:30:29', '2017-10-17 07:55:17'),
+(10, 6, 12, 'pointer', 4563781, 'black pointer', 'Box', 57, 100, 12, 'pointer_6.jpg', 70.00, 200.00, 30.00, 1, 1, 0, '2017-10-13 17:58:17', '2017-10-17 07:55:17'),
+(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 100, 34, 'Erazer_6.jpg', 30.00, 20.00, 2.00, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-17 07:55:17'),
 (12, 7, 8, 'shirts', 898989, 'for general uses only', 'Box', 1000, 1000, 500, 'shirts_7.png', 250.00, 0.00, 0.00, 1, 1, 0, '2017-10-14 07:28:05', '2017-10-14 07:28:05'),
 (16, 3, 12, 'Cycle', 153463434, 'This Is a Cycle', 'Box', 60, 60, 0, 'Cycle_3.JPG', 6000.00, 0.00, 0.00, 1, 1, 0, '2017-10-15 17:02:28', '2017-10-15 17:02:28'),
 (17, 4, 12, 'Juicer', 45622672, 'aassa  safsasa fsafsa  afsafsaf', 'Box', 100, 100, 20, 'Juicer_4.jpg', 4550.00, 0.00, 0.00, 1, 1, 0, '2017-10-15 17:13:03', '2017-10-15 17:13:03');
@@ -186,11 +227,13 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (21, 'Department', 'departments', 7, 4, NULL, 'departments.index', 1, 0, 2, NULL, NULL),
 (22, 'Requisitions', NULL, NULL, 0, 'mdi mdi-note-text', NULL, 1, 0, 15, NULL, NULL),
 (23, 'Make Requests', 'requisitions/create', 22, 1, NULL, 'requisitions.create', 1, 0, 16, NULL, NULL),
-(24, 'Pending Requests', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
+(24, 'Requests List', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
 (25, 'Purchase Order', NULL, NULL, 0, 'mdi mdi-cart', NULL, 1, 0, 18, NULL, NULL),
 (26, 'Make Purchase Order', 'purchase/create', 25, 1, NULL, 'purchase.create', 1, 0, 19, NULL, NULL),
 (27, 'Purchase Orders List', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL),
-(28, 'Complete Requests', 'requisitions_complete', 22, 3, NULL, 'requisition.complete', 1, 0, 17, NULL, NULL);
+(28, 'Good Receive', NULL, NULL, 0, 'mdi mdi-cart', NULL, 1, 0, 21, NULL, NULL),
+(29, 'Make Good Receive', 'grn/create', 28, 1, NULL, 'grn.create', 1, 0, 22, NULL, NULL),
+(30, 'Good Receive List', 'grn', 28, 2, NULL, 'grn', 1, 0, 23, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -221,9 +264,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (30, '2017_10_12_221537_create_requisitions_table', 8),
 (31, '2017_10_13_162126_create_requisition_details_table', 8),
 (32, '2017_10_15_112938_create_purchase_order_masters_table', 9),
-(33, '2017_10_15_113103_create_purchase_order_details_table', 9),
-(34, '2017_10_16_193752_create_grn_masters_table', 10),
-(35, '2017_10_16_194009_create_grn_details_table', 10);
+(33, '2017_10_15_113103_create_purchase_order_details_table', 9);
 
 -- --------------------------------------------------------
 
@@ -267,22 +308,14 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `purchase_order_details` (
   `id` int(10) UNSIGNED NOT NULL,
-  `purchase_order_master_id` int(10) UNSIGNED NOT NULL,
+  `purchase_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
   `order_qnt` int(11) NOT NULL,
-  `item_rate` double(15,3) NOT NULL,
-  `total_amount` double(15,3) NOT NULL,
+  `item_rate` double(7,2) NOT NULL,
+  `total_amount` double(7,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `purchase_order_details`
---
-
-INSERT INTO `purchase_order_details` (`id`, `purchase_order_master_id`, `item_id`, `order_qnt`, `item_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
-(8, 18, 10, 24, 200.000, 4800.000, '2017-10-16 17:45:44', '2017-10-16 17:45:44'),
-(9, 18, 8, 50, 65000.000, 3250000.000, '2017-10-16 17:45:44', '2017-10-16 17:45:44');
 
 -- --------------------------------------------------------
 
@@ -300,19 +333,10 @@ CREATE TABLE `purchase_order_masters` (
   `approval_by` int(10) UNSIGNED DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0',
   `rejected` tinyint(1) NOT NULL DEFAULT '0',
-  `printed` tinyint(1) NOT NULL DEFAULT '0',
   `approval_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `purchase_order_masters`
---
-
-INSERT INTO `purchase_order_masters` (`id`, `requisition_id`, `user_id`, `supplier_id`, `purchase_code`, `quatation_nmbr`, `approval_by`, `approved`, `rejected`, `printed`, `approval_date`, `created_date`, `created_at`, `updated_at`) VALUES
-(18, NULL, 1, 1, 'U1GGpPGK', NULL, NULL, 0, 0, 0, '2017-10-16 22:45:44', '2017-10-17', '2017-10-16 17:45:44', '2017-10-16 17:45:44');
 
 -- --------------------------------------------------------
 
@@ -439,7 +463,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `department_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Ad', 'admin', 1, 1, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'NrNNCFoZCy1Z4exkkPUEN8qsBnkKvPkuAllmo6mKnlBa0S6nZVzB3Re86DiZ', NULL, NULL),
+(1, 'Admin', 'Ad', 'admin', 1, 1, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'YZH9tAtsK1J7YPg1UaTFQ2S2t3DKLPB1XRUZaJxt9j3G7yVeaTqNfDyA5lcl', NULL, NULL),
 (2, 'User1', 'User1', 'user_1', 2, 2, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'fvE9YSyCfdmAC7V9NgB3KgF3Vv3FYypf2scaug8p5iNbLhrbXQA5tUMAFT3h', NULL, NULL);
 
 --
@@ -450,18 +474,13 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `de
 -- Indexes for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `grn_details_item_id_foreign` (`item_id`),
-  ADD KEY `grn_details_grn_master_id_foreign` (`grn_master_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `grn_masters_user_id_foreign` (`user_id`),
-  ADD KEY `grn_masters_supplier_id_foreign` (`supplier_id`),
-  ADD KEY `grn_masters_purchase_order_id_foreign` (`purchase_order_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `items`
@@ -512,7 +531,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `purchase_order_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_order_master_id`),
+  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_master_id`),
   ADD KEY `purchase_order_details_item_id_foreign` (`item_id`);
 
 --
@@ -569,12 +588,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -594,12 +613,12 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `my_departments`
 --
@@ -609,12 +628,12 @@ ALTER TABLE `my_departments`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
@@ -645,21 +664,6 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `grn_details`
---
-ALTER TABLE `grn_details`
-  ADD CONSTRAINT `grn_details_grn_master_id_foreign` FOREIGN KEY (`grn_master_id`) REFERENCES `grn_masters` (`id`),
-  ADD CONSTRAINT `grn_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
-
---
--- Constraints for table `grn_masters`
---
-ALTER TABLE `grn_masters`
-  ADD CONSTRAINT `grn_masters_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_order_masters` (`id`),
-  ADD CONSTRAINT `grn_masters_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`),
-  ADD CONSTRAINT `grn_masters_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
 -- Constraints for table `items`
 --
 ALTER TABLE `items`
@@ -671,7 +675,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `purchase_order_details`
   ADD CONSTRAINT `purchase_order_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_order_master_id`) REFERENCES `purchase_order_masters` (`id`);
+  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_master_id`) REFERENCES `purchase_order_masters` (`id`);
 
 --
 -- Constraints for table `purchase_order_masters`

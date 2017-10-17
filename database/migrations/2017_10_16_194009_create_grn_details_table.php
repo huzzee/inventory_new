@@ -17,9 +17,9 @@ class CreateGrnDetailsTable extends Migration
             $table->increments('id');
             $table->integer('grn_master_id')->unsigned();
             $table->integer('item_id')->unsigned();
-            $table->float('recieved_qnt',7,2);
-            $table->float('per_unit_rate',7,2);
-            $table->float('total_amount',7,2);
+            $table->float('recieved_qnt',15,3);
+            $table->float('per_unit_rate',15,3);
+            $table->float('total_amount',15,3);
             $table->timestamps();
         });
 

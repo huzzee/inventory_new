@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('requisitions_approved','RequisitionController@approved_req');// For Departments Requests
 	Route::post('requisitions_rejected','RequisitionController@rejected_req');// For Departments Requests
 	Route::Resource('purchase','PurchaseOrderMasterController');// For Purchase Orders
+	Route::Resource('grn','grnMasterController');// For Good Receive
 });
 /*----------------------------------------------------
 				    Resources Route
