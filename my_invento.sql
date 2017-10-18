@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 17, 2017 at 12:56 PM
+-- Generation Time: Oct 18, 2017 at 11:13 PM
 -- Server version: 5.7.11
--- PHP Version: 7.0.3
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -308,14 +308,22 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `purchase_order_details` (
   `id` int(10) UNSIGNED NOT NULL,
-  `purchase_master_id` int(10) UNSIGNED NOT NULL,
+  `purchase_order_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
   `order_qnt` int(11) NOT NULL,
-  `item_rate` double(7,2) NOT NULL,
-  `total_amount` double(7,2) NOT NULL,
+  `item_rate` double(15,3) NOT NULL,
+  `total_amount` double(15,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_order_details`
+--
+
+INSERT INTO `purchase_order_details` (`id`, `purchase_order_master_id`, `item_id`, `order_qnt`, `item_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
+(1, 7, 8, 300, 50000.000, 15000000.000, '2017-10-18 10:27:18', '2017-10-18 10:27:18'),
+(2, 7, 9, 20, 30000.000, 600000.000, '2017-10-18 10:27:18', '2017-10-18 10:27:18');
 
 -- --------------------------------------------------------
 
@@ -333,10 +341,19 @@ CREATE TABLE `purchase_order_masters` (
   `approval_by` int(10) UNSIGNED DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0',
   `rejected` tinyint(1) NOT NULL DEFAULT '0',
-  `approval_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `printed` tinyint(1) NOT NULL DEFAULT '0',
+  `approval_date` timestamp NULL DEFAULT NULL,
+  `created_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_order_masters`
+--
+
+INSERT INTO `purchase_order_masters` (`id`, `requisition_id`, `user_id`, `supplier_id`, `purchase_code`, `quatation_nmbr`, `approval_by`, `approved`, `rejected`, `printed`, `approval_date`, `created_date`, `created_at`, `updated_at`) VALUES
+(7, NULL, 1, 1, '10HG1CiB', NULL, NULL, 0, 0, 0, NULL, '2017-10-18', '2017-10-18 10:27:18', '2017-10-18 10:27:18');
 
 -- --------------------------------------------------------
 
@@ -363,7 +380,7 @@ CREATE TABLE `requisitions` (
 --
 
 INSERT INTO `requisitions` (`id`, `user_id`, `department_id`, `reason`, `approval_by`, `approved`, `issued`, `rejected`, `approval_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 0, 0, 1, '2017-10-15 06:03:19', '2017-10-15 05:51:01', '2017-10-15 06:03:19');
+(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 1, 0, 0, '2017-10-18 10:58:10', '2017-10-15 05:51:01', '2017-10-18 10:58:10');
 
 -- --------------------------------------------------------
 
@@ -531,7 +548,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `purchase_order_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_master_id`),
+  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_order_master_id`),
   ADD KEY `purchase_order_details_item_id_foreign` (`item_id`);
 
 --
@@ -628,12 +645,12 @@ ALTER TABLE `my_departments`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
@@ -675,7 +692,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `purchase_order_details`
   ADD CONSTRAINT `purchase_order_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_master_id`) REFERENCES `purchase_order_masters` (`id`);
+  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_order_master_id`) REFERENCES `purchase_order_masters` (`id`);
 
 --
 -- Constraints for table `purchase_order_masters`
