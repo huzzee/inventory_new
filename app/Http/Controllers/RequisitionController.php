@@ -115,7 +115,7 @@ class RequisitionController extends Controller
     {
         $requisition = Requisition::with('requisitionDetails','users','departments')->where('requisitions.id','=',$id)->get();
 
-        $users = User::findOrFail($requisition[0]->id);
+        $users = User::findOrFail($requisition[0]->approval_by);
         //dd($user);
         return view('pages.requisitions.showRequisitions',array(
             'requisition' => $requisition,

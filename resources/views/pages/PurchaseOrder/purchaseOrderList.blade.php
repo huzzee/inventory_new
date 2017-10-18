@@ -24,25 +24,26 @@
             
 
             
-
+            @if(Auth::user()->role_id == 1)
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
+
 
                         <h3>Pending Requests List</h3>
                                     
                         <hr>
                         
 
-                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
                                 <th width="5%">Sr.No</th>
-                                <th width="15%">Supplier Name</th>
-                                <th width="20%">Department</th>
-                                <th width="10%">Required Items</th>
-                                <th>Permission</th>
-                                <th>issued</th>
+                                <th width="25%">Supplier Name</th>
+                                
+                                <th width="10%">Oredered Items</th>
+                                <th width="10%">Approval</th>
+                                <th width="15%">Order Date</th>
                                 <th width="15%">Action</th>
 
                                 
@@ -51,7 +52,76 @@
 
 
                             <tbody>
+                                 @php $i=1;@endphp
+                                 @foreach($purchase_order as $purchase)
+
+                                    <tr>
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $purchase->suppliers->sup_name }}</td>
+                                        <td>{{ $purchase->purchaseOrderDetails->count() }}</td>
+                                        <td>pending</td>
+                                        <td>{{ $purchase->created_date }}</td>
+                                        <td>
+                                            <a href="{{ url('purchase/'.$purchase->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                 @php $i++; @endphp
+                                 @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box table-responsive">
+
+                        <h3>Rejected Requests</h3>
+                                    
+                        <hr>
+                        
+
+                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th width="5%">Sr.No</th>
+                                <th width="25%">Supplier Name</th>
                                 
+                                <th width="10%">Oredered Items</th>
+                                <th width="10%">Approval</th>
+                                <th width="15%">Order Date</th>
+                                <th width="15%">Action</th>
+
+                                
+                            </tr>
+                            </thead>
+
+
+                            <tbody>
+                                @php $i=1;@endphp
+
+                                @foreach($purchase_order as $purchase)
+                                    @if($purchase->rejected == 1)
+                                    <tr>
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $purchase->suppliers->sup_name }}</td>
+                                        <td>{{ $purchase->purchaseOrderDetails->count() }}</td>
+                                        <td>rejected</td>
+                                        <td>{{ $purchase->created_date }}</td>
+                                        <td>
+                                            <a href="{{ url('purcahse/'.$purchase->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                @php $i++; @endphp
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

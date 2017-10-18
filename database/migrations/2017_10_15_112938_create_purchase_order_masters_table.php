@@ -24,7 +24,7 @@ class CreatePurchaseOrderMastersTable extends Migration
             $table->boolean('approved')->default(0);
             $table->boolean('rejected')->default(0);
             $table->boolean('printed')->default(0);
-            $table->timestamp('approval_date');
+            $table->timestamp('approval_date')->nullable();
             $table->date('created_date');
             $table->timestamps();
         });
