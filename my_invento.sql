@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2017 at 09:23 AM
+-- Generation Time: Oct 19, 2017 at 09:51 PM
 -- Server version: 5.7.11
--- PHP Version: 7.0.3
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,30 +42,14 @@ CREATE TABLE `grn_details` (
 --
 
 INSERT INTO `grn_details` (`id`, `grn_master_id`, `item_id`, `recieved_qnt`, `per_unit_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
-(15, 24, 8, '50.000', 6000.000, 300000.000, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
-(16, 24, 12, '100.000', 5.000, 500.000, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
-(17, 24, 8, '20.000', 20.000, 400.000, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
-(18, 25, 9, '2.000', 2000.000, 4000.000, '2017-10-17 07:05:17', '2017-10-17 07:05:17'),
-(19, 25, 11, '100.000', 5.000, 500.000, '2017-10-17 07:05:17', '2017-10-17 07:05:17'),
-(20, 26, 12, '50.000', 150.000, 7500.000, '2017-10-17 07:18:32', '2017-10-17 07:18:32'),
-(21, 26, 9, '15.000', 55000.000, 825000.000, '2017-10-17 07:18:32', '2017-10-17 07:18:32'),
-(22, 27, 12, '50.000', 150.000, 7500.000, '2017-10-17 07:20:57', '2017-10-17 07:20:57'),
-(23, 27, 9, '15.000', 55000.000, 825000.000, '2017-10-17 07:20:57', '2017-10-17 07:20:57'),
-(24, 28, 12, '50.000', 150.000, 7500.000, '2017-10-17 07:25:51', '2017-10-17 07:25:51'),
-(25, 28, 9, '15.000', 55000.000, 825000.000, '2017-10-17 07:25:51', '2017-10-17 07:25:51'),
-(26, 29, 10, '3.000', 50.000, 150.000, '2017-10-17 07:26:35', '2017-10-17 07:26:35'),
-(27, 30, 10, '3.000', 50.000, 150.000, '2017-10-17 07:32:10', '2017-10-17 07:32:10'),
-(28, 31, 10, '13.000', 7.000, 91.000, '2017-10-17 07:53:08', '2017-10-17 07:53:08'),
-(29, 32, 10, '13.000', 7.000, 91.000, '2017-10-17 07:53:33', '2017-10-17 07:53:33'),
-(30, 33, 8, '40.000', 30000.000, 1200000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
-(31, 33, 9, '50.000', 30000.000, 1500000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
-(32, 33, 11, '2.000', 20.000, 40.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
-(33, 33, 10, '30.000', 200.000, 6000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
-(34, 34, 8, '10.000', 10.000, 100.000, '2017-10-18 03:05:30', '2017-10-18 03:05:30'),
-(35, 34, 12, '10.000', 10.000, 100.000, '2017-10-18 03:05:31', '2017-10-18 03:05:31'),
-(36, 35, 9, '10.000', 50000.000, 500000.000, '2017-10-19 04:18:40', '2017-10-19 04:18:40'),
-(37, 35, 10, '10.000', 15.000, 150.000, '2017-10-19 04:18:41', '2017-10-19 04:18:41'),
-(38, 35, 11, '9.000', 5.000, 45.000, '2017-10-19 04:18:41', '2017-10-19 04:18:41');
+(51, 47, 18, '20.000', 120000.000, 2400000.000, '2017-10-19 16:06:27', '2017-10-19 16:06:27'),
+(52, 48, 19, '10.000', 110000.000, 1100000.000, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
+(53, 48, 20, '23.000', 60000.000, 1380000.000, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
+(54, 48, 21, '56.000', 55000.000, 3080000.000, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
+(55, 49, 18, '50.000', 110000.000, 5500000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23'),
+(56, 49, 19, '10.000', 130000.000, 1300000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23'),
+(57, 49, 20, '21.000', 70000.000, 1470000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23'),
+(58, 49, 21, '15.000', 5000.000, 75000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23');
 
 -- --------------------------------------------------------
 
@@ -88,18 +72,9 @@ CREATE TABLE `grn_masters` (
 --
 
 INSERT INTO `grn_masters` (`id`, `user_id`, `supplier_id`, `purchase_order_id`, `dn_code`, `created_at`, `updated_at`) VALUES
-(24, 1, 1, 33, 2222, '2017-10-17 07:04:36', '2017-10-17 07:04:36'),
-(25, 1, 3, 33345, 42424, '2017-10-17 07:05:17', '2017-10-17 07:05:17'),
-(26, 1, 3, 95, 351, '2017-10-17 07:18:32', '2017-10-17 07:18:32'),
-(27, 1, 3, 95, 351, '2017-10-17 07:20:57', '2017-10-17 07:20:57'),
-(28, 1, 3, 95, 351, '2017-10-17 07:25:51', '2017-10-17 07:25:51'),
-(29, 1, 3, 6502, 265864, '2017-10-17 07:26:35', '2017-10-17 07:26:35'),
-(30, 1, 3, 6502, 265864, '2017-10-17 07:32:10', '2017-10-17 07:32:10'),
-(31, 1, 3, 2, 12123, '2017-10-17 07:53:08', '2017-10-17 07:53:08'),
-(32, 1, 3, 2, 12123, '2017-10-17 07:53:33', '2017-10-17 07:53:33'),
-(33, 1, 1, 4900, 852, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
-(34, 1, 3, 859, 1231, '2017-10-18 03:05:30', '2017-10-18 03:05:30'),
-(35, 1, 3, 3636, 3636, '2017-10-19 04:18:40', '2017-10-19 04:18:40');
+(47, 1, 3, 6, 1321321, '2017-10-19 16:06:27', '2017-10-19 16:06:27'),
+(48, 1, 1, 7, 123213, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
+(49, 1, 1, 5, 123124124, '2017-10-19 16:50:23', '2017-10-19 16:50:23');
 
 -- --------------------------------------------------------
 
@@ -119,9 +94,8 @@ CREATE TABLE `items` (
   `current_qnt` int(11) NOT NULL DEFAULT '0',
   `min_qnt` int(11) NOT NULL DEFAULT '0',
   `item_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `unit_price` double(7,2) NOT NULL DEFAULT '0.00',
-  `last_purchase_rate` double(7,2) NOT NULL DEFAULT '0.00',
-  `last_purchase_qnt` double(7,2) NOT NULL DEFAULT '0.00',
+  `unit_price` double(15,3) NOT NULL DEFAULT '0.000',
+  `last_purchase_rate` double(15,3) NOT NULL DEFAULT '0.000',
   `is_saleable` tinyint(1) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `sort_order` int(11) NOT NULL DEFAULT '0',
@@ -133,14 +107,11 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `last_purchase_rate`, `last_purchase_qnt`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(8, 5, 12, 'Samsung S7', 123456, 'samsung mobile', 'Box', 25, 110, 12, 'Samsung S7_5.jpg', 75000.00, 10.00, 10.00, 1, 1, 0, '2017-10-13 08:46:44', '2017-10-18 03:05:30'),
-(9, 4, 12, 'Computer I5', 987654, NULL, 'Box', 50, 110, 25, 'Computer I5_4.jpg', 45.00, 50000.00, 10.00, 0, 1, 0, '2017-10-13 15:30:29', '2017-10-19 04:18:41'),
-(10, 6, 12, 'pointer', 4563781, 'black pointer', 'Box', 57, 110, 12, 'pointer_6.jpg', 70.00, 15.00, 10.00, 1, 1, 0, '2017-10-13 17:58:17', '2017-10-19 04:18:41'),
-(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 109, 34, 'Erazer_6.jpg', 30.00, 5.00, 9.00, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-19 04:18:41'),
-(12, 7, 8, 'shirts', 898989, 'for general uses only', 'Box', 1000, 1010, 500, 'shirts_7.png', 250.00, 10.00, 10.00, 1, 1, 0, '2017-10-14 07:28:05', '2017-10-18 03:05:31'),
-(16, 3, 12, 'Cycle', 153463434, 'This Is a Cycle', 'Box', 60, 60, 0, 'Cycle_3.JPG', 6000.00, 0.00, 0.00, 1, 1, 0, '2017-10-15 17:02:28', '2017-10-15 17:02:28'),
-(17, 4, 12, 'Juicer', 45622672, 'aassa  safsasa fsafsa  afsafsaf', 'Box', 100, 100, 20, 'Juicer_4.jpg', 4550.00, 0.00, 0.00, 1, 1, 0, '2017-10-15 17:13:03', '2017-10-15 17:13:03');
+INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `last_purchase_rate`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
+(18, 5, 12, 'I Phone 8', 897652, 'Color Black', 'Box', 50, 70, 30, 'I Phone 8_5.JPG', 110000.000, 120000.000, 1, 1, 0, '2017-10-19 10:46:03', '2017-10-19 16:50:23'),
+(19, 5, 12, 'I Phone X', 879431, 'Color Red', 'Box', 50, 60, 30, 'I Phone X_5.jpg', 130000.000, 110000.000, 1, 1, 0, '2017-10-19 10:48:25', '2017-10-19 16:50:23'),
+(20, 5, 12, 'Samsung S8', 184536, 'Color White,black,red,blue,skin,brown', 'Box', 40, 63, 30, 'Samsung S8_5.jpg', 70000.000, 60000.000, 1, 1, 0, '2017-10-19 10:49:31', '2017-10-19 16:50:23'),
+(21, 5, 12, 'Samsung S7', 462722, 'Color Black,white,purple,blue', 'Box', 60, 116, 50, 'Samsung S7_5.jpg', 5000.000, 55000.000, 1, 1, 0, '2017-10-19 10:50:40', '2017-10-19 16:50:23');
 
 -- --------------------------------------------------------
 
@@ -237,10 +208,12 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (24, 'Requests List', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
 (25, 'Purchase Order', NULL, NULL, 0, 'mdi mdi-cart', NULL, 1, 0, 18, NULL, NULL),
 (26, 'Make Purchase Order', 'purchase/create', 25, 1, NULL, 'purchase.create', 1, 0, 19, NULL, NULL),
-(27, 'Purchase Orders List', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL),
-(28, 'Good Receive', NULL, NULL, 0, 'mdi mdi-cart', NULL, 1, 0, 21, NULL, NULL),
-(29, 'Make Good Receive', 'grn/create', 28, 1, NULL, 'grn.create', 1, 0, 22, NULL, NULL),
-(30, 'Good Receive List', 'grn', 28, 2, NULL, 'grn', 1, 0, 23, NULL, NULL);
+(27, 'Orders Request', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL),
+(28, 'Good Receiving Note ', NULL, NULL, 0, ' mdi mdi-shape-rectangle-plus', NULL, 1, 0, 21, NULL, NULL),
+(29, 'Make G.R.N', 'grn/create', 28, 1, NULL, 'grn.create', 1, 0, 22, NULL, NULL),
+(30, 'G.R.N List', 'grn', 28, 2, NULL, 'grn', 1, 0, 23, NULL, NULL),
+(31, 'Issued Requests', 'requisitions_complete', 22, 3, NULL, 'complete', 1, 0, 17, NULL, NULL),
+(32, 'Approved Orders', 'approved_puchase', 25, 3, NULL, 'order', 1, 0, 20, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -315,14 +288,28 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `purchase_order_details` (
   `id` int(10) UNSIGNED NOT NULL,
-  `purchase_master_id` int(10) UNSIGNED NOT NULL,
+  `purchase_order_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
   `order_qnt` int(11) NOT NULL,
-  `item_rate` double(7,2) NOT NULL,
-  `total_amount` double(7,2) NOT NULL,
+  `item_rate` double(15,3) NOT NULL,
+  `total_amount` double(15,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_order_details`
+--
+
+INSERT INTO `purchase_order_details` (`id`, `purchase_order_master_id`, `item_id`, `order_qnt`, `item_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
+(7, 5, 18, 50, 110000.000, 5500000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
+(8, 5, 19, 10, 130000.000, 1300000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
+(9, 5, 20, 21, 70000.000, 1470000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
+(10, 5, 21, 15, 5000.000, 75000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
+(11, 6, 18, 20, 120000.000, 2400000.000, '2017-10-19 11:38:38', '2017-10-19 11:38:38'),
+(12, 7, 19, 10, 110000.000, 1100000.000, '2017-10-19 16:10:06', '2017-10-19 16:10:06'),
+(13, 7, 20, 23, 60000.000, 1380000.000, '2017-10-19 16:10:06', '2017-10-19 16:10:06'),
+(14, 7, 21, 56, 55000.000, 3080000.000, '2017-10-19 16:10:06', '2017-10-19 16:10:06');
 
 -- --------------------------------------------------------
 
@@ -340,10 +327,21 @@ CREATE TABLE `purchase_order_masters` (
   `approval_by` int(10) UNSIGNED DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0',
   `rejected` tinyint(1) NOT NULL DEFAULT '0',
-  `approval_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `printed` tinyint(1) NOT NULL DEFAULT '0',
+  `approval_date` timestamp NULL DEFAULT NULL,
+  `created_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_order_masters`
+--
+
+INSERT INTO `purchase_order_masters` (`id`, `requisition_id`, `user_id`, `supplier_id`, `purchase_code`, `quatation_nmbr`, `approval_by`, `approved`, `rejected`, `printed`, `approval_date`, `created_date`, `created_at`, `updated_at`) VALUES
+(5, NULL, 1, 1, '22800741', NULL, 1, 1, 0, 1, '2017-10-19 10:52:51', '2017-10-19', '2017-10-19 10:52:41', '2017-10-19 10:53:09'),
+(6, NULL, 1, 3, '99579039', NULL, 1, 1, 0, 1, '2017-10-19 11:38:48', '2017-10-19', '2017-10-19 11:38:38', '2017-10-19 11:39:34'),
+(7, NULL, 1, 1, '93320113', NULL, 1, 1, 0, 1, '2017-10-19 16:10:26', '2017-10-20', '2017-10-19 16:10:06', '2017-10-19 16:11:41');
 
 -- --------------------------------------------------------
 
@@ -365,13 +363,6 @@ CREATE TABLE `requisitions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `requisitions`
---
-
-INSERT INTO `requisitions` (`id`, `user_id`, `department_id`, `reason`, `approval_by`, `approved`, `issued`, `rejected`, `approval_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 0, 0, 1, '2017-10-15 06:03:19', '2017-10-15 05:51:01', '2017-10-15 06:03:19');
-
 -- --------------------------------------------------------
 
 --
@@ -386,14 +377,6 @@ CREATE TABLE `requisition_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `requisition_details`
---
-
-INSERT INTO `requisition_details` (`id`, `requisition_id`, `item_id`, `required_qnt`, `created_at`, `updated_at`) VALUES
-(1, 1, 9, 12, '2017-10-15 05:51:01', '2017-10-15 05:51:01'),
-(2, 1, 10, 45, '2017-10-15 05:51:01', '2017-10-15 05:51:01');
 
 -- --------------------------------------------------------
 
@@ -538,7 +521,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `purchase_order_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_master_id`),
+  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_order_master_id`),
   ADD KEY `purchase_order_details_item_id_foreign` (`item_id`);
 
 --
@@ -595,17 +578,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --
@@ -620,7 +603,7 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -635,12 +618,12 @@ ALTER TABLE `my_departments`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
@@ -682,7 +665,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `purchase_order_details`
   ADD CONSTRAINT `purchase_order_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_master_id`) REFERENCES `purchase_order_masters` (`id`);
+  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_order_master_id`) REFERENCES `purchase_order_masters` (`id`);
 
 --
 -- Constraints for table `purchase_order_masters`
