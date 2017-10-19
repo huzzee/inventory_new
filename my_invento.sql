@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 18, 2017 at 11:13 PM
+-- Generation Time: Oct 19, 2017 at 09:23 AM
 -- Server version: 5.7.11
--- PHP Version: 7.1.7
+-- PHP Version: 7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -60,7 +60,12 @@ INSERT INTO `grn_details` (`id`, `grn_master_id`, `item_id`, `recieved_qnt`, `pe
 (30, 33, 8, '40.000', 30000.000, 1200000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
 (31, 33, 9, '50.000', 30000.000, 1500000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
 (32, 33, 11, '2.000', 20.000, 40.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
-(33, 33, 10, '30.000', 200.000, 6000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17');
+(33, 33, 10, '30.000', 200.000, 6000.000, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
+(34, 34, 8, '10.000', 10.000, 100.000, '2017-10-18 03:05:30', '2017-10-18 03:05:30'),
+(35, 34, 12, '10.000', 10.000, 100.000, '2017-10-18 03:05:31', '2017-10-18 03:05:31'),
+(36, 35, 9, '10.000', 50000.000, 500000.000, '2017-10-19 04:18:40', '2017-10-19 04:18:40'),
+(37, 35, 10, '10.000', 15.000, 150.000, '2017-10-19 04:18:41', '2017-10-19 04:18:41'),
+(38, 35, 11, '9.000', 5.000, 45.000, '2017-10-19 04:18:41', '2017-10-19 04:18:41');
 
 -- --------------------------------------------------------
 
@@ -92,7 +97,9 @@ INSERT INTO `grn_masters` (`id`, `user_id`, `supplier_id`, `purchase_order_id`, 
 (30, 1, 3, 6502, 265864, '2017-10-17 07:32:10', '2017-10-17 07:32:10'),
 (31, 1, 3, 2, 12123, '2017-10-17 07:53:08', '2017-10-17 07:53:08'),
 (32, 1, 3, 2, 12123, '2017-10-17 07:53:33', '2017-10-17 07:53:33'),
-(33, 1, 1, 4900, 852, '2017-10-17 07:55:17', '2017-10-17 07:55:17');
+(33, 1, 1, 4900, 852, '2017-10-17 07:55:17', '2017-10-17 07:55:17'),
+(34, 1, 3, 859, 1231, '2017-10-18 03:05:30', '2017-10-18 03:05:30'),
+(35, 1, 3, 3636, 3636, '2017-10-19 04:18:40', '2017-10-19 04:18:40');
 
 -- --------------------------------------------------------
 
@@ -127,11 +134,11 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `last_purchase_rate`, `last_purchase_qnt`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(8, 5, 12, 'Samsung S7', 123456, 'samsung mobile', 'Box', 25, 100, 12, 'Samsung S7_5.jpg', 75000.00, 30000.00, 40.00, 1, 1, 0, '2017-10-13 08:46:44', '2017-10-17 07:55:17'),
-(9, 4, 12, 'Computer I5', 987654, NULL, 'Box', 50, 100, 25, 'Computer I5_4.jpg', 45.00, 30000.00, 50.00, 0, 1, 0, '2017-10-13 15:30:29', '2017-10-17 07:55:17'),
-(10, 6, 12, 'pointer', 4563781, 'black pointer', 'Box', 57, 100, 12, 'pointer_6.jpg', 70.00, 200.00, 30.00, 1, 1, 0, '2017-10-13 17:58:17', '2017-10-17 07:55:17'),
-(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 100, 34, 'Erazer_6.jpg', 30.00, 20.00, 2.00, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-17 07:55:17'),
-(12, 7, 8, 'shirts', 898989, 'for general uses only', 'Box', 1000, 1000, 500, 'shirts_7.png', 250.00, 0.00, 0.00, 1, 1, 0, '2017-10-14 07:28:05', '2017-10-14 07:28:05'),
+(8, 5, 12, 'Samsung S7', 123456, 'samsung mobile', 'Box', 25, 110, 12, 'Samsung S7_5.jpg', 75000.00, 10.00, 10.00, 1, 1, 0, '2017-10-13 08:46:44', '2017-10-18 03:05:30'),
+(9, 4, 12, 'Computer I5', 987654, NULL, 'Box', 50, 110, 25, 'Computer I5_4.jpg', 45.00, 50000.00, 10.00, 0, 1, 0, '2017-10-13 15:30:29', '2017-10-19 04:18:41'),
+(10, 6, 12, 'pointer', 4563781, 'black pointer', 'Box', 57, 110, 12, 'pointer_6.jpg', 70.00, 15.00, 10.00, 1, 1, 0, '2017-10-13 17:58:17', '2017-10-19 04:18:41'),
+(11, 6, 12, 'Erazer', 1633237, 'asadasdasdasdafasfasf', 'Box', 98, 109, 34, 'Erazer_6.jpg', 30.00, 5.00, 9.00, 1, 1, 0, '2017-10-13 17:59:03', '2017-10-19 04:18:41'),
+(12, 7, 8, 'shirts', 898989, 'for general uses only', 'Box', 1000, 1010, 500, 'shirts_7.png', 250.00, 10.00, 10.00, 1, 1, 0, '2017-10-14 07:28:05', '2017-10-18 03:05:31'),
 (16, 3, 12, 'Cycle', 153463434, 'This Is a Cycle', 'Box', 60, 60, 0, 'Cycle_3.JPG', 6000.00, 0.00, 0.00, 1, 1, 0, '2017-10-15 17:02:28', '2017-10-15 17:02:28'),
 (17, 4, 12, 'Juicer', 45622672, 'aassa  safsasa fsafsa  afsafsaf', 'Box', 100, 100, 20, 'Juicer_4.jpg', 4550.00, 0.00, 0.00, 1, 1, 0, '2017-10-15 17:13:03', '2017-10-15 17:13:03');
 
@@ -308,22 +315,14 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `purchase_order_details` (
   `id` int(10) UNSIGNED NOT NULL,
-  `purchase_order_master_id` int(10) UNSIGNED NOT NULL,
+  `purchase_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
   `order_qnt` int(11) NOT NULL,
-  `item_rate` double(15,3) NOT NULL,
-  `total_amount` double(15,3) NOT NULL,
+  `item_rate` double(7,2) NOT NULL,
+  `total_amount` double(7,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `purchase_order_details`
---
-
-INSERT INTO `purchase_order_details` (`id`, `purchase_order_master_id`, `item_id`, `order_qnt`, `item_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
-(1, 7, 8, 300, 50000.000, 15000000.000, '2017-10-18 10:27:18', '2017-10-18 10:27:18'),
-(2, 7, 9, 20, 30000.000, 600000.000, '2017-10-18 10:27:18', '2017-10-18 10:27:18');
 
 -- --------------------------------------------------------
 
@@ -341,19 +340,10 @@ CREATE TABLE `purchase_order_masters` (
   `approval_by` int(10) UNSIGNED DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0',
   `rejected` tinyint(1) NOT NULL DEFAULT '0',
-  `printed` tinyint(1) NOT NULL DEFAULT '0',
-  `approval_date` timestamp NULL DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
+  `approval_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `purchase_order_masters`
---
-
-INSERT INTO `purchase_order_masters` (`id`, `requisition_id`, `user_id`, `supplier_id`, `purchase_code`, `quatation_nmbr`, `approval_by`, `approved`, `rejected`, `printed`, `approval_date`, `created_date`, `created_at`, `updated_at`) VALUES
-(7, NULL, 1, 1, '10HG1CiB', NULL, NULL, 0, 0, 0, NULL, '2017-10-18', '2017-10-18 10:27:18', '2017-10-18 10:27:18');
 
 -- --------------------------------------------------------
 
@@ -380,7 +370,7 @@ CREATE TABLE `requisitions` (
 --
 
 INSERT INTO `requisitions` (`id`, `user_id`, `department_id`, `reason`, `approval_by`, `approved`, `issued`, `rejected`, `approval_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 1, 0, 0, '2017-10-18 10:58:10', '2017-10-15 05:51:01', '2017-10-18 10:58:10');
+(1, 1, 1, 'abcd ;.j;asff; ;aksjf;kfjv sa hjjas ,basfsasagsag', 1, 0, 0, 1, '2017-10-15 06:03:19', '2017-10-15 05:51:01', '2017-10-15 06:03:19');
 
 -- --------------------------------------------------------
 
@@ -548,7 +538,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `purchase_order_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_order_master_id`),
+  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_master_id`),
   ADD KEY `purchase_order_details_item_id_foreign` (`item_id`);
 
 --
@@ -605,12 +595,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -645,12 +635,12 @@ ALTER TABLE `my_departments`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
@@ -692,7 +682,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `purchase_order_details`
   ADD CONSTRAINT `purchase_order_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_order_master_id`) REFERENCES `purchase_order_masters` (`id`);
+  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_master_id`) REFERENCES `purchase_order_masters` (`id`);
 
 --
 -- Constraints for table `purchase_order_masters`
