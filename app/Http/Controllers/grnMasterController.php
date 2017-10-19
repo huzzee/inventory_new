@@ -17,8 +17,7 @@ class grnMasterController extends Controller
      */
     public function index()
     {
-        
-        $grnMaster = grnMaster::with('grnDetails','users','suppliers')->latest()->get();
+        $grnMaster = grnMaster::with('grnDetails','users','suppliers')->get();
 
         return view('pages.goodReceive.goodReceiveList' , compact('grnMaster'));
     }
@@ -83,6 +82,8 @@ class grnMasterController extends Controller
             
         }
 
+
+
         return redirect('grn');
 
     }
@@ -95,9 +96,7 @@ class grnMasterController extends Controller
      */
     public function show($id)
     {
-        $grnMaster = grnMaster::where('id', $id)->with('grnDetails','users','suppliers')->first();
-        
-        return view('pages.goodReceive.showGoodReceive', compact('grnMaster'));
+        //
     }
 
     /**
