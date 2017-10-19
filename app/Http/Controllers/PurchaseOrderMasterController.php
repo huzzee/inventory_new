@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Supplier;
 use App\Models\PurchaseOrderDetail;
+use App\User;
 
 class PurchaseOrderMasterController extends Controller
 {
@@ -19,11 +20,11 @@ class PurchaseOrderMasterController extends Controller
     {
         $purchase_order = PurchaseOrderMaster::with('purchaseOrderDetails','users','suppliers')->get();
 
-        dd($purchase_order);
+        //dd($purchase_order[0]->suppliers);
 
         return view('pages.PurchaseOrder.purchaseOrderList',array(
-            'items' => $items,
-            'suppliers' => $suppliers
+            
+            'purchase_order' => $purchase_order
         ));
 
     }
@@ -74,11 +75,12 @@ class PurchaseOrderMasterController extends Controller
 
         $purchase_order_master->save();
 
+        //dd($purchase_order_master->id);
         for($i = 0; $i < sizeof($request->item_id); $i++)
         {
 
             $puchase_order_detail = new PurchaseOrderDetail([
-                'purchase_master_id' => $purchase_order_master->id,
+                'purchase_order_master_id' => $purchase_order_master->id,
                 'item_id' => $request->item_id[$i],
                 'order_qnt' => $request->order_qnt[$i],
                 'item_rate' => $request->item_rate[$i],
@@ -96,9 +98,17 @@ class PurchaseOrderMasterController extends Controller
      * @param  \App\Models\PurchaseOrderMaster  $purchaseOrderMaster
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseOrderMaster $purchaseOrderMaster)
+    public function show($id)
     {
-        //
+        //dd($id);
+        $purchase_order = PurchaseOrderMaster::with('purchaseOrderDetails','users','suppliers')->where('purchase_order_masters.id','=',$id)->get();
+        //dd($purchase_order[0]->approval_by);
+        $users = User::where('users.id','=',$purchase_order[0]->approval_by)->get();
+        //dd($purchase_order);
+        return view('pages.PurchaseOrder.showPurchase',array(
+            'purchase_order' => $purchase_order,
+            'users' => $users
+        ));
     }
 
     /**
