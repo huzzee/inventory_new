@@ -90,3 +90,60 @@ $('body').on('click', '.remove_item', function(){
 
 	//console.log($("input[name='medicine_name[]']").val());
 });
+
+
+
+/*puchase Orders*/
+
+$('.purchase_print').click(function(){
+	//alert('ok');
+	var order_id = $(this).data();
+	//console.log(order_id);
+	//return false;
+
+	window.print();
+	$.ajax({
+	  url: "../pirinted",
+	  type: "GET",
+	  data: {order_id:order_id},
+	  dataType: "json",
+	  success: function(response) {
+	  	//console.log(response);
+	  	window.location.reload();
+	  	
+	  }
+	
+	  
+	});
+});
+
+/*puchase Orders*/
+
+/*grn Check*/
+
+$('#purchase_code').keyup(function(){
+	var purchase_code = $(this).val();
+
+	$.ajax({
+	  url: "../check_code",
+	  type: "GET",
+	  data: {purchase_code:purchase_code},
+	  dataType: "json",
+	  success: function(response) {
+	  	
+	  	//console.log(response.message);
+	  	//return false;
+	  	//window.location.reload();
+
+	  	$('#chk_code').html(response.message);
+
+	  	$('#purchase_info').html(response.sup_data);
+
+	  	$('#table_item_body').html(response.item_data);
+	  	
+	  	
+	  }
+	
+	  
+	});
+});

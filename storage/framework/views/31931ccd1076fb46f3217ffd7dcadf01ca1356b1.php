@@ -1,8 +1,4 @@
-@extends('layouts.mainHome')
-
-
-
-@section('content')            
+<?php $__env->startSection('content'); ?>            
     <!-- Start content -->
     <div class="content">
         <div class="container">
@@ -27,7 +23,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <a class="btn btn-danger" href="{{ url('grn/create') }}">Make G.R.N</a>
+                        <a class="btn btn-danger" href="<?php echo e(url('grn/create')); ?>">Make G.R.N</a>
                                     
                         <hr>
                         
@@ -48,27 +44,27 @@
 
 
                             <tbody>
-                                @php $i=1;@endphp
+                                <?php $i=1;?>
 
-                                @foreach($grnMaster as $grn)
+                                <?php $__currentLoopData = $grnMaster; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>{{ $grn->users->username }}</td>
-                                        <td>{{ $grn->suppliers->sup_name }}</td>
-                                        <td>{{ $grn->grnDetails->count() }}</td>
+                                        <td><?php echo e($i); ?></td>
+                                        <td><?php echo e($grn->users->username); ?></td>
+                                        <td><?php echo e($grn->suppliers->sup_name); ?></td>
+                                        <td><?php echo e($grn->grnDetails->count()); ?></td>
                                         
                                         <td>
                                             
                                                 
-                                            <a href="{{ url('grn/'.$grn->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="<?php echo e(url('grn/'.$grn->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             
                                            
                                         </td>
                                     </tr>
-                                @php $i++; @endphp
-                                @endforeach
+                                <?php $i++; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -79,31 +75,31 @@
 
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts Here*********-->
 
-@section('scripts')
-        <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
+<?php $__env->startSection('scripts'); ?>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
 
-        <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedHeader.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.scroller.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.colVis.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedColumns.min.js') }}"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.buttons.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jszip.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/pdfmake.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/vfs_fonts.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.html5.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.print.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedHeader.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.keyTable.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.responsive.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/responsive.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.scroller.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.colVis.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedColumns.min.js')); ?>"></script>
 
         <!-- init -->
-        <script src="{{ asset('assets/pages/jquery.datatables.init.js') }}"></script>
+        <script src="<?php echo e(asset('assets/pages/jquery.datatables.init.js')); ?>"></script>
 
 
         <script type="text/javascript">
@@ -139,6 +135,7 @@
             TableManageButtons.init();
 
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts End*********-->
+<?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

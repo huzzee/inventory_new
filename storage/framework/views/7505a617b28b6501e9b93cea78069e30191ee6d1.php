@@ -1,8 +1,4 @@
-@extends('layouts.mainHome')
-
-
-
-@section('content')            
+<?php $__env->startSection('content'); ?>            
     <!-- Start content -->
     <div class="content">
         <div class="container">
@@ -24,7 +20,7 @@
             
 
             
-            @if(Auth::user()->role_id == 1)
+            <?php if(Auth::user()->role_id == 1): ?>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
@@ -52,32 +48,32 @@
 
 
                             <tbody>
-                                @php $i=1;@endphp
-                                @foreach($purchase_order as $purchase)
-                                @if($purchase->approved == 0 && $purchase->rejected == 0)
+                                <?php $i=1;?>
+                                <?php $__currentLoopData = $purchase_order; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $purchase): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($purchase->approved == 0 && $purchase->rejected == 0): ?>
 
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $purchase->suppliers->sup_name }}</td>
-                                        <td>{{ $purchase->purchase_code }}</td>
-                                        <td>{{ $purchase->purchaseOrderDetails->count() }}</td>
+                                        <td><?php echo e($i); ?></td>
+                                        <td><?php echo e($purchase->suppliers->sup_name); ?></td>
+                                        <td><?php echo e($purchase->purchase_code); ?></td>
+                                        <td><?php echo e($purchase->purchaseOrderDetails->count()); ?></td>
                                         <td>pending</td>
-                                        <td>{{ $purchase->created_date }}</td>
+                                        <td><?php echo e($purchase->created_date); ?></td>
                                         <td>
-                                            <a href="{{ url('purchase/'.$purchase->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="<?php echo e(url('purchase/'.$purchase->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                @endif
-                                @php $i++; @endphp
-                                @endforeach
+                                <?php endif; ?>
+                                <?php $i++; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
 
             <div class="row">
                 <div class="col-sm-12">
@@ -105,26 +101,26 @@
 
 
                             <tbody>
-                                @php $i=1;@endphp
+                                <?php $i=1;?>
 
-                                @foreach($purchase_order as $purchase)
-                                    @if($purchase->rejected == 1)
+                                <?php $__currentLoopData = $purchase_order; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $purchase): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($purchase->rejected == 1): ?>
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $purchase->suppliers->sup_name }}</td>
-                                        <td>{{ $purchase->purchase_code }}</td>
-                                        <td>{{ $purchase->purchaseOrderDetails->count() }}</td>
+                                        <td><?php echo e($i); ?></td>
+                                        <td><?php echo e($purchase->suppliers->sup_name); ?></td>
+                                        <td><?php echo e($purchase->purchase_code); ?></td>
+                                        <td><?php echo e($purchase->purchaseOrderDetails->count()); ?></td>
                                         <td>rejected</td>
-                                        <td>{{ $purchase->created_date }}</td>
+                                        <td><?php echo e($purchase->created_date); ?></td>
                                         <td>
-                                            <a href="{{ url('purchase/'.$purchase->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="<?php echo e(url('purchase/'.$purchase->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    @endif
-                                @php $i++; @endphp
-                                @endforeach
+                                    <?php endif; ?>
+                                <?php $i++; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -135,31 +131,31 @@
 
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts Here*********-->
 
-@section('scripts')
-        <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
+<?php $__env->startSection('scripts'); ?>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
 
-        <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedHeader.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.scroller.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.colVis.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedColumns.min.js') }}"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.buttons.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jszip.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/pdfmake.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/vfs_fonts.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.html5.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.print.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedHeader.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.keyTable.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.responsive.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/responsive.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.scroller.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.colVis.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedColumns.min.js')); ?>"></script>
 
         <!-- init -->
-        <script src="{{ asset('assets/pages/jquery.datatables.init.js') }}"></script>
+        <script src="<?php echo e(asset('assets/pages/jquery.datatables.init.js')); ?>"></script>
 
 
         <script type="text/javascript">
@@ -195,6 +191,7 @@
             TableManageButtons.init();
 
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts End*********-->
+<?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

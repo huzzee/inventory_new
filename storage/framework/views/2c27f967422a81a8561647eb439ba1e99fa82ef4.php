@@ -1,0 +1,289 @@
+<?php $__env->startSection('content'); ?>            
+    <!-- Start content -->
+    <div class="content">
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">Edit Item</h4>
+                        
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <?php echo Form::model($item, ['method' => 'PATCH','url' => ['items', $item->id], 'files'=>true]); ?>
+
+
+                         <?php echo e(csrf_field()); ?>
+
+
+                         <?php if(count($errors) > 0): ?>
+                            <div class="alert alert-danger">
+                                <ul>
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+                    <div class="col-xs-7">
+                        <div class="card-box">
+
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12">
+                                    
+                                    
+                                    <a class="btn btn-danger" href="<?php echo e(url('items')); ?>">Items Lists</a>
+                                    <a class="btn btn-pink" href="<?php echo e(url('items/create')); ?>">Create Items</a>
+                                    
+                                    <hr>
+                                    <h4>General Info</h4>
+                                    <hr>
+                                    <div class="p-20" style="clear: both;">
+                                            
+                                            <div class="form-group row">
+                                                <label for="item_name" class="col-sm-3">Item Type<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    
+                                                    <?php echo Form::select('type_id',$item_types,null ,['class' => 'form-control select2']); ?>
+
+                                                        
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="item_name" class="col-sm-3">Item Category<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <?php echo Form::select('catagory_id',$item_cats,null ,['class' => 'form-control select2']); ?>
+
+                                                        
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="form-group row">
+                                                <label for="item_name" class="col-sm-3">Item Name<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <?php echo Form::text('item_name',null ,['class' => 'form-control']); ?>
+
+                                                        
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="item_code" class="col-sm-3">Item Code<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <?php echo Form::number('item_code',null ,['class' => 'form-control']); ?>
+
+                                                        
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="description" class="col-sm-3">Description</label>
+                                                <div class="col-sm-9">
+                                                    
+                                                    <?php echo Form::textarea('description',null ,['class' => 'form-control','maxlength' => '225','rows' => '5', 'id' => 'textarea']); ?>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="item_image" class="col-sm-3">Item Image</label>
+                                                <div class="col-sm-9">
+                                                    
+                                                    <input type="file" class="filestyle" placeholder="Not Important" name="item_image" data-placeholder="<?php echo e($item->item_image); ?>" data-buttonname="btn-inverse">
+
+                                                </div>
+                                            </div>
+
+                                            
+                                            
+                                            <div class="form-group row">
+                                                <label for="status" class="col-sm-3">Active<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <?php if($item->status == 1): ?>
+                                                    <input type="checkbox" id="switch3" name="status" switch="bool" checked/>
+
+                                                    <?php else: ?>
+
+                                                    <input type="checkbox" id="switch3" name="status" switch="bool" />
+
+                                                    <?php endif; ?>
+                                                    <label for="switch3" data-on-label="Yes"
+                                                       data-off-label="No"></label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-9"></div>
+                                                <div class="col-sm-3">
+                                                    <button type="submit" class="btn btn-teal">Submit</button>
+                                                </div>
+                                            </div>
+
+                                            
+                                        
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- end row -->
+
+                           
+                        </div> <!-- end ard-box -->
+                    </div><!-- end col-->
+
+                    <!--new col-->
+                    <div class="col-xs-5">
+                        <div class="card-box">
+
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12">
+
+                                    <h4>Buying Rate</h4>
+                                    <hr>
+
+                                    <div class="p-20">
+                                            
+                                            
+                                            
+                                            
+
+                                            <div class="form-group row">
+                                                <label for="item_name" class="col-sm-3">Select Item Unit<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                   
+                                                    <?php echo Form::select('item_unit', ['Box' => 'Box', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Liter' => 'Liter', 'Mililiter' => 'Mililiter', 'Mon' => 'Mon', 'Ton' => 'Ton', 'Meter' => 'Meter', 'centimeter' => 'centimeter','Inch' => 'Inch', 'Kilogram' => 'Kilogram' ,'Gram' => 'Gram', 'Feet' => 'Feet', 'sq.meter' => 'sq.meter', 'sq.feet' => 'sq.feet', 'Bundle' => 'Bundle', 'Bulk' => 'Bulk', 'KiloMeter' => 'KiloMeter'], null, ['placeholder' => 'Select Unit Price', 'class' => 'form-control select2']); ?>
+
+                                                        
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                
+                                                <label for="item_name" class="col-sm-3">Per Unit Rate<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    
+
+                                                       <?php echo Form::number('unit_price' , null ,['class' => 'form-control', 'placeholder' => 'Enter Per unit Price', 'id' => 'unit_price','parsley-trigger' => 'change']); ?>
+
+                                                        
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12 col-md-12">
+                                    <hr>
+                                    <h4>Quantity</h4>
+                                    <hr>
+
+                                    <div class="p-20">
+                                            
+                                        <div class="form-group row">
+                                            
+                                            <label for="opening_qnt" class="col-sm-3">Opening Quantity<span class="text-danger">*</span></label>
+                                            <div class="col-sm-9">
+                                                
+                                                   <?php echo Form::number('opening_qnt' , null ,['class' => 'form-control', 'id' => 'opening_qnt','parsley-trigger' => 'change']); ?>
+
+                                                    
+                                            </div>
+                                            
+                                        </div>
+
+                                        
+                                        <div class="form-group row">
+                                            
+                                            <label for="min_qnt" class="col-sm-3">Notify Quantity<span class="text-danger">*</span></label>
+                                            <div class="col-sm-9">
+                                                
+                                                   <?php echo Form::number('min_qnt' , null ,['class' => 'form-control', 'id' => 'min_qnt','parsley-trigger' => 'change']); ?>
+
+                                                    
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group row">
+                                                <label for="status" class="col-sm-3">Is Item Saleable</label>
+                                                <div class="col-sm-9">
+                                                    <?php if($item->is_saleable == 1): ?>
+                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" checked/>
+
+                                                    <?php else: ?>
+
+                                                    <input type="checkbox" id="switch4" name="is_saleable" switch="bool" />
+
+                                                    <?php endif; ?>
+                                                    
+                                                    <label for="switch4" data-on-label="Yes"
+                                                       data-off-label="No"></label>
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- end row -->
+
+                           
+                        </div> <!-- end ard-box -->
+                    </div><!-- end col-->
+                </form>
+            </div>
+
+           
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+<?php $__env->stopSection(); ?>
+
+
+<!--*********Page Scripts Here*********-->
+
+<?php $__env->startSection('scripts'); ?>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/multiselect/js/jquery.multi-select.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/jquery-quicksearch/jquery.quicksearch.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/select2/js/select2.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/pages/jquery.form-advanced.init.js')); ?>"></script>
+
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/multiselect/js/jquery.multi-select.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/jquery-quicksearch/jquery.quicksearch.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/select2/js/select2.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')); ?>"></script>
+
+        <script src="<?php echo e(asset('assets/plugins/autocomplete/jquery.mockjax.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/autocomplete/jquery.autocomplete.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/autocomplete/countries.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/pages/jquery.autocomplete.init.js')); ?>"></script>
+
+        <script src="<?php echo e(asset('assets/pages/jquery.form-advanced.init.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<!--*********Page Scripts End*********-->
+<?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

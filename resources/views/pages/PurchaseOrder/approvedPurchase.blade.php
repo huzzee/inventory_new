@@ -12,7 +12,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Good Receiving Notes</h4>
+                        <h4 class="page-title">Approved Orders</h4>
                         
                         <div class="clearfix"></div>
 
@@ -22,24 +22,25 @@
             <!-- end row -->
 
             
-
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <a class="btn btn-danger" href="{{ url('grn/create') }}">Make G.R.N</a>
+                        <a href="{{ url('purchase/create') }}" class="btn btn-danger waves-effect waves-light">Make Purchase Order</a>
+                        <hr>
                                     
                         <hr>
                         
 
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap">
+                        <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th width="5%">Sr.No</th>
-                                <th width="15%">User Name</th>
                                 <th width="25%">Supplier Name</th>
-                                <th width="15%">Received Items</th>
-                          
+                                <th width="15%">Purchase Order Code</th>
+                                <th width="10%">Oredered Items</th>
+                                <th width="10%">Approval</th>
+                                <th width="15%">Order Date</th>
                                 <th width="15%">Action</th>
 
                                 
@@ -50,23 +51,22 @@
                             <tbody>
                                 @php $i=1;@endphp
 
-                                @foreach($grnMaster as $grn)
+                                @foreach($purchase_order as $purchase)
+                                   
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>{{ $grn->users->username }}</td>
-                                        <td>{{ $grn->suppliers->sup_name }}</td>
-                                        <td>{{ $grn->grnDetails->count() }}</td>
-                                        
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $purchase->suppliers->sup_name }}</td>
+                                        <td>{{ $purchase->purchase_code }}</td>
+                                        <td>{{ $purchase->purchaseOrderDetails->count() }}</td>
+                                        <td>Approved</td>
+                                        <td>{{ $purchase->created_date }}</td>
                                         <td>
-                                            
-                                                
-                                            <a href="{{ url('grn/'.$grn->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="{{ url('purchase/'.$purchase->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            
-                                           
                                         </td>
                                     </tr>
+                                  
                                 @php $i++; @endphp
                                 @endforeach
                             </tbody>

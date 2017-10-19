@@ -36,8 +36,10 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('requisitions_approved','RequisitionController@approved_req');// For Departments Requests
 	Route::post('requisitions_rejected','RequisitionController@rejected_req');// For Departments Requests
 	Route::Resource('purchase','PurchaseOrderMasterController');// For Purchase Orders
-	Route::post('purchase_orders_approved','PurchaseOrderMasterController@purchase_approved');
-	Route::post('purchase_orders_rejected','PurchaseOrderMasterController@purchase_rejected');
+	Route::get('approved_puchase','PurchaseOrderMasterController@approved_order')->name('order');// For Purchase Orders
+	Route::post('purchase_orders_approved','PurchaseOrderMasterController@purchase_approved');// For Purchase Orders
+	Route::post('purchase_orders_rejected','PurchaseOrderMasterController@purchase_rejected');// For Purchase Orders
+	Route::post('permit_print','PurchaseOrderMasterController@permit_print');// For Purchase Orders
 	Route::Resource('grn','grnMasterController');// For Good Receive
 });
 /*----------------------------------------------------
@@ -49,7 +51,8 @@ Route::middleware(['auth'])->group(function(){
 /*----------------------------------------------------
 				    Ajax Routes
 ------------------------------------------------------*/
-
+Route::get('pirinted','PurchaseOrderMasterController@printed_order');// For Purchase Orders
+Route::get('check_code','grnMasterController@chk_code');// For Good Receive
 /*----------------------------------------------------
 				    Ajax Routes
 ------------------------------------------------------*/

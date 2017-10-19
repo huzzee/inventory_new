@@ -20,7 +20,7 @@ class grnMaster extends Model
     	return $this->belongsTo('App\Models\Supplier','supplier_id');
     }
 
-    public function purchaseOrderMaster()
+    public function purchaseOrderMasters()
     {
     	return $this->belongsTo('App\Models\purchaseOrderMaster','purchase_order_id');
     }

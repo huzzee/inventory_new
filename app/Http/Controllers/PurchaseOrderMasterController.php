@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\Supplier;
 use App\Models\PurchaseOrderDetail;
 use App\User;
+use Carbon\Carbon;
 
 class PurchaseOrderMasterController extends Controller
 {
@@ -27,6 +28,17 @@ class PurchaseOrderMasterController extends Controller
             'purchase_order' => $purchase_order
         ));
 
+    }
+
+
+    public function approved_order()
+    {
+        $purchase_order = PurchaseOrderMaster::with('purchaseOrderDetails','users','suppliers')->where('purchase_order_masters.approved','=',1)->latest()->get();
+        //dd($purchase_order);
+         return view('pages.PurchaseOrder.approvedPurchase',array(
+            
+            'purchase_order' => $purchase_order
+        ));
     }
 
     /**
@@ -71,7 +83,7 @@ class PurchaseOrderMasterController extends Controller
         {
             $purchase_order_master->quatation_nmbr = $request['quatation_nmbr'];
         }
-        $purchase_order_master->purchase_code = str_random(8);
+        $purchase_order_master->purchase_code = mt_rand(11258,100000000);
 
         $purchase_order_master->save();
 
@@ -111,6 +123,36 @@ class PurchaseOrderMasterController extends Controller
         ));
     }
 
+
+    public function purchase_approved(Request $request)
+    {
+        
+        $purchase_order = PurchaseOrderMaster::findOrFail($request->req_id);
+        //dd($purchase_order);
+        $purchase_order->approved = 1;
+        $purchase_order->rejected = 0;
+        $purchase_order->Approval_by = $request->approval_by;
+        $purchase_order->approval_date = Carbon::now();
+
+        $purchase_order->save();
+
+        return redirect('purchase');
+    }
+
+    public function purchase_rejected(Request $request)
+    {
+        $purchase_order = PurchaseOrderMaster::findOrFail($request->req_id);
+
+        $purchase_order->approved = 0;
+        $purchase_order->rejected = 1;
+        $purchase_order->Approval_by = $request->approval_by;
+        $purchase_order->approval_date = Carbon::now();
+
+        $purchase_order->save();
+
+        return redirect('purchase');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -143,5 +185,33 @@ class PurchaseOrderMasterController extends Controller
     public function destroy(PurchaseOrderMaster $purchaseOrderMaster)
     {
         //
+    }
+
+
+    /*Printing*/
+
+    public function permit_print(Request $request)
+    {
+        $purchase_order = PurchaseOrderMaster::findOrFail($request->req_id);
+        $purchase_order->printed = 0;
+
+        $purchase_order->save();
+
+        return redirect()->back();
+    }
+
+     /*Printing*/
+
+    /*Ajax Requests*/
+
+    public function printed_order()
+    {
+        $purchase_order = PurchaseOrderMaster::findOrFail(request()->order_id['purchase_id']);
+        $purchase_order->printed = 1;
+
+        $purchase_order->save();
+
+
+        return response()->json('ok');
     }
 }

@@ -28,29 +28,47 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     <div class="box-header">
 
-                                        <h3>Purchase Order</h3>
+                                        <a href="<?php echo e(url('purchase')); ?>" class="btn btn-danger waves-effect waves-light">Purchase Order List</a>
+
+                                        <?php if(Auth::user()->role_id == 1): ?>
+                                        <?php if($purchase_order[0]->printed == 1 ): ?>
                                         <hr>
-                                        <?php if($purchase_order[0]->approved == 1 || $purchase_order[0]->rejected == 1): ?>
-                                        <?php if( $purchase_order[0]->printed == 0 ): ?>
-                                        <a href="javascript:void(0);" onclick="window.print();" class="btn btn-icon waves-effect waves-light btn-inverse m-b-5"><i class="fa fa-print"></i></a>
+                                        <form method="post" action="<?php echo e(url('permit_print')); ?>">
+                                            <?php echo e(csrf_field()); ?>
+
+                                            
+                                            <input type="hidden" name="req_id" value="<?php echo e($purchase_order[0]->id); ?>">
+
+                                            <button type="submit" class="btn btn-teal waves-effect waves-light box-header">Printing Permission</button>
+                                        </form>
+                                        <?php endif; ?>
+                                        <?php endif; ?>
+
+                                        <?php if($purchase_order[0]->approved == 1): ?>
+                                        <?php if($purchase_order[0]->printed == 0 ): ?>
+                                        <a href="javascript:void(0);" style="float: right" class="purchase_print btn btn-icon waves-effect waves-light btn-inverse m-b-5" data-purchase_id="<?php echo e($purchase_order[0]->id); ?>"><i class="fa fa-print"></i></a>
                                         <hr>
                                         <?php endif; ?>
                                         <?php endif; ?>
+
                                         
                                     </div>
                                     
                                     <div class="p-20" style="clear: both;">
                                        <div class="row">
                                            
-                                           <div class="col-md-2"></div>
+                                           <div class="col-md-3"></div>
                                          
-                                            <div class="col-md-6">
+                                            <div class="col-md-9">
                     
                                                 <dl class="dl-horizontal" style="font-size: 18px;"">
                                                     
                                                     <dt>Make By:</dt><dd><?php echo e($purchase_order[0]->users->username); ?></dd>
                                                     
                                                     <dt>Department:</dt><dd><?php echo e($purchase_order[0]->users->my_departments->department_name); ?></dd>
+                                                    <dt>Supplier Name:</dt><dd><?php echo e($purchase_order[0]->suppliers->sup_name); ?></dd>
+
+                                                    <dt>Order Code:</dt><dd><?php echo e($purchase_order[0]->purchase_code); ?></dd>
 
                                                     <dt>Quation No:</dt><dd>
                                                         <?php if($purchase_order[0]->quatation_nmbr !== null): ?>
@@ -65,13 +83,13 @@
                                                     <?php if($purchase_order[0]->approved == 1): ?>
                                                     <dt>Permission:</dt><dd>Approved</dd>
                                                     <?php elseif($purchase_order[0]->rejected == 1): ?>
-                                                    <dt>Permission:</dt><dd>Rejected</dd>
+                                                    <dt>Approval:</dt><dd>Rejected</dd>
                                                     <?php endif; ?>
 
                                                     <?php if($purchase_order[0]->approved == 1): ?>
-                                                    <dt>Approved By:</dt><dd><?php echo e($users->first_name); ?> <?php echo e($users->last_name); ?></dd>
+                                                    <dt>Approved By:</dt><dd><?php echo e($users[0]->first_name); ?> <?php echo e($users[0]->last_name); ?></dd>
                                                     <?php elseif($purchase_order[0]->rejected == 1): ?>
-                                                    <dt>Reject By:</dt><dd><?php echo e($users->first_name); ?> <?php echo e($users->last_name); ?></dd>
+                                                    <dt>Reject By:</dt><dd><?php echo e($users[0]->first_name); ?> <?php echo e($users[0]->last_name); ?></dd>
                                                     <?php endif; ?>
 
                                                     <?php if($purchase_order[0]->approval_date !== null): ?>

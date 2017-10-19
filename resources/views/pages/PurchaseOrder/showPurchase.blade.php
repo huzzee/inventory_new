@@ -32,29 +32,46 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     <div class="box-header">
 
-                                        <h3>Purchase Order</h3>
+                                        <a href="{{ url('purchase') }}" class="btn btn-danger waves-effect waves-light">Purchase Order List</a>
+
+                                        @if(Auth::user()->role_id == 1)
+                                        @if($purchase_order[0]->printed == 1 )
                                         <hr>
-                                        @if($purchase_order[0]->approved == 1 || $purchase_order[0]->rejected == 1)
-                                        @if( $purchase_order[0]->printed == 0 )
-                                        <a href="javascript:void(0);" onclick="window.print();" class="btn btn-icon waves-effect waves-light btn-inverse m-b-5"><i class="fa fa-print"></i></a>
+                                        <form method="post" action="{{ url('permit_print') }}">
+                                            {{ csrf_field() }}
+                                            
+                                            <input type="hidden" name="req_id" value="{{ $purchase_order[0]->id }}">
+
+                                            <button type="submit" class="btn btn-teal waves-effect waves-light box-header">Printing Permission</button>
+                                        </form>
+                                        @endif
+                                        @endif
+
+                                        @if($purchase_order[0]->approved == 1)
+                                        @if($purchase_order[0]->printed == 0 )
+                                        <a href="javascript:void(0);" style="float: right" class="purchase_print btn btn-icon waves-effect waves-light btn-inverse m-b-5" data-purchase_id="{{ $purchase_order[0]->id }}"><i class="fa fa-print"></i></a>
                                         <hr>
                                         @endif
                                         @endif
+
                                         
                                     </div>
                                     
                                     <div class="p-20" style="clear: both;">
                                        <div class="row">
                                            
-                                           <div class="col-md-2"></div>
+                                           <div class="col-md-3"></div>
                                          
-                                            <div class="col-md-6">
+                                            <div class="col-md-9">
                     
                                                 <dl class="dl-horizontal" style="font-size: 18px;"">
                                                     
                                                     <dt>Make By:</dt><dd>{{ $purchase_order[0]->users->username }}</dd>
                                                     
                                                     <dt>Department:</dt><dd>{{ $purchase_order[0]->users->my_departments->department_name }}</dd>
+                                                    <dt>Supplier Name:</dt><dd>{{ $purchase_order[0]->suppliers->sup_name }}</dd>
+
+                                                    <dt>Order Code:</dt><dd>{{ $purchase_order[0]->purchase_code }}</dd>
 
                                                     <dt>Quation No:</dt><dd>
                                                         @if($purchase_order[0]->quatation_nmbr !== null)
@@ -68,13 +85,13 @@
                                                     @if($purchase_order[0]->approved == 1)
                                                     <dt>Permission:</dt><dd>Approved</dd>
                                                     @elseif($purchase_order[0]->rejected == 1)
-                                                    <dt>Permission:</dt><dd>Rejected</dd>
+                                                    <dt>Approval:</dt><dd>Rejected</dd>
                                                     @endif
 
                                                     @if($purchase_order[0]->approved == 1)
-                                                    <dt>Approved By:</dt><dd>{{ $users->first_name }} {{ $users->last_name }}</dd>
+                                                    <dt>Approved By:</dt><dd>{{ $users[0]->first_name }} {{ $users[0]->last_name }}</dd>
                                                     @elseif($purchase_order[0]->rejected == 1)
-                                                    <dt>Reject By:</dt><dd>{{ $users->first_name }} {{ $users->last_name }}</dd>
+                                                    <dt>Reject By:</dt><dd>{{ $users[0]->first_name }} {{ $users[0]->last_name }}</dd>
                                                     @endif
 
                                                     @if($purchase_order[0]->approval_date !== null)

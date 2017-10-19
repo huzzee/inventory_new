@@ -1,8 +1,4 @@
-@extends('layouts.mainHome')
-
-
-
-@section('content')            
+<?php $__env->startSection('content'); ?>            
     <!-- Start content -->
     <div class="content">
         <div class="container">
@@ -32,10 +28,10 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     <div class="box-header">
 
-                                        <a class="btn btn-danger" href="{{ url('items') }}">Items Lists</a>
-                                        <a class="btn btn-pink" href="{{ url('items/create') }}">Create Items</a>
+                                        <a class="btn btn-danger" href="<?php echo e(url('items')); ?>">Items Lists</a>
+                                        <a class="btn btn-pink" href="<?php echo e(url('items/create')); ?>">Create Items</a>
                                         
-                                        <a href="{{ url('items/'.$items[0]->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: right"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo e(url('items/'.$items[0]->id.'/edit')); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: right"><i class="fa fa-edit"></i></a>
 
                                         <a href="javascript:void(0);" onclick="window.print();" class="btn btn-icon waves-effect waves-light btn-inverse m-b-5" style="float: right"><i class="fa fa-print"></i></a>
                                         
@@ -46,7 +42,7 @@
                                        <div class="row">
                                            <div class="col-sm-3">
                                                 
-                                                <img src="{{ url('uploads/'.$items[0]->item_image) }}" width="100%" height="300px" alt="{{ $items[0]->item_image }}">
+                                                <img src="<?php echo e(url('uploads/'.$items[0]->item_image)); ?>" width="100%" height="300px" alt="<?php echo e($items[0]->item_image); ?>">
                                                 
                                            </div>
                                            <div class="col-sm-1"></div>
@@ -55,47 +51,48 @@
                     
                                                 <dl class="dl-horizontal" style="font-size: 18px;"">
                                                     
-                                                    <dt>Name:</dt><dd>{{ $items[0]->item_name }}</dd>
-                                                    <dt>Name:</dt><dd>{{ $items[0]->item_code }}</dd>
+                                                    <dt>Name:</dt><dd><?php echo e($items[0]->item_name); ?></dd>
+                                                    <dt>Name:</dt><dd><?php echo e($items[0]->item_code); ?></dd>
                                                    
                                                     <dt>Description:</dt>
                                                     <dd>
-                                                    @if($items[0]->description == null)
+                                                    <?php if($items[0]->description == null): ?>
                                                         No description
-                                                    @else
-                                                        {{$items[0]->description}}
-                                                    @endif
+                                                    <?php else: ?>
+                                                        <?php echo e($items[0]->description); ?>
+
+                                                    <?php endif; ?>
                                                     </dd>
-                                                    <dt>Item Type:</dt><dd>{{ $items[0]->item_types->item_type_name }}</dd>
-                                                    <dt>Item Category:</dt><dd>{{ $items[0]->item_categories->item_cat_name }}</dd>
-                                                    <dt>Opening Qnt:</dt><dd>{{ $items[0]->opening_qnt }}</dd>
-                                                    <dt>Current Qnt</dt><dd>{{ $items[0]->current_qnt }}</dd>
+                                                    <dt>Item Type:</dt><dd><?php echo e($items[0]->item_types->item_type_name); ?></dd>
+                                                    <dt>Item Category:</dt><dd><?php echo e($items[0]->item_categories->item_cat_name); ?></dd>
+                                                    <dt>Opening Qnt:</dt><dd><?php echo e($items[0]->opening_qnt); ?></dd>
+                                                    <dt>Current Qnt</dt><dd><?php echo e($items[0]->current_qnt); ?></dd>
                                                     
-                                                    <dt>Notify Qnt:</dt><dd>{{ $items[0]->min_qnt }}</dd>
+                                                    <dt>Notify Qnt:</dt><dd><?php echo e($items[0]->min_qnt); ?></dd>
                                                     <dt>Status:</dt><dd>
-                                                        @if($items[0]->status == 0)
+                                                        <?php if($items[0]->status == 0): ?>
                                                             In Active
-                                                        @else
+                                                        <?php else: ?>
                                                             Active
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </dd>
                                                     <dt>Saleable Item:</dt><dd>
-                                                        @if($items[0]->is_saleable == 0)
+                                                        <?php if($items[0]->is_saleable == 0): ?>
                                                             Not Saleable
-                                                        @else
+                                                        <?php else: ?>
                                                             Saleable
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </dd>
-                                                    <dt>Current Rate:</dt><dd>{{ $items[0]->unit_price }} per {{$items[0]->item_unit}}</dd>
+                                                    <dt>Current Rate:</dt><dd><?php echo e($items[0]->unit_price); ?> per <?php echo e($items[0]->item_unit); ?></dd>
                                                     
                                                     <dt>Last Rate:</dt>
-                                                        @if($items[0]->last_purchase_rate == 0)
+                                                        <?php if($items[0]->last_purchase_rate == 0): ?>
                                                         <dd>
                                                             not Available
                                                         </dd>
-                                                        @else
-                                                            <dd>{{$items[0]->last_purchase_rate}} per {{$items[0]->item_unit}}</dd>
-                                                        @endif    
+                                                        <?php else: ?>
+                                                            <dd><?php echo e($items[0]->last_purchase_rate); ?> per <?php echo e($items[0]->item_unit); ?></dd>
+                                                        <?php endif; ?>    
                                                     
                                                     
 
@@ -125,12 +122,13 @@
 
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts Here*********-->
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
        
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts End*********-->
+<?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
