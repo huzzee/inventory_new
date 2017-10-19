@@ -79,7 +79,7 @@ class grnMasterController extends Controller
             $items = Item::findOrFail($request->item_id[$i]);
 
             
-            $items->current_qnt += $request->order_qnt[$i];
+            $items->current_qnt += $request->recieved_qnt[$i];
             $items->last_purchase_rate = $items->unit_price;
             $items->unit_price = $request->per_unit_rate[$i];
 

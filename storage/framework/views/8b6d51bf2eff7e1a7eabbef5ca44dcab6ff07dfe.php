@@ -55,7 +55,7 @@
                                                 <div class="form-group row">
                                                     <label for="dn_code" class="col-sm-3">Delivery Note Refrence<span class="text-danger">*</span></label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" parsley-trigger="change"
+                                                        <input type="number" parsley-trigger="change"
                                                            placeholder="Delivery Note Code" name="dn_code" class="form-control"/>
                                                              
                                                             
@@ -65,7 +65,7 @@
                                                 <div class="form-group row">
                                                     <label for="purchase_order_code" class="col-sm-3">Purchase Order Code<span class="text-danger">*</span></label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="purchase_code" name="purchase_order_code" placeholder="Purchase Order Code">
+                                                        <input type="number" class="form-control" id="purchase_code" name="purchase_order_code" placeholder="Purchase Order Code">
                                                         <div id="chk_code">
                                                             
                                                         </div>
