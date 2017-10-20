@@ -16,6 +16,8 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('role_name');
+            $table->boolean('superadmin')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

@@ -25,7 +25,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <h3>Issued Requests List</h3>
+                        <h3>Approved Requests List</h3>
                                     
                         <hr>
                         
@@ -35,7 +35,8 @@
                             <tr>
                                 <th width="5%">Sr.No</th>
                                 <th width="15%">User Name</th>
-                                <th width="20%">Department</th>
+                                <th width="15%">Department</th>
+                                <th width="20%">Code</th>
                                 <th width="10%">Required Items</th>
                                 <th>Permission</th>
                                 <th>issued</th>
@@ -55,14 +56,17 @@
                                         <td><?php echo e($i); ?></td>
                                         <td><?php echo e($requisition->users->username); ?></td>
                                         <td><?php echo e($requisition->departments->department_name); ?></td>
+                                        <td><?php echo e($requisition->req_code); ?></td>
                                         <td><?php echo e($requisition->requisitionDetails->count()); ?></td>
                                         
                                         <td>Approved</td>
                                         
 
-                                        
+                                        <?php if($requisition->issued == 1): ?>
                                         <td>Issued</td>
-                                        
+                                        <?php elseif($requisition->issued == 0): ?>
+                                        <td>Not Issued</td>
+                                        <?php endif; ?>
                                             
                                         <td>       
                                             <a href="<?php echo e(url('requisitions/'.$requisition->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 

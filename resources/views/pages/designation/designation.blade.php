@@ -12,7 +12,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Items Categories</h4>
+                        <h4 class="page-title">Designation</h4>
                         
                         <div class="clearfix"></div>
 
@@ -22,17 +22,17 @@
             <!-- end row -->
 
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-md-6">
                     <div class="card-box">
 
                         <div class="row">
                             <div class="col-sm-12 col-xs-12 col-md-12">
 
-                                <h4 class="header-title m-t-0">Create Items Categories</h4>
+                                <h4 class="header-title m-t-0">Create Designation</h4>
                                 
 
                                 <div class="p-20">
-                                    <form action="{{ route('item_categories.store') }}" method="POST">
+                                    <form action="{{ route('roles.store') }}" method="POST">
                                          {{ csrf_field() }}
                                             @if (count($errors) > 0)
                                                 <div class="alert alert-danger">
@@ -44,10 +44,10 @@
                                                 </div>
                                             @endif
                                         <div class="form-group row">
-                                            <label for="item_type" class="col-sm-2">Item Category Name<span class="text-danger">*</span></label>
+                                            <label for="item_type" class="col-sm-2">Designation Name<span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="item_cat_name" parsley-trigger="change" required
-                                                   placeholder="Enter Item Category Name" class="form-control" value="{{ old('item_cat_name') }}" />
+                                                <input type="text" name="role_name" parsley-trigger="change" required
+                                                   placeholder="Enter Designation Name" class="form-control" value="{{ old('role_name') }}" />
                                                     
                                             </div>
                                         </div>
@@ -81,10 +81,8 @@
                     </div> <!-- end ard-box -->
                 </div><!-- end col-->
 
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12">
+            
+                <div class="col-md-6">
                     <div class="card-box table-responsive">
                         <h4 class="m-t-0 header-title"><b>Item Type List</b></h4>
                         
@@ -93,8 +91,8 @@
                             <thead>
                             <tr>
                                 <th width="5%">Sr.No</th>
-                                <th>Name</th>
-                                <th width="20%">Status</th>
+                                <th>Designation Name</th>
+                                
                                 <th width="20%">Action</th>
                                 
                             </tr>
@@ -103,26 +101,18 @@
 
                             <tbody>
                                 @php $i=1; @endphp
-                                @foreach($item_cats as $item_cat)    
+                                @foreach($roles as $role)    
                                 <tr>
                                     <td style="color: teal;">{{ $i }}</td>
-                                    <td style="font-size: 16px;">{{ $item_cat->item_cat_name }}</td>
-                                    <td style="font-size: 16px;">
-                                        @if($item_cat->status == 1)
-                                        Active
-                                        @else
-                                        Inactive
-                                        @endif
-                                    </td>
+                                    <td style="font-size: 16px;">{{ $role->role_name }}</td>
+                                    
                                     <td>
-                                        
-                                         <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$item_cat->id}}"><i class="fa fa-remove"></i></button>
+                                        <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$role->id}}"><i class="fa fa-remove"></i></button>
                                     </td>
                                     
                                 </tr>
 
-
-                                <div id="con-close-modal{{$item_cat->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div id="con-close-modal{{$role->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -136,7 +126,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
 
-                                                    <form action="{{ url('item_categories/'.$item_cat->id) }}" method="post">
+                                                    <form action="{{ url('roles/'.$role->id) }}" method="post">
                                                         {{ csrf_field() }}
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>

@@ -17,7 +17,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with('item_types','item_categories')->get();
+        $items = Item::with('item_types','item_categories')->where('items.status','=',1)->get();
         //dd($items);
         return view('pages.items.itemsList',array(
             'items' => $items
@@ -31,8 +31,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $item_cats = ItemCategory::all();
-        $item_types = ItemType::all();
+        $item_cats = ItemCategory::where('status','=',1)->get();
+        $item_types = ItemType::where('status','=',1)->get();
 
         //dd($item_cats);
 
@@ -237,7 +237,9 @@ class ItemController extends Controller
         //dd($id);
         $items = Item::findOrFail($id);
 
-        $items->delete();
+        $items->status = 0;
+
+        $items->save();
 
         return redirect('items');
     }

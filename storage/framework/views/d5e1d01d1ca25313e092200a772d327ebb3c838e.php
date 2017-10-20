@@ -1,8 +1,4 @@
-@extends('layouts.mainHome')
-
-
-
-@section('content')            
+<?php $__env->startSection('content'); ?>            
     <!-- Start content -->
     <div class="content">
         <div class="container">
@@ -32,22 +28,23 @@
                                 
 
                                 <div class="p-20">
-                                    <form action="{{ route('item_categories.store') }}" method="POST">
-                                         {{ csrf_field() }}
-                                            @if (count($errors) > 0)
+                                    <form action="<?php echo e(route('item_categories.store')); ?>" method="POST">
+                                         <?php echo e(csrf_field()); ?>
+
+                                            <?php if(count($errors) > 0): ?>
                                                 <div class="alert alert-danger">
                                                     <ul>
-                                                        @foreach ($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                        @endforeach
+                                                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <li><?php echo e($error); ?></li>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </ul>
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
                                         <div class="form-group row">
                                             <label for="item_type" class="col-sm-2">Item Category Name<span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
                                                 <input type="text" name="item_cat_name" parsley-trigger="change" required
-                                                   placeholder="Enter Item Category Name" class="form-control" value="{{ old('item_cat_name') }}" />
+                                                   placeholder="Enter Item Category Name" class="form-control" value="<?php echo e(old('item_cat_name')); ?>" />
                                                     
                                             </div>
                                         </div>
@@ -102,27 +99,27 @@
 
 
                             <tbody>
-                                @php $i=1; @endphp
-                                @foreach($item_cats as $item_cat)    
+                                <?php $i=1; ?>
+                                <?php $__currentLoopData = $item_cats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item_cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>    
                                 <tr>
-                                    <td style="color: teal;">{{ $i }}</td>
-                                    <td style="font-size: 16px;">{{ $item_cat->item_cat_name }}</td>
+                                    <td style="color: teal;"><?php echo e($i); ?></td>
+                                    <td style="font-size: 16px;"><?php echo e($item_cat->item_cat_name); ?></td>
                                     <td style="font-size: 16px;">
-                                        @if($item_cat->status == 1)
+                                        <?php if($item_cat->status == 1): ?>
                                         Active
-                                        @else
+                                        <?php else: ?>
                                         Inactive
-                                        @endif
+                                        <?php endif; ?>
                                     </td>
                                     <td>
                                         
-                                         <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$item_cat->id}}"><i class="fa fa-remove"></i></button>
+                                         <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal<?php echo e($item_cat->id); ?>"><i class="fa fa-remove"></i></button>
                                     </td>
                                     
                                 </tr>
 
 
-                                <div id="con-close-modal{{$item_cat->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div id="con-close-modal<?php echo e($item_cat->id); ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -136,8 +133,9 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
 
-                                                    <form action="{{ url('item_categories/'.$item_cat->id) }}" method="post">
-                                                        {{ csrf_field() }}
+                                                    <form action="<?php echo e(url('item_categories/'.$item_cat->id)); ?>" method="post">
+                                                        <?php echo e(csrf_field()); ?>
+
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>
                                                     
@@ -147,8 +145,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                @php $i++ @endphp
-                                @endforeach
+                                <?php $i++ ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -160,34 +158,34 @@
 
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts Here*********-->
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
        
-        <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
 
-        <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedHeader.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.scroller.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.colVis.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedColumns.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/custombox/js/custombox.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/custombox/js/legacy.min.js') }}"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.buttons.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jszip.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/pdfmake.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/vfs_fonts.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.html5.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.print.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedHeader.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.keyTable.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.responsive.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/responsive.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.scroller.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.colVis.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedColumns.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/custombox/js/custombox.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/custombox/js/legacy.min.js')); ?>"></script>
 
         <!-- init -->
-        <script src="{{ asset('assets/pages/jquery.datatables.init.js') }}"></script>
+        <script src="<?php echo e(asset('assets/pages/jquery.datatables.init.js')); ?>"></script>
 
 
         <script type="text/javascript">
@@ -223,6 +221,7 @@
             TableManageButtons.init();
 
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts End*********-->
+<?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

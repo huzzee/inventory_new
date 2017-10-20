@@ -33,7 +33,7 @@ class RequisitionController extends Controller
     public function complete_req()
     {
         //dd('ok');
-        $requisitions = Requisition::with('requisitionDetails','users','departments')->where('requisitions.issued','=',1)->get();
+        $requisitions = Requisition::with('requisitionDetails','users','departments')->where('requisitions.approved','=',1)->orderBy('requisitions.issued','asc')->get();
             //dd($requisition);
         return view('pages.requisitions.req_complete',array(
             'requisitions' => $requisitions
@@ -81,7 +81,7 @@ class RequisitionController extends Controller
         $requisition = new Requisition([
             'user_id' => $request->user_id,
             'department_id' => $request->department_id,
-            
+            'req_code' => mt_rand(10000,1000000),
             'reason' => $request->reason
         ]);
 
@@ -115,7 +115,7 @@ class RequisitionController extends Controller
     {
         $requisition = Requisition::with('requisitionDetails','users','departments')->where('requisitions.id','=',$id)->get();
 
-        $users = User::findOrFail($requisition[0]->approval_by);
+        $users = User::where('id','=',$requisition[0]->approval_by)->get();
         //dd($user);
         return view('pages.requisitions.showRequisitions',array(
             'requisition' => $requisition,

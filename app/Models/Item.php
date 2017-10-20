@@ -31,5 +31,11 @@ class Item extends Model
     {
         return $this->hasMany('App\Models\PurchaseOrderDetail','id');
     }
+
+
+    public function issuance_details()
+    {
+        return $this->hasMany('App\Models\IssuanceDetail','id');
+    }
     
 }

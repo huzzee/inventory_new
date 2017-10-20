@@ -26,7 +26,7 @@ class CreatePurchaseOrderDetailsTable extends Migration
         Schema::table('purchase_order_details', function($table) {
          
            
-            $table->foreign('purchase_master_id')->references('id')->on('purchase_order_masters');
+            $table->foreign('purchase_order_master_id')->references('id')->on('purchase_order_masters');
             $table->foreign('item_id')->references('id')->on('items');
             
        });

@@ -95,7 +95,7 @@ $('body').on('click', '.remove_item', function(){
 
 /*puchase Orders*/
 
-$('.purchase_print').click(function(){
+/*$('.purchase_print').click(function(){
 	//alert('ok');
 	var order_id = $(this).data();
 	//console.log(order_id);
@@ -115,7 +115,7 @@ $('.purchase_print').click(function(){
 	
 	  
 	});
-});
+});*/
 
 /*puchase Orders*/
 
@@ -140,6 +140,34 @@ $('#purchase_code').keyup(function(){
 	  	$('#purchase_info').html(response.sup_data);
 
 	  	$('#table_item_body').html(response.item_data);
+	  	
+	  	
+	  }
+	
+	  
+	});
+});
+
+
+$('#requisition_code').keyup(function(){
+	var req_code = $(this).val();
+
+	$.ajax({
+	  url: "../req_check",
+	  type: "GET",
+	  data: {req_code:req_code},
+	  dataType: "json",
+	  success: function(response) {
+	  	
+	  	console.log(response);
+	  	//return false;
+	  	//window.location.reload();
+
+	  	$('#chk_req_code').html(response.message);
+
+	  	$('#req_info').html(response.user_data);
+
+	  	$('#req_item_table').html(response.item_data);
 	  	
 	  	
 	  }

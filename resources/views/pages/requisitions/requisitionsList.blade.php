@@ -38,6 +38,7 @@
                                 <th width="5%">Sr.No</th>
                                 <th width="15%">User Name</th>
                                 <th width="15%">Department</th>
+                                <th width="15%">Code</th>
                                 <th width="10%">Required Items</th>
                                 <th>Reason</th>
                                 <th width="15%">Action</th>
@@ -56,6 +57,7 @@
                                 		<td>{{$i}}</td>
                                         <td>{{ $requisition->users->username }}</td>
                                         <td>{{ $requisition->departments->department_name }}</td>
+                                        <td>{{ $requisition->req_code }}</td>
                                         <td>{{ $requisition->requisitionDetails->count() }}</td>
                                         <td>{{ $requisition->reason }}</td>
                                 		<td>
@@ -82,7 +84,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <h3>Not Issued Requests List</h3>
+                        <h3>Rejected Requests</h3>
                                     
                         <hr>
                         
@@ -93,9 +95,10 @@
                                 <th width="5%">Sr.No</th>
                                 <th width="15%">User Name</th>
                                 <th width="20%">Department</th>
+                                <th width="15%">Code</th>
                                 <th width="10%">Required Items</th>
                                 <th>Permission</th>
-                                <th>issued</th>
+                                
                                 <th width="15%">Action</th>
 
                                 
@@ -107,23 +110,17 @@
                                 @php $i=1;@endphp
 
                                 @foreach($requisitions as $requisition)
-                                    @if($requisition->issued == 0)
-                                    @if($requisition->approved == 1 || $requisition->rejected == 1)
+                                    
+                                    @if($requisition->rejected == 1)
                                     <tr>
                                         <td>{{$i}}</td>
                                         <td>{{ $requisition->users->username }}</td>
                                         <td>{{ $requisition->departments->department_name }}</td>
+                                        <td>{{ $requisition->req_code }}</td>
                                         <td>{{ $requisition->requisitionDetails->count() }}</td>
-                                        @if($requisition->approved == 0 && $requisition->rejected == 1)
+                                        
                                         <td>Rejected</td>
-                                        @elseif($requisition->approved == 1 && $requisition->rejected == 0)
-                                        <td>Approved</td>
-                                        @endif
-
                                         
-                                        <td>Not Issued</td>
-                                        
-                                            
                                         <td>       
                                             <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
@@ -133,7 +130,7 @@
                                         </td>
                                     </tr>
                                     
-                                    @endif
+                                 
                                     @endif
                                 @php $i++; @endphp
                                 @endforeach

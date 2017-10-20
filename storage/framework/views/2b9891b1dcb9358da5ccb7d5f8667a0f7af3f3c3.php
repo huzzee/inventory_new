@@ -8,7 +8,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Requisitions</h4>
+                        <h4 class="page-title">Good Receiving Notes</h4>
                         
                         <div class="clearfix"></div>
 
@@ -23,64 +23,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <h3>Pending Requests</h3>
-                                    
-                        <hr>
-                        
-
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap">
-                            <thead>
-                            <tr>
-                                <th width="5%">Sr.No</th>
-                                <th width="15%">User Name</th>
-                                <th width="15%">Department</th>
-                                <th width="15%">Code</th>
-                                <th width="10%">Required Items</th>
-                                <th>Reason</th>
-                                <th width="15%">Action</th>
-
-                                
-                            </tr>
-                            </thead>
-
-
-                            <tbody>
-                                <?php $i=1;?>
-
-                                <?php $__currentLoopData = $requisitions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requisition): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($requisition->approved == 0 && $requisition->rejected == 0): ?>
-                                	<tr>
-                                		<td><?php echo e($i); ?></td>
-                                        <td><?php echo e($requisition->users->username); ?></td>
-                                        <td><?php echo e($requisition->departments->department_name); ?></td>
-                                        <td><?php echo e($requisition->req_code); ?></td>
-                                        <td><?php echo e($requisition->requisitionDetails->count()); ?></td>
-                                        <td><?php echo e($requisition->reason); ?></td>
-                                		<td>
-                                			
-	                                            
-                                            <a href="<?php echo e(url('requisitions/'.$requisition->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
-                                            	<i class="fa fa-eye"></i>
-                                            </a>
-                                            
-                                           
-                                		</td>
-                                	</tr>
-                                	
-                                    <?php endif; ?>
-                                <?php $i++; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card-box table-responsive">
-
-                        <h3>Rejected Requests</h3>
+                        <a class="btn btn-danger" href="<?php echo e(url('issuance/create')); ?>">Make Issuance Slip</a>
                                     
                         <hr>
                         
@@ -89,12 +32,10 @@
                             <thead>
                             <tr>
                                 <th width="5%">Sr.No</th>
-                                <th width="15%">User Name</th>
-                                <th width="20%">Department</th>
-                                <th width="15%">Code</th>
-                                <th width="10%">Required Items</th>
-                                <th>Permission</th>
-                                
+                                <th width="15%">Created By</th>
+                                <th width="25%">Requisition Department</th>
+                                <th width="15%">Issued Items</th>
+                          
                                 <th width="15%">Action</th>
 
                                 
@@ -105,29 +46,22 @@
                             <tbody>
                                 <?php $i=1;?>
 
-                                <?php $__currentLoopData = $requisitions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $requisition): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    
-                                    <?php if($requisition->rejected == 1): ?>
+                                <?php $__currentLoopData = $issuance; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $issue): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td><?php echo e($i); ?></td>
-                                        <td><?php echo e($requisition->users->username); ?></td>
-                                        <td><?php echo e($requisition->departments->department_name); ?></td>
-                                        <td><?php echo e($requisition->req_code); ?></td>
-                                        <td><?php echo e($requisition->requisitionDetails->count()); ?></td>
-                                        
-                                        <td>Rejected</td>
-                                        
-                                        <td>       
-                                            <a href="<?php echo e(url('requisitions/'.$requisition->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                        <td><?php echo e($issue->users->first_name); ?> <?php echo e($issue->users->last_name); ?></td>
+                                        <td><?php echo e($issue->users->my_departments->department_name); ?></td>
+                                        <td><?php echo e($issue->issuanceDetails->count()); ?></td>
+                                        <td>
+                                            
+                                                
+                                            <a href="<?php echo e(url('issuance/'.$issue->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                           
                                             
+                                           
                                         </td>
                                     </tr>
-                                    
-                                 
-                                    <?php endif; ?>
                                 <?php $i++; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>

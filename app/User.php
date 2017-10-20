@@ -42,8 +42,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Requisition','id');
     }
 
-   public function purchaseOrderMasters()
-   {
-         return $this->hasMany('App\Models\PurchaseOrderMasters','id');
-   }
+    public function purchaseOrderMasters()
+    {
+        return $this->hasMany('App\Models\PurchaseOrderMasters','id');
+    }
+
+    public function issuance_masters()
+    {
+        return $this->hasMany('App\Models\IssuanceMaster','id');
+    }
 }

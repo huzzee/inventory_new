@@ -12,7 +12,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Requisitions</h4>
+                        <h4 class="page-title">Good Receiving Notes</h4>
                         
                         <div class="clearfix"></div>
 
@@ -23,13 +23,11 @@
 
             
 
-            
-
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <h3>Approved Requests List</h3>
+                        <a class="btn btn-danger" href="{{ url('issuance/create') }}">Make Issuance Slip</a>
                                     
                         <hr>
                         
@@ -38,12 +36,10 @@
                             <thead>
                             <tr>
                                 <th width="5%">Sr.No</th>
-                                <th width="15%">User Name</th>
-                                <th width="15%">Department</th>
-                                <th width="20%">Code</th>
-                                <th width="10%">Required Items</th>
-                                <th>Permission</th>
-                                <th>issued</th>
+                                <th width="15%">Created By</th>
+                                <th width="25%">Requisition Department</th>
+                                <th width="15%">Issued Items</th>
+                          
                                 <th width="15%">Action</th>
 
                                 
@@ -54,34 +50,22 @@
                             <tbody>
                                 @php $i=1;@endphp
 
-                                @foreach($requisitions as $requisition)
-                                   
+                                @foreach($issuance as $issue)
                                     <tr>
                                         <td>{{$i}}</td>
-                                        <td>{{ $requisition->users->username }}</td>
-                                        <td>{{ $requisition->departments->department_name }}</td>
-                                        <td>{{ $requisition->req_code }}</td>
-                                        <td>{{ $requisition->requisitionDetails->count() }}</td>
-                                        
-                                        <td>Approved</td>
-                                        
-
-                                        @if($requisition->issued == 1)
-                                        <td>Issued</td>
-                                        @elseif($requisition->issued == 0)
-                                        <td>Not Issued</td>
-                                        @endif
+                                        <td>{{ $issue->users->first_name }} {{ $issue->users->last_name }}</td>
+                                        <td>{{ $issue->users->my_departments->department_name }}</td>
+                                        <td>{{ $issue->issuanceDetails->count() }}</td>
+                                        <td>
                                             
-                                        <td>       
-                                            <a href="{{ url('requisitions/'.$requisition->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                                
+                                            <a href="{{ url('issuance/'.$issue->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                           
                                             
+                                           
                                         </td>
                                     </tr>
-                                    
-                                    
                                 @php $i++; @endphp
                                 @endforeach
                             </tbody>

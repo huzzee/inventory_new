@@ -117,7 +117,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     
-                                                    Are You Sure.You want to Delete it.
+                                                    Are You Sure.You want to Disable it.
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>

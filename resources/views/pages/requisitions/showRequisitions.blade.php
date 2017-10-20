@@ -51,11 +51,12 @@
                     
                                                 <dl class="dl-horizontal" style="font-size: 18px;"">
                                                     
-                                                    <dt>Username:</dt><dd>{{ $requisition[0]->users->username }}</dd>
+                                                    <dt>Username:</dt><dd>{{ $requisition[0]->users->first_name }} {{ $requisition[0]->users->last_name }}</dd>
                                                     
                                                     <dt>Department:</dt><dd>{{ $requisition[0]->departments->department_name }}</dd>
                                                     
                                                     <dt>Reason:</dt><dd>{{ $requisition[0]->reason }}</dd>
+                                                    <dt>Code:</dt><dd>{{ $requisition[0]->req_code }}</dd>
                                                     @if($requisition[0]->approved == 1)
                                                     <dt>Permission:</dt><dd>Approved</dd>
                                                     @elseif($requisition[0]->rejected == 1)
@@ -63,9 +64,9 @@
                                                     @endif
 
                                                     @if($requisition[0]->approved == 1)
-                                                    <dt>Approved By:</dt><dd>{{ $users->first_name }} {{ $users->last_name }}</dd>
+                                                    <dt>Approved By:</dt><dd>{{ $users[0]->first_name }} {{ $users[0]->last_name }}</dd>
                                                     @elseif($requisition[0]->rejected == 1)
-                                                    <dt>Reject By:</dt><dd>{{ $users->first_name }} {{ $users->last_name }}</dd>
+                                                    <dt>Reject By:</dt><dd>{{ $users[0]->first_name }} {{ $users[0]->last_name }}</dd>
                                                     @endif
 
                                                     @if($requisition[0]->approval_date !== null)

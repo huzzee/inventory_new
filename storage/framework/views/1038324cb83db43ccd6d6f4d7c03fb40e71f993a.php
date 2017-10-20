@@ -47,11 +47,12 @@
                     
                                                 <dl class="dl-horizontal" style="font-size: 18px;"">
                                                     
-                                                    <dt>Username:</dt><dd><?php echo e($requisition[0]->users->username); ?></dd>
+                                                    <dt>Username:</dt><dd><?php echo e($requisition[0]->users->first_name); ?> <?php echo e($requisition[0]->users->last_name); ?></dd>
                                                     
                                                     <dt>Department:</dt><dd><?php echo e($requisition[0]->departments->department_name); ?></dd>
                                                     
                                                     <dt>Reason:</dt><dd><?php echo e($requisition[0]->reason); ?></dd>
+                                                    <dt>Code:</dt><dd><?php echo e($requisition[0]->req_code); ?></dd>
                                                     <?php if($requisition[0]->approved == 1): ?>
                                                     <dt>Permission:</dt><dd>Approved</dd>
                                                     <?php elseif($requisition[0]->rejected == 1): ?>
@@ -59,9 +60,9 @@
                                                     <?php endif; ?>
 
                                                     <?php if($requisition[0]->approved == 1): ?>
-                                                    <dt>Approved By:</dt><dd><?php echo e($users->first_name); ?> <?php echo e($users->last_name); ?></dd>
+                                                    <dt>Approved By:</dt><dd><?php echo e($users[0]->first_name); ?> <?php echo e($users[0]->last_name); ?></dd>
                                                     <?php elseif($requisition[0]->rejected == 1): ?>
-                                                    <dt>Reject By:</dt><dd><?php echo e($users->first_name); ?> <?php echo e($users->last_name); ?></dd>
+                                                    <dt>Reject By:</dt><dd><?php echo e($users[0]->first_name); ?> <?php echo e($users[0]->last_name); ?></dd>
                                                     <?php endif; ?>
 
                                                     <?php if($requisition[0]->approval_date !== null): ?>

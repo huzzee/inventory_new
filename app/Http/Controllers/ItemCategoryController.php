@@ -10,7 +10,7 @@ class ItemCategoryController extends Controller
 {
     public function index()
     {
-    	$item_cats = ItemCategory::all();
+    	$item_cats = ItemCategory::where('status','=',1)->get();
     	
     	//dd($item_cats);
     	return view('pages.items.item_cat',array(
@@ -51,7 +51,9 @@ class ItemCategoryController extends Controller
     {
         $item_cat = ItemCategory::findOrFail($id);
 
-        $item_cat->delete();
+        $item_cat->status = 0;
+
+        $item_cat->save();
 
         return redirect('item_categories');
     }

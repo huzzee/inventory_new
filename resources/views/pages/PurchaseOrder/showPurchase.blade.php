@@ -34,25 +34,10 @@
 
                                         <a href="{{ url('purchase') }}" class="btn btn-danger waves-effect waves-light">Purchase Order List</a>
 
-                                        @if(Auth::user()->role_id == 1)
-                                        @if($purchase_order[0]->printed == 1 )
-                                        <hr>
-                                        <form method="post" action="{{ url('permit_print') }}">
-                                            {{ csrf_field() }}
-                                            
-                                            <input type="hidden" name="req_id" value="{{ $purchase_order[0]->id }}">
-
-                                            <button type="submit" class="btn btn-teal waves-effect waves-light box-header">Printing Permission</button>
-                                        </form>
-                                        @endif
-                                        @endif
-
-                                        @if($purchase_order[0]->approved == 1)
-                                        @if($purchase_order[0]->printed == 0 )
+                                        
                                         <a href="javascript:void(0);" style="float: right" class="purchase_print btn btn-icon waves-effect waves-light btn-inverse m-b-5" data-purchase_id="{{ $purchase_order[0]->id }}"><i class="fa fa-print"></i></a>
                                         <hr>
-                                        @endif
-                                        @endif
+                                        
 
                                         
                                     </div>
@@ -172,6 +157,22 @@
                                            </div>
 
                                        </div>
+                                       @endif
+                                       @if($purchase_order[0]->approved == 1 && Auth::user()->role_id == 1)
+                                       <div class="row" style="height:50px;"></div>
+                                        <div class="row">
+                                           <div class="col-md-4"></div>
+                                           <div class="col-md-2">
+                                                
+                                                <form method="post" action="{{ url('purchase_orders_rejected') }}">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="approval_by" value="{{ Auth::user()->id }}">
+                                                    <input type="hidden" name="req_id" value="{{ $purchase_order[0]->id }}">
+                                                    <button type="submit" style="margin-left: 5px" class="btn btn-inverse waves-effect waves-light box-header">Cancel Purchase Order</button>
+                                                </form>
+                                           </div>
+
+                                        </div>
                                        @endif
                                     </div>
                                 </div>

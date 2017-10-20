@@ -9,7 +9,7 @@ class ItemTypeController extends Controller
 {
     public function index()
     {
-    	$item_types = ItemType::all();
+    	$item_types = ItemType::where('status','=',1)->get();
 
     	//dd($item_types);
 
@@ -47,7 +47,9 @@ class ItemTypeController extends Controller
     {
     	$item_type = ItemType::findOrFail($id);
 
-    	$item_type->delete();
+    	$item_type->status = 0;
+
+        $item_type->save();
 
     	return redirect('item_types');
     }
