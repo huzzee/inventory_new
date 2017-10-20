@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2017 at 09:51 PM
+-- Generation Time: Oct 20, 2017 at 11:12 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -30,26 +30,12 @@ CREATE TABLE `grn_details` (
   `id` int(10) UNSIGNED NOT NULL,
   `grn_master_id` int(10) UNSIGNED NOT NULL,
   `item_id` int(10) UNSIGNED NOT NULL,
-  `recieved_qnt` decimal(15,3) NOT NULL,
+  `recieved_qnt` double(15,3) NOT NULL,
   `per_unit_rate` double(15,3) NOT NULL,
   `total_amount` double(15,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `grn_details`
---
-
-INSERT INTO `grn_details` (`id`, `grn_master_id`, `item_id`, `recieved_qnt`, `per_unit_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
-(51, 47, 18, '20.000', 120000.000, 2400000.000, '2017-10-19 16:06:27', '2017-10-19 16:06:27'),
-(52, 48, 19, '10.000', 110000.000, 1100000.000, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
-(53, 48, 20, '23.000', 60000.000, 1380000.000, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
-(54, 48, 21, '56.000', 55000.000, 3080000.000, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
-(55, 49, 18, '50.000', 110000.000, 5500000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23'),
-(56, 49, 19, '10.000', 130000.000, 1300000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23'),
-(57, 49, 20, '21.000', 70000.000, 1470000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23'),
-(58, 49, 21, '15.000', 5000.000, 75000.000, '2017-10-19 16:50:23', '2017-10-19 16:50:23');
 
 -- --------------------------------------------------------
 
@@ -67,14 +53,34 @@ CREATE TABLE `grn_masters` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `grn_masters`
+-- Table structure for table `issuance_details`
 --
 
-INSERT INTO `grn_masters` (`id`, `user_id`, `supplier_id`, `purchase_order_id`, `dn_code`, `created_at`, `updated_at`) VALUES
-(47, 1, 3, 6, 1321321, '2017-10-19 16:06:27', '2017-10-19 16:06:27'),
-(48, 1, 1, 7, 123213, '2017-10-19 16:15:48', '2017-10-19 16:15:48'),
-(49, 1, 1, 5, 123124124, '2017-10-19 16:50:23', '2017-10-19 16:50:23');
+CREATE TABLE `issuance_details` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `issuance_master_id` int(10) UNSIGNED NOT NULL,
+  `item_id` int(10) UNSIGNED NOT NULL,
+  `issued_qnt` double(15,3) NOT NULL DEFAULT '0.000',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `issuance_masters`
+--
+
+CREATE TABLE `issuance_masters` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `requisition_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -108,10 +114,10 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `last_purchase_rate`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(18, 5, 12, 'I Phone 8', 897652, 'Color Black', 'Box', 50, 70, 30, 'I Phone 8_5.JPG', 110000.000, 120000.000, 1, 1, 0, '2017-10-19 10:46:03', '2017-10-19 16:50:23'),
-(19, 5, 12, 'I Phone X', 879431, 'Color Red', 'Box', 50, 60, 30, 'I Phone X_5.jpg', 130000.000, 110000.000, 1, 1, 0, '2017-10-19 10:48:25', '2017-10-19 16:50:23'),
-(20, 5, 12, 'Samsung S8', 184536, 'Color White,black,red,blue,skin,brown', 'Box', 40, 63, 30, 'Samsung S8_5.jpg', 70000.000, 60000.000, 1, 1, 0, '2017-10-19 10:49:31', '2017-10-19 16:50:23'),
-(21, 5, 12, 'Samsung S7', 462722, 'Color Black,white,purple,blue', 'Box', 60, 116, 50, 'Samsung S7_5.jpg', 5000.000, 55000.000, 1, 1, 0, '2017-10-19 10:50:40', '2017-10-19 16:50:23');
+(18, 5, 12, 'I Phone 8', 897652, 'Color Black', 'Box', 50, 94, 30, 'I Phone 8_5.JPG', 100000.000, 110000.000, 1, 1, 0, '2017-10-19 10:46:03', '2017-10-20 13:42:01'),
+(19, 5, 12, 'I Phone X', 879431, 'Color Red', 'Box', 50, 200, 30, 'I Phone X_5.jpg', 110000.000, 130000.000, 1, 1, 0, '2017-10-19 10:48:25', '2017-10-20 13:42:01'),
+(20, 5, 12, 'Samsung S8', 184536, 'Color White,black,red,blue,skin,brown', 'Box', 40, 180, 30, 'Samsung S8_5.jpg', 60000.000, 70000.000, 1, 1, 0, '2017-10-19 10:49:31', '2017-10-20 13:42:01'),
+(21, 5, 12, 'Samsung S7', 462722, 'Color Black,white,purple,blue', 'Box', 60, 470, 50, 'Samsung S7_5.jpg', 45000.000, 5000.000, 1, 1, 0, '2017-10-19 10:50:40', '2017-10-20 13:42:01');
 
 -- --------------------------------------------------------
 
@@ -189,11 +195,11 @@ CREATE TABLE `menus` (
 
 INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, `icon`, `menu_route`, `active`, `hidden`, `sort_order`, `created_at`, `updated_at`) VALUES
 (7, 'Users', NULL, NULL, 0, 'mdi mdi-account', NULL, 1, 0, 0, NULL, NULL),
-(8, 'Add Users', 'users/create', 7, 1, NULL, 'users.create', 1, 0, 1, NULL, NULL),
-(9, 'Users List', 'users', 7, 2, NULL, 'users.index', 1, 0, 2, NULL, NULL),
-(10, 'Edit', NULL, 7, 3, NULL, 'users.edit', 1, 1, 4, NULL, NULL),
-(11, 'Users Profile', NULL, 7, 4, NULL, 'users.show', 1, 1, 5, NULL, NULL),
-(12, 'Delete', NULL, 7, 5, NULL, 'users.delete', 1, 1, 6, NULL, NULL),
+(8, 'Add Users', 'users/create', 7, 3, NULL, 'users.create', 1, 0, 3, NULL, NULL),
+(9, 'Users List', 'users', 7, 4, NULL, 'users.index', 1, 0, 3, NULL, NULL),
+(10, 'Edit', NULL, 7, 5, NULL, 'users.edit', 1, 1, 4, NULL, NULL),
+(11, 'Users Profile', NULL, 7, 6, NULL, 'users.show', 1, 1, 5, NULL, NULL),
+(12, 'Delete', NULL, 7, 7, NULL, 'users.delete', 1, 1, 6, NULL, NULL),
 (13, 'Items/Products', NULL, NULL, 0, 'mdi mdi-note-plus-outline', NULL, 1, 0, 7, NULL, NULL),
 (14, 'Item Type', 'item_types', 13, 1, NULL, 'item_types.index', 1, 0, 10, NULL, NULL),
 (15, 'Item Category', 'item_categories', 13, 2, NULL, 'item_categories.index', 1, 0, 11, NULL, NULL),
@@ -202,18 +208,22 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (18, 'Suppliers', NULL, NULL, 0, 'mdi mdi-playlist-plus', NULL, 1, 0, 12, NULL, NULL),
 (19, 'Add Supplier', 'suppliers/create', 18, 1, NULL, 'suppliers.create', 1, 0, 13, NULL, NULL),
 (20, 'Suppliers List', 'suppliers', 18, 2, NULL, 'suppliers.index', 1, 0, 14, NULL, NULL),
-(21, 'Department', 'departments', 7, 4, NULL, 'departments.index', 1, 0, 2, NULL, NULL),
+(21, 'Department', 'departments', 7, 1, NULL, 'departments.index', 1, 0, 2, NULL, NULL),
 (22, 'Requisitions', NULL, NULL, 0, 'mdi mdi-note-text', NULL, 1, 0, 15, NULL, NULL),
 (23, 'Make Requests', 'requisitions/create', 22, 1, NULL, 'requisitions.create', 1, 0, 16, NULL, NULL),
-(24, 'Requests List', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
+(24, 'Pending Requests', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
 (25, 'Purchase Order', NULL, NULL, 0, 'mdi mdi-cart', NULL, 1, 0, 18, NULL, NULL),
 (26, 'Make Purchase Order', 'purchase/create', 25, 1, NULL, 'purchase.create', 1, 0, 19, NULL, NULL),
 (27, 'Orders Request', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL),
 (28, 'Good Receiving Note ', NULL, NULL, 0, ' mdi mdi-shape-rectangle-plus', NULL, 1, 0, 21, NULL, NULL),
 (29, 'Make G.R.N', 'grn/create', 28, 1, NULL, 'grn.create', 1, 0, 22, NULL, NULL),
 (30, 'G.R.N List', 'grn', 28, 2, NULL, 'grn', 1, 0, 23, NULL, NULL),
-(31, 'Issued Requests', 'requisitions_complete', 22, 3, NULL, 'complete', 1, 0, 17, NULL, NULL),
-(32, 'Approved Orders', 'approved_puchase', 25, 3, NULL, 'order', 1, 0, 20, NULL, NULL);
+(31, 'Approved Requests', 'requisitions_complete', 22, 3, NULL, 'complete', 1, 0, 17, NULL, NULL),
+(32, 'Approved Orders', 'approved_puchase', 25, 3, NULL, 'order', 1, 0, 20, NULL, NULL),
+(33, 'Issuance Slip', NULL, NULL, 0, 'mdi mdi-shape-rectangle-plus', NULL, 1, 0, 24, NULL, NULL),
+(34, 'Make Issuance Slip ', 'issuance/create', 33, 1, NULL, 'issuance.create', 1, 0, 25, NULL, NULL),
+(35, 'Issuance Slip', 'issuance', 33, 2, NULL, 'issuance.index', 1, 0, 26, NULL, NULL),
+(36, 'Designation', 'roles', 7, 2, NULL, 'roles.index', 1, 0, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -240,11 +250,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2017_10_07_133115_create_items_table', 4),
 (20, '2017_10_09_161540_create_suppliers_table', 5),
 (22, '2017_10_12_203855_create_my_departments_table', 6),
-(24, '2017_10_12_210110_create_users_table', 7),
-(30, '2017_10_12_221537_create_requisitions_table', 8),
-(31, '2017_10_13_162126_create_requisition_details_table', 8),
-(32, '2017_10_15_112938_create_purchase_order_masters_table', 9),
-(33, '2017_10_15_113103_create_purchase_order_details_table', 9);
+(46, '2017_10_12_210110_create_users_table', 7),
+(47, '2017_10_12_221537_create_requisitions_table', 7),
+(48, '2017_10_13_162126_create_requisition_details_table', 7),
+(49, '2017_10_15_112938_create_purchase_order_masters_table', 7),
+(50, '2017_10_15_113103_create_purchase_order_details_table', 7),
+(51, '2017_10_16_193752_create_grn_masters_table', 7),
+(52, '2017_10_16_194009_create_grn_details_table', 7),
+(53, '2017_10_20_155643_create_issuance_masters_table', 7),
+(54, '2017_10_20_161007_create_issuance_details_table', 7);
 
 -- --------------------------------------------------------
 
@@ -297,20 +311,6 @@ CREATE TABLE `purchase_order_details` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `purchase_order_details`
---
-
-INSERT INTO `purchase_order_details` (`id`, `purchase_order_master_id`, `item_id`, `order_qnt`, `item_rate`, `total_amount`, `created_at`, `updated_at`) VALUES
-(7, 5, 18, 50, 110000.000, 5500000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
-(8, 5, 19, 10, 130000.000, 1300000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
-(9, 5, 20, 21, 70000.000, 1470000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
-(10, 5, 21, 15, 5000.000, 75000.000, '2017-10-19 10:52:41', '2017-10-19 10:52:41'),
-(11, 6, 18, 20, 120000.000, 2400000.000, '2017-10-19 11:38:38', '2017-10-19 11:38:38'),
-(12, 7, 19, 10, 110000.000, 1100000.000, '2017-10-19 16:10:06', '2017-10-19 16:10:06'),
-(13, 7, 20, 23, 60000.000, 1380000.000, '2017-10-19 16:10:06', '2017-10-19 16:10:06'),
-(14, 7, 21, 56, 55000.000, 3080000.000, '2017-10-19 16:10:06', '2017-10-19 16:10:06');
-
 -- --------------------------------------------------------
 
 --
@@ -329,19 +329,10 @@ CREATE TABLE `purchase_order_masters` (
   `rejected` tinyint(1) NOT NULL DEFAULT '0',
   `printed` tinyint(1) NOT NULL DEFAULT '0',
   `approval_date` timestamp NULL DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
+  `created_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `purchase_order_masters`
---
-
-INSERT INTO `purchase_order_masters` (`id`, `requisition_id`, `user_id`, `supplier_id`, `purchase_code`, `quatation_nmbr`, `approval_by`, `approved`, `rejected`, `printed`, `approval_date`, `created_date`, `created_at`, `updated_at`) VALUES
-(5, NULL, 1, 1, '22800741', NULL, 1, 1, 0, 1, '2017-10-19 10:52:51', '2017-10-19', '2017-10-19 10:52:41', '2017-10-19 10:53:09'),
-(6, NULL, 1, 3, '99579039', NULL, 1, 1, 0, 1, '2017-10-19 11:38:48', '2017-10-19', '2017-10-19 11:38:38', '2017-10-19 11:39:34'),
-(7, NULL, 1, 1, '93320113', NULL, 1, 1, 0, 1, '2017-10-19 16:10:26', '2017-10-20', '2017-10-19 16:10:06', '2017-10-19 16:11:41');
 
 -- --------------------------------------------------------
 
@@ -354,6 +345,7 @@ CREATE TABLE `requisitions` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `department_id` int(11) NOT NULL,
   `reason` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `req_code` bigint(20) NOT NULL,
   `approval_by` int(11) DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0',
   `issued` tinyint(1) NOT NULL DEFAULT '0',
@@ -387,6 +379,8 @@ CREATE TABLE `requisition_details` (
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `role_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `superadmin` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -395,9 +389,9 @@ CREATE TABLE `roles` (
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', NULL, NULL),
-(2, 'Users', NULL, NULL);
+INSERT INTO `roles` (`id`, `role_name`, `superadmin`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 1, 1, NULL, NULL),
+(3, 'Manager', 0, 1, '2017-10-20 17:21:10', '2017-10-20 17:21:17');
 
 -- --------------------------------------------------------
 
@@ -453,8 +447,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `department_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Ad', 'admin', 1, 1, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'YZH9tAtsK1J7YPg1UaTFQ2S2t3DKLPB1XRUZaJxt9j3G7yVeaTqNfDyA5lcl', NULL, NULL),
-(2, 'User1', 'User1', 'user_1', 2, 2, '$2y$10$K6P98ls7jpg1K9wDl.7ew.512MbRPP6wLH813997YMwi5OQOwPZVm', 'avatar.png', 1, 1, 'fvE9YSyCfdmAC7V9NgB3KgF3Vv3FYypf2scaug8p5iNbLhrbXQA5tUMAFT3h', NULL, NULL);
+(1, 'Admin', 'Abc', 'admin', 1, 1, '$2y$10$3c9d.jcZW.Nb41lOdNX6Le8fBbYEavG7RwKp0FKK/AP8sWoH5opAG', 'avatar.png', 1, 1, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -464,13 +457,34 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `de
 -- Indexes for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `grn_details_item_id_foreign` (`item_id`),
+  ADD KEY `grn_details_grn_master_id_foreign` (`grn_master_id`);
 
 --
 -- Indexes for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `grn_masters_user_id_foreign` (`user_id`),
+  ADD KEY `grn_masters_supplier_id_foreign` (`supplier_id`),
+  ADD KEY `grn_masters_purchase_order_id_foreign` (`purchase_order_id`);
+
+--
+-- Indexes for table `issuance_details`
+--
+ALTER TABLE `issuance_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `issuance_details_issuance_master_id_foreign` (`issuance_master_id`),
+  ADD KEY `issuance_details_item_id_foreign` (`item_id`);
+
+--
+-- Indexes for table `issuance_masters`
+--
+ALTER TABLE `issuance_masters`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `issuance_masters_user_id_foreign` (`user_id`),
+  ADD KEY `issuance_masters_requisition_id_foreign` (`requisition_id`);
 
 --
 -- Indexes for table `items`
@@ -521,7 +535,7 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `purchase_order_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_order_details_purchase_master_id_foreign` (`purchase_order_master_id`),
+  ADD KEY `purchase_order_details_purchase_order_master_id_foreign` (`purchase_order_master_id`),
   ADD KEY `purchase_order_details_item_id_foreign` (`item_id`);
 
 --
@@ -578,12 +592,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `issuance_details`
+--
+ALTER TABLE `issuance_details`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `issuance_masters`
+--
+ALTER TABLE `issuance_masters`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -603,12 +627,12 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `my_departments`
 --
@@ -618,27 +642,27 @@ ALTER TABLE `my_departments`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `requisition_details`
 --
 ALTER TABLE `requisition_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
@@ -648,10 +672,39 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `grn_details`
+--
+ALTER TABLE `grn_details`
+  ADD CONSTRAINT `grn_details_grn_master_id_foreign` FOREIGN KEY (`grn_master_id`) REFERENCES `grn_masters` (`id`),
+  ADD CONSTRAINT `grn_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
+
+--
+-- Constraints for table `grn_masters`
+--
+ALTER TABLE `grn_masters`
+  ADD CONSTRAINT `grn_masters_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_order_masters` (`id`),
+  ADD CONSTRAINT `grn_masters_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`),
+  ADD CONSTRAINT `grn_masters_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `issuance_details`
+--
+ALTER TABLE `issuance_details`
+  ADD CONSTRAINT `issuance_details_issuance_master_id_foreign` FOREIGN KEY (`issuance_master_id`) REFERENCES `issuance_masters` (`id`),
+  ADD CONSTRAINT `issuance_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
+
+--
+-- Constraints for table `issuance_masters`
+--
+ALTER TABLE `issuance_masters`
+  ADD CONSTRAINT `issuance_masters_requisition_id_foreign` FOREIGN KEY (`requisition_id`) REFERENCES `requisitions` (`id`),
+  ADD CONSTRAINT `issuance_masters_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `items`
@@ -665,7 +718,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `purchase_order_details`
   ADD CONSTRAINT `purchase_order_details_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `purchase_order_details_purchase_master_id_foreign` FOREIGN KEY (`purchase_order_master_id`) REFERENCES `purchase_order_masters` (`id`);
+  ADD CONSTRAINT `purchase_order_details_purchase_order_master_id_foreign` FOREIGN KEY (`purchase_order_master_id`) REFERENCES `purchase_order_masters` (`id`);
 
 --
 -- Constraints for table `purchase_order_masters`
