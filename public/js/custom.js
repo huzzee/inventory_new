@@ -175,3 +175,7 @@ $('#requisition_code').keyup(function(){
 	  
 	});
 });
+
+/* Password Confirmation */
+
+

@@ -101,7 +101,9 @@ class MyDepartmentController extends Controller
     {
         $department = MyDepartment::findOrFail($id);
 
-        $department->delete();
+        $department->status = 0;
+
+        $department->save();
 
         return redirect('departments');
     }

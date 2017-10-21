@@ -85,8 +85,7 @@
                                                 <div class="checkbox checkbox-success">
                                                     <input id="checkbox-signup" type="checkbox" name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
                                                     <label for="checkbox-signup">
-                                                        <?php echo e(bcrypt('password')); ?>
-
+                                                        Remember me
                                                     </label>
                                                 </div>
 

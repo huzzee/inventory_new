@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function issuance_masters()
     {
         return $this->hasMany('App\Models\IssuanceMaster','id');
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany('App\Models\Permission','id');
     }
 }

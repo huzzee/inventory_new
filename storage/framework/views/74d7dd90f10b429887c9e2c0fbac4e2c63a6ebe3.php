@@ -1,8 +1,4 @@
-@extends('layouts.mainHome')
-
-
-
-@section('content')            
+<?php $__env->startSection('content'); ?>            
     <!-- Start content -->
     <div class="content">
         <div class="container">
@@ -27,7 +23,7 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
 
-                        <a class="btn btn-danger" href="{{ url('users/create') }}">Create User</a>
+                        <a class="btn btn-danger" href="<?php echo e(url('users/create')); ?>">Create User</a>
                                     
                         <hr>
                         
@@ -51,36 +47,36 @@
 
 
                             <tbody>
-                                @php $i=1;@endphp
+                                <?php $i=1;?>
 
-                                @foreach($users as $user)
+                                <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td>{{ $i }}</td>
+                                        <td><?php echo e($i); ?></td>
                                         <td>
-                                            <img src="{{ asset('uploads/'.$user->profile_image) }}" width="50px" height="50px">
+                                            <img src="<?php echo e(asset('uploads/'.$user->profile_image)); ?>" width="50px" height="50px">
                                         </td>
-                                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                        <td>{{ $user->username }}</td>
-                                        <td>{{ $user->roles->role_name }}</td>
-                                        <td>{{ $user->my_departments->department_name }}</td>
-                                        @if($user->gender == 0)
+                                        <td><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?></td>
+                                        <td><?php echo e($user->username); ?></td>
+                                        <td><?php echo e($user->roles->role_name); ?></td>
+                                        <td><?php echo e($user->my_departments->department_name); ?></td>
+                                        <?php if($user->gender == 0): ?>
                                         <td>Male</td>
-                                        @else
+                                        <?php else: ?>
                                         <td>Female</td>
-                                        @endif
+                                        <?php endif; ?>
                                         <td>
-                                            <a href="{{ url('users/'.$user->id) }}" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            <a href="<?php echo e(url('users/'.$user->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             
                                             
-                                            <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
+                                            <a href="<?php echo e(url('users/'.$user->id.'/edit')); ?>" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
                                           
                                             
-                                            <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal{{$user->id}}"><i class="fa fa-remove"></i></button>
+                                            <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal<?php echo e($user->id); ?>"><i class="fa fa-remove"></i></button>
                                         </td>
                                     </tr>
-                                    <div id="con-close-modal{{$user->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div id="con-close-modal<?php echo e($user->id); ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -94,8 +90,9 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
 
-                                                    <form action="{{ url('users/'.$user->id) }}" method="post">
-                                                        {{ csrf_field() }}
+                                                    <form action="<?php echo e(url('users/'.$user->id)); ?>" method="post">
+                                                        <?php echo e(csrf_field()); ?>
+
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger waves-effect" style="float: right;margin-right: 2%;">Yes Delete it</button>
                                                     
@@ -105,8 +102,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                @php $i++; @endphp
-                                @endforeach
+                                <?php $i++; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -117,31 +114,31 @@
 
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts Here*********-->
 
-@section('scripts')
-        <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
+<?php $__env->startSection('scripts'); ?>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
 
-        <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedHeader.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.scroller.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.colVis.js') }}"></script>
-        <script src="{{ asset('assets/plugins/datatables/dataTables.fixedColumns.min.js') }}"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.buttons.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/jszip.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/pdfmake.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/vfs_fonts.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.html5.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/buttons.print.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedHeader.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.keyTable.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.responsive.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/responsive.bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.scroller.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.colVis.js')); ?>"></script>
+        <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedColumns.min.js')); ?>"></script>
 
         <!-- init -->
-        <script src="{{ asset('assets/pages/jquery.datatables.init.js') }}"></script>
+        <script src="<?php echo e(asset('assets/pages/jquery.datatables.init.js')); ?>"></script>
 
 
         <script type="text/javascript">
@@ -177,6 +174,7 @@
             TableManageButtons.init();
 
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 <!--*********Page Scripts End*********-->
+<?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
