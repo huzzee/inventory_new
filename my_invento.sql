@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2017 at 11:12 PM
+-- Generation Time: Oct 21, 2017 at 10:33 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -258,7 +258,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (51, '2017_10_16_193752_create_grn_masters_table', 7),
 (52, '2017_10_16_194009_create_grn_details_table', 7),
 (53, '2017_10_20_155643_create_issuance_masters_table', 7),
-(54, '2017_10_20_161007_create_issuance_details_table', 7);
+(54, '2017_10_20_161007_create_issuance_details_table', 7),
+(55, '2017_10_21_101541_create_permissions_table', 8);
 
 -- --------------------------------------------------------
 
@@ -293,6 +294,57 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `menu_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `menu_id`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(481, 35, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(482, 34, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(483, 33, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(484, 30, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(485, 29, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(486, 28, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(487, 27, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(488, 32, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(489, 26, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(490, 25, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(491, 24, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(492, 31, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(493, 23, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(494, 22, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(495, 20, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:48'),
+(496, 19, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(497, 18, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(498, 15, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(499, 14, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(500, 17, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(501, 16, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(502, 13, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(503, 12, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(504, 11, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(505, 10, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(506, 8, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(507, 9, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(508, 21, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(509, 36, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
+(510, 7, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47');
 
 -- --------------------------------------------------------
 
@@ -447,7 +499,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `department_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Abc', 'admin', 1, 1, '$2y$10$3c9d.jcZW.Nb41lOdNX6Le8fBbYEavG7RwKp0FKK/AP8sWoH5opAG', 'avatar.png', 1, 1, NULL, NULL, NULL);
+(1, 'Admin', 'Abc', 'admin', 1, 1, '$2y$10$3c9d.jcZW.Nb41lOdNX6Le8fBbYEavG7RwKp0FKK/AP8sWoH5opAG', 'avatar.png', 1, 1, NULL, NULL, NULL),
+(6, 'Test', 'tests', 'test24', 3, 2, '$2y$10$JGSw8hfxpRXkOT0/EYktLuIXhAQvt8L3DDvFj83YtsZDp1gdxAEFK', 'test24.jpg', 1, 0, NULL, '2017-10-21 17:23:44', '2017-10-21 17:23:44');
 
 --
 -- Indexes for dumped tables
@@ -529,6 +582,14 @@ ALTER TABLE `my_departments`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permissions_menu_id_foreign` (`menu_id`),
+  ADD KEY `permissions_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `purchase_order_details`
@@ -632,12 +693,17 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `my_departments`
 --
 ALTER TABLE `my_departments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=511;
 --
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
@@ -672,7 +738,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -712,6 +778,13 @@ ALTER TABLE `issuance_masters`
 ALTER TABLE `items`
   ADD CONSTRAINT `items_catagory_id_foreign` FOREIGN KEY (`catagory_id`) REFERENCES `item_categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `items_type_id_foreign` FOREIGN KEY (`type_id`) REFERENCES `item_types` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD CONSTRAINT `permissions_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `permissions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `purchase_order_details`
