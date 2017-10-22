@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 21, 2017 at 10:33 PM
+-- Generation Time: Oct 22, 2017 at 12:07 AM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -114,7 +114,7 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `description`, `item_unit`, `opening_qnt`, `current_qnt`, `min_qnt`, `item_image`, `unit_price`, `last_purchase_rate`, `is_saleable`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(18, 5, 12, 'I Phone 8', 897652, 'Color Black', 'Box', 50, 94, 30, 'I Phone 8_5.JPG', 100000.000, 110000.000, 1, 1, 0, '2017-10-19 10:46:03', '2017-10-20 13:42:01'),
+(18, 5, 12, 'I Phone 8', 897652, 'Color Black', 'Box', 50, 107, 30, 'I Phone 8_5.JPG', 110000.000, 100000.000, 1, 1, 0, '2017-10-19 10:46:03', '2017-10-21 18:11:28'),
 (19, 5, 12, 'I Phone X', 879431, 'Color Red', 'Box', 50, 200, 30, 'I Phone X_5.jpg', 110000.000, 130000.000, 1, 1, 0, '2017-10-19 10:48:25', '2017-10-20 13:42:01'),
 (20, 5, 12, 'Samsung S8', 184536, 'Color White,black,red,blue,skin,brown', 'Box', 40, 180, 30, 'Samsung S8_5.jpg', 60000.000, 70000.000, 1, 1, 0, '2017-10-19 10:49:31', '2017-10-20 13:42:01'),
 (21, 5, 12, 'Samsung S7', 462722, 'Color Black,white,purple,blue', 'Box', 60, 470, 50, 'Samsung S7_5.jpg', 45000.000, 5000.000, 1, 1, 0, '2017-10-19 10:50:40', '2017-10-20 13:42:01');
@@ -197,9 +197,9 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (7, 'Users', NULL, NULL, 0, 'mdi mdi-account', NULL, 1, 0, 0, NULL, NULL),
 (8, 'Add Users', 'users/create', 7, 3, NULL, 'users.create', 1, 0, 3, NULL, NULL),
 (9, 'Users List', 'users', 7, 4, NULL, 'users.index', 1, 0, 3, NULL, NULL),
-(10, 'Edit', NULL, 7, 5, NULL, 'users.edit', 1, 1, 4, NULL, NULL),
-(11, 'Users Profile', NULL, 7, 6, NULL, 'users.show', 1, 1, 5, NULL, NULL),
-(12, 'Delete', NULL, 7, 7, NULL, 'users.delete', 1, 1, 6, NULL, NULL),
+(10, 'Edit Users', NULL, 7, 5, NULL, 'users.edit', 1, 1, 4, NULL, NULL),
+(11, 'Users Detail', NULL, 7, 6, NULL, 'users.show', 1, 1, 5, NULL, NULL),
+(12, 'Delete Users', NULL, 7, 7, NULL, 'users.delete', 1, 1, 6, NULL, NULL),
 (13, 'Items/Products', NULL, NULL, 0, 'mdi mdi-note-plus-outline', NULL, 1, 0, 7, NULL, NULL),
 (14, 'Item Type', 'item_types', 13, 1, NULL, 'item_types.index', 1, 0, 10, NULL, NULL),
 (15, 'Item Category', 'item_categories', 13, 2, NULL, 'item_categories.index', 1, 0, 11, NULL, NULL),
@@ -214,16 +214,30 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (24, 'Pending Requests', 'requisitions', 22, 2, NULL, 'requisition.index', 1, 0, 17, NULL, NULL),
 (25, 'Purchase Order', NULL, NULL, 0, 'mdi mdi-cart', NULL, 1, 0, 18, NULL, NULL),
 (26, 'Make Purchase Order', 'purchase/create', 25, 1, NULL, 'purchase.create', 1, 0, 19, NULL, NULL),
-(27, 'Orders Request', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL),
+(27, 'Pending Orders List', 'purchase', 25, 2, NULL, 'purchase.index', 1, 0, 20, NULL, NULL),
 (28, 'Good Receiving Note ', NULL, NULL, 0, ' mdi mdi-shape-rectangle-plus', NULL, 1, 0, 21, NULL, NULL),
 (29, 'Make G.R.N', 'grn/create', 28, 1, NULL, 'grn.create', 1, 0, 22, NULL, NULL),
 (30, 'G.R.N List', 'grn', 28, 2, NULL, 'grn', 1, 0, 23, NULL, NULL),
-(31, 'Approved Requests', 'requisitions_complete', 22, 3, NULL, 'complete', 1, 0, 17, NULL, NULL),
-(32, 'Approved Orders', 'approved_puchase', 25, 3, NULL, 'order', 1, 0, 20, NULL, NULL),
-(33, 'Issuance Slip', NULL, NULL, 0, 'mdi mdi-shape-rectangle-plus', NULL, 1, 0, 24, NULL, NULL),
+(31, 'Approved Requests', 'requisitions_complete', 22, 3, NULL, 'app_req', 1, 0, 17, NULL, NULL),
+(32, 'Approved Orders', 'approved_puchase', 25, 3, NULL, 'app_purchase', 1, 0, 20, NULL, NULL),
+(33, 'Issuance Slip', NULL, NULL, 0, 'mdi mdi-arrow-top-left', NULL, 1, 0, 24, NULL, NULL),
 (34, 'Make Issuance Slip ', 'issuance/create', 33, 1, NULL, 'issuance.create', 1, 0, 25, NULL, NULL),
 (35, 'Issuance Slip', 'issuance', 33, 2, NULL, 'issuance.index', 1, 0, 26, NULL, NULL),
-(36, 'Designation', 'roles', 7, 2, NULL, 'roles.index', 1, 0, 1, NULL, NULL);
+(36, 'Designation', 'roles', 7, 2, NULL, 'roles.index', 1, 0, 1, NULL, NULL),
+(37, 'Delete Designations', NULL, 7, 2, NULL, 'roles.delete', 1, 1, 1, NULL, NULL),
+(38, 'Delete Departments', NULL, 7, 2, NULL, 'departments.delete', 1, 1, 2, NULL, NULL),
+(39, 'Edit Items', NULL, 13, 2, NULL, 'items.edit', 1, 1, 9, NULL, NULL),
+(40, 'Items Details', NULL, 13, 2, NULL, 'items.show', 1, 1, 9, NULL, NULL),
+(41, 'Delete Items', NULL, 13, 2, NULL, 'items.delete', 1, 1, 9, NULL, NULL),
+(42, 'Delete Item Types', NULL, 13, 5, NULL, 'item_types.delete', 1, 1, 10, NULL, NULL),
+(43, 'Delete Item Categories', NULL, 13, 6, NULL, 'item_categories.delete', 1, 1, 11, NULL, NULL),
+(44, 'Edit Suppliers', NULL, 18, 3, NULL, 'suppliers.edit', 1, 1, 14, NULL, NULL),
+(45, 'Suppliers Detail', NULL, 18, 3, NULL, 'suppliers.show', 1, 1, 14, NULL, NULL),
+(46, 'Delete Suppliers', NULL, 18, 3, NULL, 'suppliers.delete', 1, 1, 14, NULL, NULL),
+(47, 'Requisitions Detail', NULL, 22, 4, NULL, 'requisitions.show', 1, 1, 17, NULL, NULL),
+(48, 'Purchase Order Detail', NULL, 25, 4, NULL, 'purchase.show', 1, 1, 20, NULL, NULL),
+(49, 'G.R.N Detail', NULL, 28, 3, NULL, 'grn.show', 1, 1, 23, NULL, NULL),
+(50, 'Issuance Slip Detail', NULL, 33, 3, NULL, 'issuance.show', 1, 1, 27, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -281,7 +295,9 @@ CREATE TABLE `my_departments` (
 
 INSERT INTO `my_departments` (`id`, `department_name`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Admin Department', 1, '2017-10-12 16:09:17', '2017-10-12 16:09:17'),
-(2, 'Sales Department', 1, '2017-10-12 15:47:02', '2017-10-12 15:47:02');
+(2, 'Sales Department', 0, '2017-10-12 15:47:02', '2017-10-21 18:16:31'),
+(3, 'Purchase Department', 1, '2017-10-21 18:16:07', '2017-10-21 18:16:07'),
+(4, 'Inventory Department', 1, '2017-10-21 18:16:17', '2017-10-21 18:16:17');
 
 -- --------------------------------------------------------
 
@@ -315,36 +331,138 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `menu_id`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
-(481, 35, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(482, 34, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(483, 33, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(484, 30, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(485, 29, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(486, 28, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(487, 27, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(488, 32, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(489, 26, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(490, 25, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(491, 24, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(492, 31, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(493, 23, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(494, 22, 6, 0, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(495, 20, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:48'),
-(496, 19, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(497, 18, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(498, 15, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(499, 14, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(500, 17, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(501, 16, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(502, 13, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(503, 12, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(504, 11, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(505, 10, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(506, 8, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(507, 9, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(508, 21, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(509, 36, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47'),
-(510, 7, 6, 1, '2017-10-21 17:26:47', '2017-10-21 17:26:47');
+(571, 50, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(572, 35, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(573, 34, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(574, 33, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(575, 30, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(576, 49, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(577, 29, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(578, 28, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(579, 27, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(580, 32, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(581, 48, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(582, 26, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(583, 25, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(584, 24, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(585, 31, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(586, 47, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(587, 23, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(588, 22, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(589, 20, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(590, 44, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(591, 45, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(592, 46, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(593, 19, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(594, 18, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(595, 15, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(596, 43, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:29'),
+(597, 14, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(598, 42, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(599, 17, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(600, 39, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(601, 40, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(602, 41, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(603, 16, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(604, 13, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(605, 12, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(606, 11, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(607, 10, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(608, 8, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(609, 9, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(610, 21, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(611, 38, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(612, 36, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(613, 37, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(614, 7, 8, 1, '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(615, 50, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(616, 35, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(617, 34, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(618, 33, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(619, 30, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(620, 49, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(621, 29, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(622, 28, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(623, 27, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(624, 32, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(625, 48, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(626, 26, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(627, 25, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(628, 24, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(629, 31, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(630, 47, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(631, 23, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(632, 22, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(633, 20, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(634, 44, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(635, 45, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(636, 46, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(637, 19, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(638, 18, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(639, 15, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(640, 43, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(641, 14, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(642, 42, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(643, 17, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(644, 39, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(645, 40, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(646, 41, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:44'),
+(647, 16, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(648, 13, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(649, 12, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(650, 11, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(651, 10, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(652, 8, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(653, 9, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(654, 21, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(655, 38, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(656, 36, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(657, 37, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(658, 7, 9, 1, '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(659, 50, 10, 0, '2017-10-21 18:25:41', '2017-10-21 18:25:41'),
+(660, 35, 10, 0, '2017-10-21 18:25:41', '2017-10-21 18:25:41'),
+(661, 34, 10, 0, '2017-10-21 18:25:41', '2017-10-21 18:25:41'),
+(662, 33, 10, 0, '2017-10-21 18:25:41', '2017-10-21 18:25:41'),
+(663, 30, 10, 1, '2017-10-21 18:25:41', '2017-10-21 18:25:42'),
+(664, 49, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(665, 29, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(666, 28, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(667, 27, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(668, 32, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(669, 48, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(670, 26, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(671, 25, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(672, 24, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(673, 31, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(674, 47, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(675, 23, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(676, 22, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(677, 20, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(678, 44, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(679, 45, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(680, 46, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(681, 19, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(682, 18, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(683, 15, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(684, 43, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(685, 14, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(686, 42, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(687, 17, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(688, 39, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(689, 40, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(690, 41, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(691, 16, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(692, 13, 10, 1, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(693, 12, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(694, 11, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(695, 10, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(696, 8, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(697, 9, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(698, 21, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(699, 38, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(700, 36, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(701, 37, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42'),
+(702, 7, 10, 0, '2017-10-21 18:25:42', '2017-10-21 18:25:42');
 
 -- --------------------------------------------------------
 
@@ -443,7 +561,9 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `role_name`, `superadmin`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 1, 1, NULL, NULL),
-(3, 'Manager', 0, 1, '2017-10-20 17:21:10', '2017-10-20 17:21:17');
+(3, 'Manager', 0, 1, '2017-10-20 17:21:10', '2017-10-20 17:21:17'),
+(4, 'Assistant', 0, 1, '2017-10-21 18:15:33', '2017-10-21 18:15:33'),
+(5, 'Officer', 0, 1, '2017-10-21 18:15:48', '2017-10-21 18:15:48');
 
 -- --------------------------------------------------------
 
@@ -499,8 +619,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `department_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Abc', 'admin', 1, 1, '$2y$10$3c9d.jcZW.Nb41lOdNX6Le8fBbYEavG7RwKp0FKK/AP8sWoH5opAG', 'avatar.png', 1, 1, NULL, NULL, NULL),
-(6, 'Test', 'tests', 'test24', 3, 2, '$2y$10$JGSw8hfxpRXkOT0/EYktLuIXhAQvt8L3DDvFj83YtsZDp1gdxAEFK', 'test24.jpg', 1, 0, NULL, '2017-10-21 17:23:44', '2017-10-21 17:23:44');
+(8, 'huzaifa', 'siddqiui', 'huzaifa24', 1, 1, '$2y$10$AI8urCjHZLCs8xjfqK94nuVnDxHZ9BKwug3wOsIrQL7JP4KsudddO', 'huzaifa24.jpg', 1, 0, 'qE0B2GHho0422W8VpBZeBiYcKDg1O7k8gpaYdyCVyX80QUFirH9FAeL2o9oW', '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
+(9, 'Admin', 'ad', 'admin', 1, 1, '$2y$10$3x1nL.Eaf8LuXbQc41LKU.lJx6wLbAOxDyENvA8mNuv6xAUdDD3s6', 'avatar.png', 1, 0, 'Mi0Jg7BjW8wYkQi0HsUHIBhE4C3ak1xuGgh9LIAYfvApkf5vNj6JweUC2wr8', '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(10, 'Anwar', 'Shah', 'anwar_shah', 4, 3, '$2y$10$Ulw6UUCiFvxxS92dxI3TqO6EOkuAs..Vfg2BmHddzTiBN7aIOoKRm', 'anwar_shah.jpg', 1, 0, 'A7oivsxLmFrRzuK63nhPbO99yTUPpkbgcRyLwSpCswbkDR2gWvZA6FDRw0as', '2017-10-21 18:25:41', '2017-10-21 18:25:41');
 
 --
 -- Indexes for dumped tables
@@ -653,22 +774,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `issuance_details`
 --
 ALTER TABLE `issuance_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `issuance_masters`
 --
 ALTER TABLE `issuance_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -688,7 +809,7 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -698,37 +819,37 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `my_departments`
 --
 ALTER TABLE `my_departments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=511;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=703;
 --
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `requisition_details`
 --
 ALTER TABLE `requisition_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
@@ -738,7 +859,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
