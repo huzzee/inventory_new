@@ -22,7 +22,7 @@
             <!-- end row -->
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card-box">
 
                         <div class="row">
@@ -80,9 +80,10 @@
                        
                     </div> <!-- end ard-box -->
                 </div><!-- end col-->
+            </div>
 
-            
-                <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
                     <div class="card-box table-responsive">
                         <h4 class="m-t-0 header-title"><b>Item Type List</b></h4>
                         

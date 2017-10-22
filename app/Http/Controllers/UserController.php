@@ -18,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles','my_departments')->where('role_id','!=',1)->where('users.status','=',1)->get();
+        
+        $users = User::with('roles','my_departments')->where('users.status','=',1)->latest()->get();
         return view('pages.users.usersList',array(
             'users' => $users
         ));
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('status','=',1)->where('superadmin','=',0)->get();
+        $roles = Role::where('status','=',1)->get();
         $departments = MyDepartment::where('status','=',1)->get();
 
         $menus = Menu::all();

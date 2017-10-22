@@ -14,7 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {   
-        $roles = Role::where('status','=',1)->where('superadmin','=',0)->get(); 
+        $roles = Role::where('status','=',1)->get(); 
 
         return view('pages.designation.designation',array(
             'roles' => $roles

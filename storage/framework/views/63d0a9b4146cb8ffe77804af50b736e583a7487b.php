@@ -14,16 +14,16 @@
                             </li>
 
                             <?php $__currentLoopData = callMenus(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $menus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if($menus->parent_menu_id == ''): ?>
+                                <?php if($menus->menus->parent_menu_id == ''): ?>
                                    
                                     <li class="has_sub">
-                                        <?php if($menus->menu_slug == ''): ?>    
+                                        <?php if($menus->menus->menu_slug == ''): ?>    
                                             <a href="javascript:void(0);" class="waves-effect">
                                         <?php else: ?>
-                                            <a href="<?php echo e(url($menus->menu_slug)); ?>" class="waves-effect">
+                                            <a href="<?php echo e(url($menus->menus->menu_slug)); ?>" class="waves-effect">
                                         <?php endif; ?>           
-                                                <i class="<?php echo e($menus->icon); ?>"></i>
-                                                <span> <?php echo e($menus->menu_name); ?> </span>
+                                                <i class="<?php echo e($menus->menus->icon); ?>"></i>
+                                                <span> <?php echo e($menus->menus->menu_name); ?> </span>
                                             </a>
                                             
                                         
@@ -31,8 +31,10 @@
                                         
                                         <ul class="list-unstyled">
                                             <?php $__currentLoopData = callMenus(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $submenus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <?php if($submenus->parent_menu_id == $menus->id): ?>
-                                                    <li><a href="<?php echo e(url($submenus->menu_slug)); ?>"><?php echo e($submenus->menu_name); ?></a></li>
+                                                <?php if($submenus->menus->parent_menu_id == $menus->menus->id): ?>
+                                                    <li>
+                                                        <a href="<?php echo e(url($submenus->menus->menu_slug)); ?>"><?php echo e($submenus->menus->menu_name); ?></a>
+                                                    </li>
                                                 <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>

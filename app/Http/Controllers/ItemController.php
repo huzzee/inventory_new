@@ -141,6 +141,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
+        //check_user_privilage();
         //$items = $item;
         $item_cats = ItemCategory::pluck('item_cat_name','id');
         $item_types = ItemType::pluck('item_type_name','id');

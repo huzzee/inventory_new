@@ -8,7 +8,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Designation</h4>
+                        <h4 class="page-title">Department</h4>
                         
                         <div class="clearfix"></div>
 
@@ -18,39 +18,26 @@
             <!-- end row -->
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <div class="card-box">
 
                         <div class="row">
                             <div class="col-sm-12 col-xs-12 col-md-12">
 
-                                <h4 class="header-title m-t-0">Create Designation</h4>
+                                <h4 class="header-title m-t-0">Create Department</h4>
                                 
 
                                 <div class="p-20">
-                                    <form action="<?php echo e(route('roles.store')); ?>" method="POST">
+                                    <form action="<?php echo e(route('departments.store')); ?>" method="POST">
                                          <?php echo e(csrf_field()); ?>
 
-                                            <?php if(count($errors) > 0): ?>
-                                                <div class="alert alert-danger">
-                                                    <ul>
-                                                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <li><?php echo e($error); ?></li>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </ul>
-                                                </div>
-                                            <?php endif; ?>
                                         <div class="form-group row">
-                                            <label for="item_type" class="col-sm-2">Designation Name<span class="text-danger">*</span></label>
+                                            <label for="department_name" class="col-sm-2">Department Name<span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="role_name" parsley-trigger="change" required
-                                                   placeholder="Enter Designation Name" class="form-control" value="<?php echo e(old('role_name')); ?>" />
-                                                    
+                                                <input type="text" name="department_name" parsley-trigger="change" required
+                                                   placeholder="Enter Department Name" class="form-control" id="department_name"/>
                                             </div>
                                         </div>
-
-
-                                        
                                         <div class="form-group row">
                                             <label for="status" class="col-sm-2">Active<span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
@@ -77,20 +64,22 @@
                        
                     </div> <!-- end ard-box -->
                 </div><!-- end col-->
+
             </div>
 
+
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                        <h4 class="m-t-0 header-title"><b>Item Type List</b></h4>
+                        <h4 class="m-t-0 header-title"><b>Departments List</b></h4>
                         
 
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th width="5%">Sr.No</th>
-                                <th>Designation Name</th>
-                                
+                                <th>Name</th>
+                                <th width="20%">Status</th>
                                 <th width="20%">Action</th>
                                 
                             </tr>
@@ -99,18 +88,24 @@
 
                             <tbody>
                                 <?php $i=1; ?>
-                                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>    
+                                <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>    
                                 <tr>
                                     <td style="color: teal;"><?php echo e($i); ?></td>
-                                    <td style="font-size: 16px;"><?php echo e($role->role_name); ?></td>
-                                    
+                                    <td style="font-size: 16px;"><?php echo e($department->department_name); ?></td>
+                                    <td style="font-size: 16px;">
+                                        <?php if($department->status == 1): ?>
+                                        Active
+                                        <?php else: ?>
+                                        Inactive
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
-                                        <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal<?php echo e($role->id); ?>"><i class="fa fa-remove"></i></button>
+                                        <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal<?php echo e($department->id); ?>"><i class="fa fa-remove"></i></button>
                                     </td>
                                     
                                 </tr>
 
-                                <div id="con-close-modal<?php echo e($role->id); ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div id="con-close-modal<?php echo e($department->id); ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -119,12 +114,12 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     
-                                                    Are You Sure.You want to Disable it.
+                                                    Are You Sure.You want to Delete it.
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
 
-                                                    <form action="<?php echo e(url('roles/'.$role->id)); ?>" method="post">
+                                                    <form action="<?php echo e(url('departments/'.$department->id)); ?>" method="post">
                                                         <?php echo e(csrf_field()); ?>
 
                                                         <input type="hidden" name="_method" value="DELETE">
@@ -143,7 +138,6 @@
                     </div>
                 </div>
             </div>
-            
 
         </div> <!-- container -->
 
@@ -154,7 +148,6 @@
 <!--*********Page Scripts Here*********-->
 
 <?php $__env->startSection('scripts'); ?>
-       
         <script src="<?php echo e(asset('assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
         <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
 

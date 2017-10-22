@@ -8,7 +8,7 @@
                 <div class="col-xs-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">Designation</h4>
+                        <h4 class="page-title">Suppliers List</h4>
                         
                         <div class="clearfix"></div>
 
@@ -17,100 +17,70 @@
             </div>
             <!-- end row -->
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card-box">
-
-                        <div class="row">
-                            <div class="col-sm-12 col-xs-12 col-md-12">
-
-                                <h4 class="header-title m-t-0">Create Designation</h4>
-                                
-
-                                <div class="p-20">
-                                    <form action="<?php echo e(route('roles.store')); ?>" method="POST">
-                                         <?php echo e(csrf_field()); ?>
-
-                                            <?php if(count($errors) > 0): ?>
-                                                <div class="alert alert-danger">
-                                                    <ul>
-                                                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <li><?php echo e($error); ?></li>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </ul>
-                                                </div>
-                                            <?php endif; ?>
-                                        <div class="form-group row">
-                                            <label for="item_type" class="col-sm-2">Designation Name<span class="text-danger">*</span></label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="role_name" parsley-trigger="change" required
-                                                   placeholder="Enter Designation Name" class="form-control" value="<?php echo e(old('role_name')); ?>" />
-                                                    
-                                            </div>
-                                        </div>
-
-
-                                        
-                                        <div class="form-group row">
-                                            <label for="status" class="col-sm-2">Active<span class="text-danger">*</span></label>
-                                            <div class="col-sm-8">
-                                                <input type="checkbox" id="switch3" name="status" switch="bool" checked/>
-                                                <label for="switch3" data-on-label="Yes"
-                                                   data-off-label="No"></label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-8"></div>
-                                            <div class="col-sm-2">
-                                                <button class="btn btn-teal">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- end row -->
-
-                       
-                    </div> <!-- end ard-box -->
-                </div><!-- end col-->
-            </div>
+            
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div class="card-box table-responsive">
-                        <h4 class="m-t-0 header-title"><b>Item Type List</b></h4>
+
+                        <a class="btn btn-danger" href="<?php echo e(url('suppliers/create')); ?>">Create Supplier</a>
+                                    
+                        <hr>
                         
 
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th width="5%">Sr.No</th>
-                                <th>Designation Name</th>
-                                
-                                <th width="20%">Action</th>
+                                <th width="3%">Sr.No</th>
+                                <th width="3%">Image</th>
+                                <th width="10%">Name</th>
+                                <th width="12%">Phone No.</th>
+                                <!-- <th width="10%">Account No.</th> -->
+                                <th width="14%">Email</th>
+                                <th width="">Address</th>
+                                <th width="">status</th>                                
+                                <th width="12%">Action</th>
                                 
                             </tr>
                             </thead>
 
 
                             <tbody>
-                                <?php $i=1; ?>
-                                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>    
-                                <tr>
-                                    <td style="color: teal;"><?php echo e($i); ?></td>
-                                    <td style="font-size: 16px;"><?php echo e($role->role_name); ?></td>
-                                    
-                                    <td>
-                                        <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal<?php echo e($role->id); ?>"><i class="fa fa-remove"></i></button>
-                                    </td>
-                                    
-                                </tr>
+                                <?php $i=1;?>
+                                <?php $__currentLoopData = $suppliers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sup): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                                <div id="con-close-modal<?php echo e($role->id); ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                	<tr>
+                                		<td align="center"><?php echo e($i); ?></td>
+                                		<td align="center"><img src="<?php echo e(asset('uploads/'.$sup->sup_image)); ?>" style="width: 50px;height: 50px"></td>
+                                		<td><?php echo e($sup->sup_name); ?></td>
+                                		<td><?php echo e($sup->sup_phone); ?></td>
+                                        <!-- <td><?php echo e($sup->sup_account); ?></td> -->
+                                        <td><?php echo e($sup->sup_email); ?></td>
+                                        
+                                        <td><?php echo e($sup->sup_address); ?></td>
+                                        <td>
+                                            <?php if($sup->status == 1): ?>
+                                            Active
+                                            <?php else: ?>
+                                            Inactive
+                                            <?php endif; ?>
+                                        </td>
+                                		
+                                		<td>
+                                			
+	                                            
+                                            <a href="<?php echo e(url('suppliers/'.$sup->id)); ?>" class="btn btn-icon waves-effect waves-light btn-teal m-b-5" style="float: left"> 
+                                            	<i class="fa fa-eye"></i>
+                                            </a>
+                                            
+                                            
+                                            <a href="<?php echo e(url('suppliers/'.$sup->id.'/edit')); ?>" class="btn btn-icon waves-effect waves-light btn-info m-b-5" style="float: left"><i class="fa fa-edit"></i></a>
+                                          
+                                			
+                                        	<button class="btn btn-icon waves-effect waves-light btn-danger m-b-5" data-toggle="modal" data-target="#con-close-modal<?php echo e($sup->id); ?>"><i class="fa fa-remove"></i></button>
+                                		</td>
+                                	</tr>
+                                	<div id="con-close-modal<?php echo e($sup->id); ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -119,12 +89,12 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     
-                                                    Are You Sure.You want to Disable it.
+                                                    Are You Sure.You want to Delete it.
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="float: right;">Close</button>
 
-                                                    <form action="<?php echo e(url('roles/'.$role->id)); ?>" method="post">
+                                                    <form action="<?php echo e(url('suppliers/'.$sup->id)); ?>" method="post">
                                                         <?php echo e(csrf_field()); ?>
 
                                                         <input type="hidden" name="_method" value="DELETE">
@@ -136,25 +106,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                <?php $i++ ?>
+                                <?php $i++; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            
 
         </div> <!-- container -->
 
     </div> <!-- content -->
 
 <?php $__env->stopSection(); ?>
-
-<!--*********Page Scripts Here*********-->
-
 <?php $__env->startSection('scripts'); ?>
-       
         <script src="<?php echo e(asset('assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
         <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
 
@@ -172,14 +137,12 @@
         <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.scroller.min.js')); ?>"></script>
         <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.colVis.js')); ?>"></script>
         <script src="<?php echo e(asset('assets/plugins/datatables/dataTables.fixedColumns.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('assets/plugins/custombox/js/custombox.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('assets/plugins/custombox/js/legacy.min.js')); ?>"></script>
 
         <!-- init -->
         <script src="<?php echo e(asset('assets/pages/jquery.datatables.init.js')); ?>"></script>
 
 
-        <script type="text/javascript">
+         <script type="text/javascript">
             $(document).ready(function () {
                 $('#datatable').dataTable();
                 $('#datatable-keytable').DataTable({keys: true});
@@ -213,6 +176,4 @@
 
         </script>
 <?php $__env->stopSection(); ?>
-
-<!--*********Page Scripts End*********-->
 <?php echo $__env->make('layouts.mainHome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
