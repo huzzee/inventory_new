@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 22, 2017 at 12:07 AM
+-- Generation Time: Oct 22, 2017 at 04:46 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.1.7
 
@@ -117,7 +117,8 @@ INSERT INTO `items` (`id`, `catagory_id`, `type_id`, `item_name`, `item_code`, `
 (18, 5, 12, 'I Phone 8', 897652, 'Color Black', 'Box', 50, 107, 30, 'I Phone 8_5.JPG', 110000.000, 100000.000, 1, 1, 0, '2017-10-19 10:46:03', '2017-10-21 18:11:28'),
 (19, 5, 12, 'I Phone X', 879431, 'Color Red', 'Box', 50, 200, 30, 'I Phone X_5.jpg', 110000.000, 130000.000, 1, 1, 0, '2017-10-19 10:48:25', '2017-10-20 13:42:01'),
 (20, 5, 12, 'Samsung S8', 184536, 'Color White,black,red,blue,skin,brown', 'Box', 40, 180, 30, 'Samsung S8_5.jpg', 60000.000, 70000.000, 1, 1, 0, '2017-10-19 10:49:31', '2017-10-20 13:42:01'),
-(21, 5, 12, 'Samsung S7', 462722, 'Color Black,white,purple,blue', 'Box', 60, 470, 50, 'Samsung S7_5.jpg', 45000.000, 5000.000, 1, 1, 0, '2017-10-19 10:50:40', '2017-10-20 13:42:01');
+(21, 5, 12, 'Samsung S7', 462722, 'Color Black,white,purple,blue', 'Box', 60, 470, 50, 'Samsung S7_5.jpg', 45000.000, 5000.000, 1, 1, 0, '2017-10-19 10:50:40', '2017-10-20 13:42:01'),
+(22, 6, 12, 'Pencil', 213151, 'boxes', 'Box', 50, 50, 20, 'Pencil_6.jpg', 40.000, 0.000, 0, 1, 0, '2017-10-22 11:10:17', '2017-10-22 11:10:17');
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,7 @@ INSERT INTO `menus` (`id`, `menu_name`, `menu_slug`, `parent_menu_id`, `order`, 
 (29, 'Make G.R.N', 'grn/create', 28, 1, NULL, 'grn.create', 1, 0, 22, NULL, NULL),
 (30, 'G.R.N List', 'grn', 28, 2, NULL, 'grn', 1, 0, 23, NULL, NULL),
 (31, 'Approved Requests', 'requisitions_complete', 22, 3, NULL, 'app_req', 1, 0, 17, NULL, NULL),
-(32, 'Approved Orders', 'approved_puchase', 25, 3, NULL, 'app_purchase', 1, 0, 20, NULL, NULL),
+(32, 'Approved Orders', 'approved_purchase', 25, 3, NULL, 'app_purchase', 1, 0, 20, NULL, NULL),
 (33, 'Issuance Slip', NULL, NULL, 0, 'mdi mdi-arrow-top-left', NULL, 1, 0, 24, NULL, NULL),
 (34, 'Make Issuance Slip ', 'issuance/create', 33, 1, NULL, 'issuance.create', 1, 0, 25, NULL, NULL),
 (35, 'Issuance Slip', 'issuance', 33, 2, NULL, 'issuance.index', 1, 0, 26, NULL, NULL),
@@ -620,8 +621,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `role_id`, `department_id`, `password`, `profile_image`, `status`, `gender`, `remember_token`, `created_at`, `updated_at`) VALUES
 (8, 'huzaifa', 'siddqiui', 'huzaifa24', 1, 1, '$2y$10$AI8urCjHZLCs8xjfqK94nuVnDxHZ9BKwug3wOsIrQL7JP4KsudddO', 'huzaifa24.jpg', 1, 0, 'qE0B2GHho0422W8VpBZeBiYcKDg1O7k8gpaYdyCVyX80QUFirH9FAeL2o9oW', '2017-10-21 18:19:28', '2017-10-21 18:19:28'),
-(9, 'Admin', 'ad', 'admin', 1, 1, '$2y$10$3x1nL.Eaf8LuXbQc41LKU.lJx6wLbAOxDyENvA8mNuv6xAUdDD3s6', 'avatar.png', 1, 0, 'Mi0Jg7BjW8wYkQi0HsUHIBhE4C3ak1xuGgh9LIAYfvApkf5vNj6JweUC2wr8', '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
-(10, 'Anwar', 'Shah', 'anwar_shah', 4, 3, '$2y$10$Ulw6UUCiFvxxS92dxI3TqO6EOkuAs..Vfg2BmHddzTiBN7aIOoKRm', 'anwar_shah.jpg', 1, 0, 'A7oivsxLmFrRzuK63nhPbO99yTUPpkbgcRyLwSpCswbkDR2gWvZA6FDRw0as', '2017-10-21 18:25:41', '2017-10-21 18:25:41');
+(9, 'Admin', 'ad', 'admin', 1, 1, '$2y$10$3x1nL.Eaf8LuXbQc41LKU.lJx6wLbAOxDyENvA8mNuv6xAUdDD3s6', 'avatar.png', 1, 0, 'CnpVJO9eGFJwa6wpg5X0IWKTuQ3cvGJgVptS1QtI2ORA75OGndIHfAOnQG4G', '2017-10-21 18:23:43', '2017-10-21 18:23:43'),
+(10, 'Anwar', 'Shah', 'anwar_shah', 4, 3, '$2y$10$Ulw6UUCiFvxxS92dxI3TqO6EOkuAs..Vfg2BmHddzTiBN7aIOoKRm', 'anwar_shah.jpg', 1, 0, 'kkpo74AdNmXmjMzsExWhPA42WPa2brSF2waMUdFB4KuXBIrImnkcW2UlscbM', '2017-10-21 18:25:41', '2017-10-21 18:25:41');
 
 --
 -- Indexes for dumped tables
@@ -774,27 +775,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `grn_details`
 --
 ALTER TABLE `grn_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `grn_masters`
 --
 ALTER TABLE `grn_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `issuance_details`
 --
 ALTER TABLE `issuance_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `issuance_masters`
 --
 ALTER TABLE `issuance_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `item_categories`
 --
@@ -829,22 +830,22 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `purchase_order_details`
 --
 ALTER TABLE `purchase_order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `purchase_order_masters`
 --
 ALTER TABLE `purchase_order_masters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `requisitions`
 --
 ALTER TABLE `requisitions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `requisition_details`
 --
 ALTER TABLE `requisition_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `roles`
 --
