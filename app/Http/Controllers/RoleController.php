@@ -7,6 +7,10 @@ use App\Models\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +63,7 @@ class RoleController extends Controller
         $role->save();
 
 
-        return redirect('roles');
+        return redirect('roles')->with('message','Designation has been created Successfully');
     }
 
     /**

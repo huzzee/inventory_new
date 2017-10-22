@@ -26,7 +26,7 @@
                              <?php echo e(csrf_field()); ?>
 
 
-                             <?php if(count($errors) > 0): ?>
+                            <?php if(count($errors) > 0): ?>
                                 <div class="alert alert-danger">
                                     <ul>
                                         <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -35,12 +35,18 @@
                                     </ul>
                                 </div>
                             <?php endif; ?>
+                            <?php if(session()->has('message')): ?>
+                                <div class="alert alert-success">
+                                    <?php echo e(session()->get('message')); ?>
+
+                                </div>
+                            <?php endif; ?>
 
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12">
                                         
                                        
-                                        <a class="btn btn-danger" href="<?php echo e(url('requisitions')); ?>">Purchase Order List</a>
+                                        <a class="btn btn-danger" href="<?php echo e(url('approved_purchase')); ?>">Purchase Order List</a>
                                         <hr>
                                         
                                         

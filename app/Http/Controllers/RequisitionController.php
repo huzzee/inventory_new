@@ -13,6 +13,10 @@ use Carbon\Carbon;
 
 class RequisitionController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -101,7 +105,7 @@ class RequisitionController extends Controller
 
        
 
-            return redirect('requisitions');
+            return redirect()->back()->with('message','Requisition has been created Successfully, Wait for Approval!');
        
     }
 

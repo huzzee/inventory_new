@@ -8,9 +8,14 @@ use App\Models\Role;
 use App\User;
 use App\Models\Menu;
 use App\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store','update']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +24,7 @@ class UserController extends Controller
     public function index()
     {
         
+        //dd(Auth::user()->id);
         $users = User::with('roles','my_departments')->where('users.status','=',1)->latest()->get();
         return view('pages.users.usersList',array(
             'users' => $users
@@ -133,7 +139,7 @@ class UserController extends Controller
             $permission->save();
         }
 
-        return redirect('users');
+        return redirect('users')->with('message','User created Succesfully');
 
     }
 
@@ -280,7 +286,7 @@ class UserController extends Controller
             $permission_menu->save();
         }
 
-        return redirect('users');
+        return redirect('users')->with('message','Items Updated Succesfully');
     }
 
     /**

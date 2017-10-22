@@ -21,6 +21,13 @@
 
             <div class="row">
                 <div class="col-sm-12">
+                    <?php if(session()->has('message')): ?>
+                        <div class="alert alert-success">
+                            <?php echo e(session()->get('message')); ?>
+
+                        </div>
+                    <?php endif; ?>
+                    
                     <div class="card-box table-responsive">
 
                         <a class="btn btn-danger" href="<?php echo e(url('items/create')); ?>">Create Items</a>

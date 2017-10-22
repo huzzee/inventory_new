@@ -8,6 +8,11 @@ use App\Models\ItemType;
 
 class ItemCategoryController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
+
     public function index()
     {
     	$item_cats = ItemCategory::where('status','=',1)->get();
@@ -44,7 +49,7 @@ class ItemCategoryController extends Controller
     	]);
     	$item_cat->save();
 
-    	return redirect('item_categories');
+    	return redirect('item_categories')->with('message','Item Category created Succesfully');
     }
 
     public function destroy($id)

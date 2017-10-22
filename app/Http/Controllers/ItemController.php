@@ -10,6 +10,10 @@ use App\Http\Requests\ItemRequest;
 
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store','update']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -110,7 +114,7 @@ class ItemController extends Controller
 
             $items->save();
 
-            return redirect('items');
+            return redirect('items')->with('message','Items created Succesfully');
 
 
         
@@ -224,7 +228,7 @@ class ItemController extends Controller
 
             $items->save();
 
-            return redirect('items');
+            return redirect('items')->with('message','Items Updated Succesfully');
     }
 
     /**

@@ -10,6 +10,10 @@ use App\Models\Item;
 
 class IssuanceMasterController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -101,7 +105,7 @@ class IssuanceMasterController extends Controller
 
 
 
-        return redirect('issuance');
+        return redirect('issuance')->with('message','Issuance created Succesfully');
     }
 
     /**

@@ -9,6 +9,10 @@ use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store','update']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -107,7 +111,7 @@ class SupplierController extends Controller
 
             $supplier->save();
 
-            return redirect('suppliers');
+            return redirect('suppliers')->with('message','Suppliers has been created Successfully');
         
     }
 
@@ -209,7 +213,7 @@ class SupplierController extends Controller
 
             $supplier->save();
 
-        return redirect('suppliers');
+        return redirect('suppliers')->with('message','Suppliers has been updated Successfully');
 
     }
 

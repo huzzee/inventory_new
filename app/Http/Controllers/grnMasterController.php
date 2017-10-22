@@ -11,6 +11,10 @@ use App\Models\PurchaseOrderMaster;
 
 class grnMasterController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -99,7 +103,7 @@ class grnMasterController extends Controller
 
 
 
-        return redirect('grn');
+        return redirect('grn')->with('message','G.R.N created Succesfully');
 
     }
 

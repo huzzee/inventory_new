@@ -8,6 +8,10 @@ use App\Models\MyDepartment;
 
 class MyDepartmentController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +58,7 @@ class MyDepartmentController extends Controller
 
         $department->save();
 
-        return redirect('departments');
+        return redirect('departments')->with('message','Department created Succesfully');
     }
 
     /**

@@ -7,6 +7,11 @@ use App\Models\ItemType;
 
 class ItemTypeController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
+
     public function index()
     {
     	$item_types = ItemType::where('status','=',1)->get();
@@ -40,7 +45,7 @@ class ItemTypeController extends Controller
 
     	$items_type->save();
 
-    	return redirect('item_types');
+    	return redirect('item_types')->with('message','Item Type created Succesfully');
     }
 
     public function destroy($id)

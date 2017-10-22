@@ -9,9 +9,14 @@ use App\Models\Supplier;
 use App\Models\PurchaseOrderDetail;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseOrderMasterController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('user_privilage',['except' => ['store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -101,7 +106,7 @@ class PurchaseOrderMasterController extends Controller
             $puchase_order_detail->save();
         }
 
-        return redirect('purchase');
+        return redirect()->back()->with('message','Order has been created Successfully, Wait for Approval!');
     }
 
     /**

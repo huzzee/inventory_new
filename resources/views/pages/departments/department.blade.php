@@ -73,6 +73,11 @@
 
             <div class="row">
                 <div class="col-sm-12">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
                     <div class="card-box table-responsive">
                         <h4 class="m-t-0 header-title"><b>Departments List</b></h4>
                         

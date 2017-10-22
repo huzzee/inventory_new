@@ -25,6 +25,11 @@
 
             <div class="row">
                 <div class="col-sm-12">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
                     <div class="card-box table-responsive">
 
                         <a class="btn btn-danger" href="{{ url('users/create') }}">Create User</a>
