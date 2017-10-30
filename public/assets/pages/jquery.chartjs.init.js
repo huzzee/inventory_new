@@ -54,7 +54,7 @@ File: Chartjs
     ChartJs.prototype.init = function() {
         //creating lineChart
         var lineChart = {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September"],
+            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September","October","November","December"],
             datasets: [
                 {
                     label: "Sales Analytics",
@@ -75,18 +75,18 @@ File: Chartjs
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [65, 59, 80, 81, 56, 55, 40, 35, 30]
+                    data: [650, 5900, 8064, 810, 56, 5995, 9940, 3995, 9930, 10045 , 50 ,80]
                 }
             ]
         };
-
+        var k = 1000;
         var lineOpts = {
             scales: {
                 yAxes: [{
                     ticks: {
-                        max: 100,
-                        min: 20,
-                        stepSize: 10
+                        max: 100000,
+                        min: 0,
+                        stepSize: 10000
                     }
                 }]
             }
@@ -148,13 +148,13 @@ File: Chartjs
 
         //barchart
         var barChart = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: ["January", "February", "March", "April", "May", "June", "July","August","September","Octuber","November","December"],
             datasets: [
                 {
                     label: "Sales Analytics",
                     backgroundColor: "rgba(127, 193, 252, 0.3)",
                     borderColor: "#7fc1fc",
-                    borderWidth: 1,
+                    borderWidth: 2,
                     hoverBackgroundColor: "rgba(127, 193, 252, 0.6)",
                     hoverBorderColor: "#7fc1fc",
                     data: [65, 59, 80, 81, 56, 55, 40,20]

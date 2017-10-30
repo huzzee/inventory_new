@@ -14,6 +14,9 @@
         <!-- Custom box -->
             <link href="{{ asset('assets/plugins/custombox/css/custombox.min.css') }}" rel="stylesheet">
 
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/plugins/morris/morris.css') }}">
+
         <!-- form css-->
         <link href="{{ asset('assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}" rel="stylesheet" />
         <link href="{{ asset('assets/plugins/multiselect/css/multi-select.css') }}"  rel="stylesheet" type="text/css" />
@@ -39,14 +42,22 @@
         <link href="{{ asset('assets/plugins/datatables/dataTables.colVis.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/plugins/datatables/fixedColumns.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+
+        <!-- Bootstrap Sweet Alert -->
+        <link href="{{ asset('assets/plugins/bootstrap-sweetalert/sweet-alert.css') }}" rel="stylesheet" type="text/css">
+
         <!-- App css -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/bootstrap.min.css.map') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/core.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/components.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/elements.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/pages.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/menu.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" type="text/css" />   
+
+
 		<link rel="stylesheet" href="{{ asset('assets/plugins/switchery/switchery.min.css') }}">
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -102,7 +113,10 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
+
+
             <div class="content-page">
+                
                 @yield('content')
 
                 @include('include.footer')
@@ -139,7 +153,7 @@
         <script src="{{ asset('assets/js/jquery.scrollTo.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/switchery/switchery.min.js') }}"></script>
 
-        @yield('scripts');
+        @yield('scripts')
 
         <!-- App js -->
         <script src="{{ asset('assets/js/jquery.core.js') }}"></script>

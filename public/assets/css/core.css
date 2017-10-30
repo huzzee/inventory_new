@@ -306,6 +306,7 @@ a:focus {
   background-clip: padding-box;
   margin-bottom: 20px;
   background-color: #ffffff;
+  opacity: 1;
 }
 /* Search box */
 .search-box {
