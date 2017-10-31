@@ -27,60 +27,98 @@
                                 </button>
                             </li>
                             
-                        </ul>
+                        </ul>                   
 
                         <!-- Right(Notification) -->
                         <ul class="nav navbar-nav navbar-right">
-                            
+
+                             @if(Auth::user()->role_id == 1)
+        
+        <!--================== PURCHASE =================-->
+
                              <li>
                                 <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <span class="badge up bg-primary"></span>
+                                    <i class="mdi mdi-cart"></i>
+                                    <span class="badge up bg-primary">
+                                        @php $i=0; @endphp
+                                @foreach(purchase_note() as $purchase)
+                                    @if($purchase->approved == 0 && $purchase->rejected == 0)
+                                        @php $i++ @endphp
+                                    @endif
+                                @endforeach
+                                        {{$i}}
+                                    </span>
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
                                     <li>
-                                        <h5>Notifications</h5>
+                                        <h5>Pending PO</h5>
                                     </li>
+                                    @foreach(purchase_note() as $purchase)
+                                     @if($purchase->approved == 0 && $purchase->rejected == 0)
                                     <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="icon bg-info">
-                                                <i class="mdi mdi-account"></i>
+                                        <a href="{{url('purchase/'.$purchase->id )}}" class="user-list-item">
+                                            <div class="icon">
+                                                <i><img src="{{asset('uploads/'.$purchase->users->profile_image)}}" style="width:30px;border-radius:500px;"></i>
                                             </div>
                                             <div class="user-desc">
-                                                <span class="name">New Signup</span>
-                                                <span class="time">5 hours ago</span>
+                                                <span class="name">{{$purchase->users->username}}   </span>
+                                                <span class="time">{{$purchase->created_at->diffForHumans()}}</span>
                                             </div>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="icon bg-danger">
-                                                <i class="mdi mdi-comment"></i>
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">New Message received</span>
-                                                <span class="time">1 day ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="icon bg-warning">
-                                                <i class="mdi mdi-settings"></i>
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">Settings</span>
-                                                <span class="time">1 day ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
+                                     @endif
+                                    @endforeach
                                     <li class="all-msgs text-center">
-                                        <p class="m-0"><a href="#">See all Notification</a></p>
+                                        <p class="m-0"><a href="{{url('purchase')}}">See all Notification</a></p>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+            <!--================== REQUESITION =================-->
+                            
+                            <li>
+                                <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
+                                    <i class="mdi mdi-note-text"></i>
+                                    <span class="badge up bg-primary">
+                                        @php $i=0; @endphp
+                                @foreach(request_note() as $requisition)
+                                    @if($requisition->approved == 0 && $requisition->rejected == 0)
+                                        @php $i++ @endphp
+                                    @endif
+                                @endforeach
+                                        {{$i}}
+                                    </span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
+                                    <li>
+                                        <h5>Pending Requisition</h5>
+                                    </li>
+                                    @foreach(request_note() as $requisition)
+                                     @if($requisition->approved == 0 && $requisition->rejected == 0 && $requisition->issued == 0)
+                                    <li>
+                                        <a href="{{url('requisition/'.$requisition->id )}}" class="user-list-item">
+                                            <div class="icon">
+                                                <i><img src="{{asset('uploads/'.$requisition->users->profile_image)}}" style="width:30px;border-radius:500px;"></i>
+                                            </div>
+                                            <div class="user-desc">
+                                                <span class="name">{{$requisition->users->username}}</span>
+                                                <span class="desc">{{$requisition->reason}}</span>
+                                                <span class="time">{{$requisition->created_at->diffForHumans()}}</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                     @endif
+                                    @endforeach
+                                    <li class="all-msgs text-center">
+                                        <p class="m-0"><a href="{{url('requisition')}}">See all Notification</a></p>
                                     </li>
                                 </ul>
                             </li>
-                           
+
+                           @endif
 
                             <li class="dropdown user-box">
                                 <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">

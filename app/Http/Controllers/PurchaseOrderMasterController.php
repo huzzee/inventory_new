@@ -15,7 +15,7 @@ class PurchaseOrderMasterController extends Controller
 {
     public function __construct()
     {
-       $this->middleware('user_privilage',['except' => ['store']]);
+       $this->middleware('user_privilage',['except' => ['store','purchase_approved','purchase_rejected']]);
     }
     /**
      * Display a listing of the resource.

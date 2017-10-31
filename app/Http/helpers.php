@@ -2,6 +2,12 @@
 
 use App\Models\Menu;
 use App\Models\Permission;
+use App\Models\PurchaseOrderMaster;
+use App\Models\PurchaseOrderDetail;
+use App\Models\Requisition;
+	use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 function callMenus(){
@@ -49,5 +55,17 @@ function check_user_privilage($user_id){
 		}*/
 	return $data;
 
+
+}
+
+function purchase_note(){
+
+	return PurchaseOrderMaster::with('users')->get();
+
+}
+
+function request_note(){
+
+	return Requisition::with('users')->get();
 
 }
